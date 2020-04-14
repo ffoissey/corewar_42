@@ -6,7 +6,7 @@
 #    By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/11 17:23:00 by ffoissey          #+#    #+#              #
-#    Updated: 2020/04/14 15:27:33 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/14 17:04:44 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -221,4 +221,4 @@ FORCE:
 #----------------------------------- Special ----------------------------------#
 
 .PHONY: clean fclean re all FORCE clean_soft re_only
-.SILENT:
+#.SILENT:
