@@ -6,7 +6,7 @@
 #    By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/11 17:23:00 by ffoissey          #+#    #+#              #
-#    Updated: 2020/04/14 13:42:33 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/14 15:27:33 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,6 +116,11 @@ HEADER += asm.h
 ################################################################################
 
 PATH_SRCS += srcs/
+PATH_SRCS += srcs/core
+PATH_SRCS += srcs/parser
+PATH_SRCS += srcs/tools
+PATH_SRCS += srcs/encode
+PATH_SRCS += srcs/debug
 
 ################################################################################
 #################################               ################################
@@ -123,19 +128,28 @@ PATH_SRCS += srcs/
 #################################               ################################
 ################################################################################
 
+# Core
 SRCS += asm.c
 SRCS += file.c
 SRCS += error.c
 SRCS += exit_routine.c
+
+# Parser
 SRCS += parser.c
-SRCS += tools.c
-SRCS += tools2.c
 SRCS += token.c
 SRCS += label_attribution.c
 SRCS += name_comment.c
 SRCS += operation_checker.c
+
+# Tools
+SRCS += tools.c
+SRCS += tools2.c
+
+# Encode
 SRCS += encode.c
 SRCS += fill_op.c
+
+# Debug
 SRCS += debug.c
 
 ################# ATTRIBUTION
