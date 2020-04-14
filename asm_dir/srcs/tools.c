@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 21:04:00 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/11 21:18:28 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:20:48 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		is_arg_type(enum e_token type)
 {
 	return (is_num_type(type) || type == INDIRECT_LABEL
-		|| type == INDIRECT_LABEL);
+		|| type == DIRECT_LABEL);
 }
 
 int		is_label_type(enum e_token type)

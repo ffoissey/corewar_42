@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 19:55:22 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:24:01 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:28:53 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static t_token	get_token(enum e_token type, t_vector *elem, t_asm *env_asm,
 	token.arg_size = 1;
 	token.value = (type == REG || type == INDIRECT || type == DIRECT)
 			? ft_atol(token.str) : 0;
+	token.truevalue = token.value;
 	token.mem_offset = env_asm->mem_count;
 	token.line = flag == DQUOTE ? env_asm->start_line_dquote : env_asm->line;
 	token.col = flag == DQUOTE ? env_asm->start_col_dquote : env_asm->col;

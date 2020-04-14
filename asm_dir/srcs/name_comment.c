@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 13:28:18 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:22:35 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:37:14 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void		get_name_and_comment(t_asm *env_asm)
 			head = token_list;
 		token_list = token_list->next;
 	}
-	ft_lstdeltil(&env_asm->token_list, head, del_token);
 	if (env_asm->name == NULL)
 		exit_error(MISS_NAME, NULL);
 	else if (env_asm->comment == NULL)

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:19:00 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 13:59:43 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,24 @@ void	get_file_fd(t_asm *env_asm, char *name)
 		exit_error(NO_FILE_NAME, NULL);
 }
 
-void	write_file(t_vector *vct, char *name)
+void	write_file(t_asm *env_asm, char *name)
 {
 	int		fd;
 	size_t	len;
-	char	*new_file;
 
 	len = ft_strlen(name);
 	name[len - LEN_EXTENSION] = '\0';
-	new_file = ft_strjoin(name, EXTENSION_COR);
-	if (new_file == NULL)
+	env_asm->cor_file = ft_strjoin(name, EXTENSION_COR);
+	if (env_asm->cor_file == NULL)
 		exit_error(MALLOC_ERROR, NULL);
-	fd = open(new_file, O_CREAT | O_WRONLY,
+	fd = open(env_asm->cor_file, O_CREAT | O_WRONLY,
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd != FAILURE)
 	{
-		if (vct_print_fd(vct, fd) == FAILURE)
+		if (vct_print_fd(env_asm->output, fd) == FAILURE)
 			exit_error(WRITE_ERROR, NULL);
 	}
 	else
 		exit_error(OPEN_ERROR, NULL);
 	close(fd);
-	ft_printf("Writing output program to %s\n", new_file);
-	ft_strdel(&new_file);
 }

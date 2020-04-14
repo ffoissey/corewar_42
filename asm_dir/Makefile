@@ -6,7 +6,7 @@
 #    By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/11 17:23:00 by ffoissey          #+#    #+#              #
-#    Updated: 2020/04/13 13:34:25 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/14 13:42:33 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -159,9 +159,9 @@ OBJS = $(patsubst %.c, $(PATH_OBJS)%.o, $(SRCS))
 
 #---------------------------------- STANDARD ----------------------------------#
 
-all: $(PATH_OBJS) $(NAME)
+all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(LIBFT) $(PATH_OBJS) $(OBJS)
 	$(CC) $(CFLAGS) $(I_INCLUDES) $(OBJS) $(LIBFT) -o $@
 	printf "$(GREEN)asm is ready.\n$(NC)"
 
@@ -206,5 +206,5 @@ FORCE:
 
 #----------------------------------- Special ----------------------------------#
 
-.PHONY: clean fclean re all debug FORCE clean_soft re_only
+.PHONY: clean fclean re all FORCE clean_soft re_only
 .SILENT:

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 13:51:02 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:18:07 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:09:04 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	exit_routine(void)
 	int		ret;
 
 	env_asm = get_env_asm(NULL);
+	debug();
 	ret = print_error(env_asm->error, env_asm->token_error);
+	if (ret == NO_ERR)
+		ft_printf("Writing output program to %s\n", env_asm->cor_file);
 	if (env_asm->token_error != NULL)
 	{
 		ft_strdel(&(env_asm->token_error->str));
@@ -39,6 +42,7 @@ void	exit_routine(void)
 	ft_lstdel(&env_asm->label_list, del_token);
 	ft_strdel(&env_asm->name);
 	ft_strdel(&env_asm->comment);
+	ft_strdel(&env_asm->cor_file);
 	vct_del(&env_asm->dquote);
 	vct_del(&env_asm->output);
 	close(env_asm->fd);

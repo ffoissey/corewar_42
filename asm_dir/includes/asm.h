@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:44:08 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:20:22 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:36:44 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@
 # define NO_ADD			0
 # define ADD_ENDL		1
 # define CUT_TIL_DQUOTE	2
-
-/*
-*** debug
-*/
-
-# define SKIP_SPACESEP	0
-# define PRINT_SPACESEP	1
 
 # define GET_NAME		1
 # define GET_COM		2
@@ -272,6 +265,7 @@ typedef	struct		s_token
 	size_t			op_size;
 	size_t			arg_size;
 	int64_t			value;
+	int64_t			truevalue;
 	enum e_token	type;
 	uint16_t		mask;
 	char			pad[2];
@@ -281,6 +275,7 @@ typedef struct		s_asm
 {
 	char			*name;
 	char			*comment;
+	char			*cor_file;
 	t_vector		*dquote;
 	t_vector		*output;
 	t_list			*op_ptr;
@@ -326,7 +321,7 @@ void				del_token(void *content, size_t content_size);
 */
 
 void				get_file_fd(t_asm *env_asm, char *name);
-void				write_file(t_vector *vct, char *name);
+void				write_file(t_asm *env_asm, char *name);
 
 /*
 *** parser.c
@@ -345,10 +340,7 @@ int					extract_token(enum e_token type, t_vector *elem,
 *** debug.c
 */
 
-void				debug_comment(t_vector *line);
-void				debug(t_asm *env_asm, int flag);
-void				debug_list_token(t_asm *env_asm, int flag);
-void				debug_list_label(t_asm *env_asm);
+void				debug(void);
 
 /*
 *** operation_checker.c

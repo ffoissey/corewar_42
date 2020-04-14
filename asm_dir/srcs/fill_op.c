@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 16:43:58 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:21:31 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:37:25 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char		create_mask(uint16_t mask_in)
 
 	mask_out = 0;
 	i = 0;
-	while (i < 6) // 8 before
+	while (i < 6)
 	{
 		if ((mask_in >> (8 - (i * 2))) & T_REG)
 			mask_out |= ((REG_MASK << i) << 2);
@@ -57,6 +57,7 @@ static size_t	fill_arg(t_token *arg, char *mem_op)
 			arg->value = (int16_t)arg->value;
 		else
 			arg->value = (int8_t)arg->value;
+		arg->truevalue = arg->value;
 		mem_part = (char *)mem_rev((uint8_t *)(&arg->value), arg->arg_size);
 		ft_memmove(mem_op, mem_part, arg->arg_size);
 		return (arg->arg_size);
@@ -92,8 +93,7 @@ void			fill_with_op(t_vector *output, t_asm *env_asm)
 	char		mem_op[MAX_LEN_OP];
 	size_t		size;
 
-	env_asm->op_ptr = env_asm->token_list;
-	env_asm->op_ptr = go_to_next_op(env_asm->op_ptr);
+	env_asm->op_ptr = go_to_next_op(env_asm->token_list);
 	while (env_asm->op_ptr != NULL)
 	{
 		env_asm->op_ptr = go_to_next_op(env_asm->op_ptr);

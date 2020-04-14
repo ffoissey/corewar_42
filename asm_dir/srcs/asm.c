@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:42:45 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:19:05 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:00:08 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		main(int ac, char **av)
 	env_asm.output = encoding(&env_asm);
 	if (env_asm.output == NULL)
 		exit_error(MALLOC_ERROR, NULL);
-	write_file(env_asm.output, av[ac - 1]);
+	write_file(&env_asm, av[ac - 1]);
 	exit_routine();
 	return (SUCCESS);
 }
