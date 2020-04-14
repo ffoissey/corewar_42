@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 13:59:43 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 17:03:42 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,10 @@ void	get_file_fd(t_asm *env_asm, char *name)
 	len = (name == NULL) ? 0 : ft_strlen(name);
 	if (len > LEN_EXTENSION)
 	{
-		if (ft_strequ(name + len - LEN_EXTENSION, EXTENSION) == TRUE)
-		{
-			if (env_asm->fd < 0)
-				exit_error(BAD_FD, NULL);
-			env_asm->fd = open(name, O_RDONLY);
-			if (env_asm->fd == FAILURE)
-				exit_error(OPEN_ERROR, NULL);
-		}
-		else
+		env_asm->fd = open(name, O_RDONLY);
+		if (env_asm->fd == FAILURE)
+			exit_error(OPEN_ERROR, NULL);
+		if (ft_strequ(name + len - LEN_EXTENSION, EXTENSION) == FALSE)
 			exit_error(BAD_EXTENSION, NULL);
 	}
 	else

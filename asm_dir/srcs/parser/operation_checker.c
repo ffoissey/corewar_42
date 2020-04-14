@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:28:13 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:23:13 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 17:01:40 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,41 @@ static int		size_of_arg(enum e_token op_type, t_token *arg,
 	return ((arg->arg_size = dir[op_type]));
 }
 
+static int		is_end_by_sep(t_list *token_list)
+{
+	t_token	*token;
+	uint8_t	sep;
+
+	sep = TRUE;
+	while (token_list != NULL)
+	{
+		token = (t_token *)token_list->content;
+		if (token->type == ENDL)
+			break ;
+		else if (token->type != SPACE)
+			sep = (token->type == SEP);
+		token_list = token_list->next;
+	}
+	return (sep);
+}
+
+static void		too_many_args(t_list *token_list, t_token *op,
+								uint8_t count, uint8_t flag)
+{
+	const int	nb_arg[] = {0, 1, 2, 2, 3, 3, 3, 3, 3, 1, 3, 3, 1, 2, 3, 1, 1};
+	t_token		*token;
+
+	if (flag == CHECK_ARG && count >= ((nb_arg[op->type] * 2) - 1))
+	{
+		token = (t_token *)token_list->content;
+		if (token->type == SEP && is_end_by_sep(token_list->next) == TRUE)
+			exit_error(BAD_TOKEN, token);
+		exit_error(BAD_NB_ARG, op);
+	}
+	else if (flag == END_ARG && count != ((nb_arg[op->type] * 2) - 1))
+		exit_error(BAD_NB_ARG, op);
+}
+
 static ssize_t	parse_op_arg(t_list *token_list, enum e_token op_type,
 					uint16_t *arg_code, t_token *op)
 {
@@ -53,15 +88,17 @@ static ssize_t	parse_op_arg(t_list *token_list, enum e_token op_type,
 	{
 		if (token->type != SPACE)
 		{
+			too_many_args(token_list, op, count, CHECK_ARG);
 			if (count % 2 == 0)
 				mem_offset += size_of_arg(op_type, token, arg_code, count * 2);
-			else if (token->type != SEP || count > MAX_ARG + 1)
+			else if (token->type != SEP)
 				exit_error(BAD_TOKEN, token);
 			count++;
 		}
 		token_list = token_list->next;
 		token = (t_token *)(token_list->content);
 	}
+	too_many_args(token_list, op, count, END_ARG);
 	return (mem_offset);
 }
 

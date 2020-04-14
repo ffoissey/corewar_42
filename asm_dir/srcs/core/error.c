@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:40 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 15:01:03 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 16:04:28 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static char	*get_string_error(size_t index)
 							ERR_DOUBLE_NAME, ERR_DOUBLE_COMMENT, ERR_MISS_NAME,
 							ERR_MISS_COMMENT, ERR_BAD_PLACE_NAME,
 							ERR_BAD_PLACE_COMMENT, ERR_UNKNOW_LABEL, ERR_NO_OPE,
-							ERR_WRITE, ERR_READ, ERR_OPEN, ERR_MALLOC,
-							NULL};
+							ERR_BAD_NB_ARG, ERR_WRITE, ERR_READ, ERR_OPEN,
+							ERR_MALLOC, NULL};
 
 	return (str_err[index]);
 }
@@ -39,10 +39,10 @@ int			print_error(uint64_t err, t_token *token)
 		if (err & (1 << i))
 		{
 			ft_dprintf(STDERR_FILENO, "\033[31mERROR: \033[0m%s", str_error);
-			if (i > 20)
+			if (i > 21)
 				ft_putstr_fd(strerror(errno), STDERR_FILENO);
 			ft_putchar_fd('\n', STDERR_FILENO);
-			if (i <= 20 && token != NULL)
+			if (i <= 21 && token != NULL)
 				ft_dprintf(STDERR_FILENO,
 				"\t-> token: `%s' | line: %d | col: %d\n",
 				token->initial_str, token->line, token->col);

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:44:08 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 15:01:35 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 17:01:01 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 
 # define GET_NAME		1
 # define GET_COM		2
+
+# define CHECK_ARG		0
+# define END_ARG		1
 
 /*
 **************************
@@ -63,13 +66,13 @@
 # define ERR_REG_VALUE			"Reg value is not between 1 and REG_NUMBER"
 
 # define UNKNOW_TOKEN			0x0000000000000080
-# define ERR_UNKNOW_TOKEN		"Unknow token"
+# define ERR_UNKNOW_TOKEN		"Syntax error (unknow token)"
 
 # define BAD_TOKEN				0x0000000000000100
-# define ERR_BAD_TOKEN			"Bad token"
+# define ERR_BAD_TOKEN			"Syntax error (unexpected token)"
 
 # define BAD_ARG_OP				0x0000000000000200
-# define ERR_BAD_ARG_OP			"Bad arguments for this operation"
+# define ERR_BAD_ARG_OP			"Bad kind of argument for this operation"
 
 # define UNCLOSED_DQUOTE		0x0000000000000400
 # define ERR_UNCLOSED_DQUOTE	"Unclosed double quote"
@@ -104,22 +107,25 @@
 # define NO_OPE					0x0000000000100000
 # define ERR_NO_OPE				"No op"
 
-# define WRITE_ERROR			0x0000000000200000
+# define BAD_NB_ARG				0x0000000000200000
+# define ERR_BAD_NB_ARG			"Bad number of arguments for this operation"
+
+# define WRITE_ERROR			0x0000000000400000
 # define ERR_WRITE				"write: "
 
-# define READ_ERROR				0x0000000000400000
+# define READ_ERROR				0x0000000000800000
 # define ERR_READ				"read: "
 
-# define OPEN_ERROR				0x0000000000800000
+# define OPEN_ERROR				0x0000000001000000
 # define ERR_OPEN				"open: "
 
-# define MALLOC_ERROR			0x0000000001000000
+# define MALLOC_ERROR			0x0000000002000000
 # define ERR_MALLOC				"malloc: "
 
-# define INVALID_OPT			0x0000000002000000
+# define INVALID_OPT			0x0000000004000000
 # define ERR_INVALID_OPT		"asm: invalid option -- "
 
-# define TOO_MANY_ARG			0x0000000004000000
+# define TOO_MANY_ARG			0x0000000008000000
 # define ERR_TOO_MANY_ARG		"asm: too many arguments"
 
 /*
