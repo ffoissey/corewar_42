@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:40 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:17:52 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 15:01:03 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,12 @@ int			print_error(uint64_t err, t_token *token)
 	return (NO_ERR);
 }
 
-void		print_usage(void)
+void		exit_usage(uint64_t err, char c)
 {
+	if (err == INVALID_OPT)
+		ft_dprintf(STDERR_FILENO, "%s'%c'\n", ERR_INVALID_OPT, c);
+	else if (err == TOO_MANY_ARG)
+		ft_putendl_fd(ERR_TOO_MANY_ARG, STDERR_FILENO);
 	ft_putendl_fd(USAGE, STDERR_FILENO);
+	exit(EXIT_USAGE);
 }

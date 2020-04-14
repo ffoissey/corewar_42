@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:44:08 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 14:36:44 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/14 15:01:35 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 **************************
 */
 
-# define USAGE			"usage: ./asm [file.s]"
+# define USAGE			"Usage: ./asm [-a] {file.s}"
 # define EXIT_USAGE		1
 
 # define NO_ERR					0x0000000000000000
@@ -115,6 +115,12 @@
 
 # define MALLOC_ERROR			0x0000000001000000
 # define ERR_MALLOC				"malloc: "
+
+# define INVALID_OPT			0x0000000002000000
+# define ERR_INVALID_OPT		"asm: invalid option -- "
+
+# define TOO_MANY_ARG			0x0000000004000000
+# define ERR_TOO_MANY_ARG		"asm: too many arguments"
 
 /*
 **** INFO
@@ -292,7 +298,8 @@ typedef struct		s_asm
 	size_t			line;
 	size_t			col;
 	int				fd;
-	char			pad[4];
+	uint8_t			a_opt;
+	char			pad[3];
 }					t_asm;
 
 /*
@@ -305,7 +312,7 @@ t_asm				*get_env_asm(t_asm *env_asm);
 *** error.c
 */
 
-void				print_usage(void);
+void				exit_usage(uint64_t err, char c);
 int					print_error(uint64_t err, t_token *token);
 
 /*
