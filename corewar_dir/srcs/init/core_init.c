@@ -68,6 +68,28 @@ static int8_t		check_n_args(int32_t count_arg, char **av, t_data *data)
 		return (init_champ(nb_player, av[count_arg + 2], data));
 	else
 		return (core_error(2));
+	data->initialised_players += 1;
+	return (SUCCESS);
+}
+
+static int8_t		check_args(int32_t count_arg, char **av, t_data *data)
+{
+	if (ft_strequ(av[count_arg], "-n") == TRUE)
+		return (check_n_args(count_arg, av, data));
+	if (av[count_arg + 1] == NULL)
+		return (core_error(9));
+	if (ft_isanint(av[count_arg + 1]) == FALSE)
+		return (core_error(9));
+	data->dump = ft_atoi(av[count_arg + 1]);
+	if (data->dump < 0)
+		return (core_error(9));
+	if ((av[count_arg + 2] != NULL)
+		&& (ft_strequ(av[count_arg + 2]
+			+ ft_strlen(av[count_arg + 2]) - 4, ".cor") == TRUE))
+		return (init_champ(-1, av[count_arg + 2], data));
+	else
+		return (core_error(9));
+	data->initialised_players += 1;
 	return (SUCCESS);
 }
 
@@ -77,14 +99,15 @@ int8_t				core_init_data(int32_t ac, char **av, t_data *data)
 
 	data->initialised_players = 0;
 	count_arg = 0;
+	data->dump = OFF;
 	while (++count_arg < ac && data->initialised_players <= MAX_PLAYERS)
 	{
-		if (ft_strequ(av[count_arg], "-n") == TRUE)
+		if (ft_strequ(av[count_arg], "-n") == TRUE ||
+			ft_strequ(av[count_arg], "-dump") == TRUE)
 		{
-			if (check_n_args(count_arg, av, data) == FAILURE)
+			if (check_args(count_arg, av, data) == FAILURE)
 				return (FAILURE);
 			count_arg += 2;
-			data->initialised_players += 1;
 		}
 		else if (ft_strequ(av[count_arg]
 			+ ft_strlen(av[count_arg]) - 4, ".cor") == TRUE)

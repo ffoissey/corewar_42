@@ -22,7 +22,7 @@ static int8_t	main_part2(t_data *data)
 	if (core_present_champs(data) == FAILURE)
 		return (FAILURE);
 	core_cycle(data);
-	if (core_present_winner(data) == FAILURE)
+	if (data->dump != DONE && core_present_winner(data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }

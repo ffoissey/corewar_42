@@ -17,7 +17,7 @@
 **		------------------------------ Gestion d'erreurs
 */
 
-# define ERROR_NB 9
+# define ERROR_NB 10
 
 # define ERROR_MSG0 "Usage : joindre un fichier .cor a l'executable\n"
 # define ERROR_MSG1 "Erreur de Malloc\n"
@@ -28,6 +28,7 @@
 # define ERROR_MSG6	" : fichier .cor trop court\n"
 # define ERROR_MSG7	" : la taille du code executable n'est pas valable\n"
 # define ERROR_MSG8	"Erreur : sortie standard fermée\n"
+# define ERROR_MSG9 "Usage : ./corewar [-dump] [0 - INT_MAX] .cor\n"
 
 /*
 **		------------------------------ OCP
@@ -73,5 +74,12 @@
 
 # define CARRY_ON		1
 # define CARRY_OFF		0
+
+/*
+** 			----------------------- DUMP
+*/
+
+# define OFF			-1
+# define DONE			-2
 
 #endif

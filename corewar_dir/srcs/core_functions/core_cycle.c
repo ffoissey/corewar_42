@@ -91,7 +91,7 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 
 void			corewar_dump(t_data *data)
 {
-	int 		i;
+	int	i;
 
 	i = -1;
 	while (++i < MEM_SIZE)
@@ -104,7 +104,7 @@ void			corewar_dump(t_data *data)
 		else
 			ft_printf(" ");
 	}
-	// je crois qu'on doit exit si on fait un dump et pas dire qui a won.
+	data->dump = DONE;
 }
 
 void			core_cycle(t_data *data)
@@ -114,7 +114,7 @@ void			core_cycle(t_data *data)
 	while (data->carriages != NULL)
 	{
 		if (data->vm->nb_cycles == data->dump)
-			corewar_dump(data);
+			return (corewar_dump(data));
 		data->vm->nb_cycles += 1;
 		current = data->carriages;
 		exec_current_carriage(current, data);
