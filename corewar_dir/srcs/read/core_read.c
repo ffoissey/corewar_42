@@ -6,11 +6,12 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:31:09 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/11 18:46:29 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/14 15:29:53 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
+#include <stdio.h>
 
 static int8_t			read_header(t_champs *champs, int32_t fd)
 {
