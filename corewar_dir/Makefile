@@ -84,11 +84,36 @@ LINK		=		$(CC) -g3
 COMPILE		=		$(CC) -c -g3
 
 IFLAGS		=		$(addprefix -I , $(IPATH))
+
 CFLAGS		+=		-Wall
 CFLAGS		+=		-Wextra
-CFLAGS		+=		-Werror
-#CFLAGS		+=		-fsanitize=address
-# CFLAGS		+=		-Wpadded
+
+# Compiler Debug Flags
+ifeq ($(d), 0)
+	CFLAGS += -g3
+else ifeq ($(d), 1)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+else ifeq ($(d), 2)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -Wpadded
+else ifeq ($(d), 3)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -Wpadded
+	CFLAGS += -pedantic
+else ifeq ($(d), 4)
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -Wpadded
+	CFLAGS += -pedantic
+	CFLAGS += -Weverything
+endif
+ifneq ($(err), no)
+	CFLAGS += -Werror
+endif
+
 CFLAGS		+=		$(IFLAGS)
 
 #------------------------------------------------------------------------------#
@@ -258,4 +283,4 @@ FORCE		:
 
 .PHONY		:		all clean fclean re FORCE
 
-.SILENT:
+#.SILENT:
