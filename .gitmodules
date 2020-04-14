@@ -1,6 +1,0 @@
-[submodule "asm"]
-	path = asm
-	url = https://www.github.com/ffoissey/corewar_asm_42.git
-[submodule "libft"]
-	path = libft
-	url = https://www.github.com/ffoissey/libft_42.git
