@@ -12,6 +12,15 @@
 
 #include "core.h"
 
+static void	print_live(t_data *data, int32_t dir)
+{
+	ft_putstr_fd("Un processus dit que le joueur ", STDIN_FILENO);
+	ft_putnbr_fd(dir, STDIN_FILENO);
+	ft_putstr_fd("(", STDIN_FILENO);
+	ft_putstr_fd(data->champs[dir]->name, STDIN_FILENO);
+	ft_putstr_fd(") est en vie.\n", STDIN_FILENO);
+}
+
 int8_t		ope_live(t_carriages *current, t_data *data)
 {
 	int32_t		dir;
@@ -28,6 +37,8 @@ int8_t		ope_live(t_carriages *current, t_data *data)
 	{
 		data->champs[dir]->last_alive_cycle = data->vm->nb_cycles;
 		data->vm->last_alive_champ = (uint8_t)dir;
+		if (data->aff == ON)
+			print_live(data, dir);
 		return (SUCCESS);
 	}
 	return (SUCCESS);

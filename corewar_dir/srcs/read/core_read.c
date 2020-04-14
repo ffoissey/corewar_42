@@ -75,7 +75,7 @@ static int8_t			core_open_management(t_champs *champs,
 		perror(NULL);
 		return (FAILURE);
 	}
-	if ((read_header(champs, fd) == FAILURE)
+	if ((read_header(champs, fd) == FAILURE) 
 		|| (read_name(champs, fd) == FAILURE)
 		|| (skip_null(champs, fd) == FAILURE)
 		|| (core_read_exec_code_size(champs, fd) == FAILURE)

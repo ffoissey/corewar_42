@@ -25,6 +25,9 @@
 */
 
 int8_t		core_init_data(int ac, char **av, t_data *data);
+int8_t		core_init_flag(int32_t *count_arg, char **av, t_data *data);
+int8_t		init_champ(int8_t nb_player, char *file_path, t_data *data);
+int8_t		core_nb_player(t_champs *new_champ, int8_t nb_player, t_data *data, char *file_path);
 
 /*
 **		CORE_CYCLE

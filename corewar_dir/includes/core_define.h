@@ -76,10 +76,11 @@
 # define CARRY_OFF		0
 
 /*
-** 			----------------------- DUMP
+** 			----------------------- DUMP || AFF
 */
 
 # define OFF			-1
+# define ON			0
 # define DONE			-2
 
 #endif

@@ -12,6 +12,16 @@
 
 #include "core.h"
 
+static int8_t	print_aff(t_carriages *current, int8_t arg_1)
+{
+	if (ft_putstr_fd("Aff : ", STDIN_FILENO) == FAILURE
+	|| ft_putchar_fd(current->registres[arg_1 - 1] % 256,
+			STDIN_FILENO) == FAILURE
+	|| ft_putchar_fd('\n', STDIN_FILENO) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
 int8_t		ope_aff(t_carriages *current, t_data *data)
 {
 	int8_t	arg_1;
@@ -28,10 +38,7 @@ int8_t		ope_aff(t_carriages *current, t_data *data)
 	if (arg_1 == FAILURE)
 		return (FAILURE);
 	current->to_jump += MEM_REG;
-	if (ft_putstr_fd("Aff : ", STDIN_FILENO) == FAILURE
-		|| ft_putchar_fd(current->registres[arg_1 - 1] % 256,
-				STDIN_FILENO) == FAILURE
-		|| ft_putchar_fd('\n', STDIN_FILENO) == FAILURE)
-		return (FAILURE);
+	if (data->aff == ON)
+		return (print_aff(current, arg_1));
 	return (SUCCESS);
 }

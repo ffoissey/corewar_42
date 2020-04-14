@@ -133,6 +133,7 @@ READ			+=		core_read_functions.c
 #										  --- Initialisation des structs ---
 
 INIT			+=		core_init.c
+INIT			+=		core_init_flags.c
 INIT			+=		core_init_vm.c
 INIT			+=		core_init_carriages.c
 

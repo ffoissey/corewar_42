@@ -76,6 +76,7 @@ typedef struct		s_data
 	uint8_t			initialised_players;
 	char			pad[7];
 	int32_t			dump;
+	int8_t			aff;
 }					t_data;
 
 #endif
