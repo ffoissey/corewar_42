@@ -6,18 +6,15 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:15:37 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 17:37:17 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 18:34:01 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static	int8_t	print_aff(t_carriages *current, int8_t arg_1)
+static int8_t	print_aff(t_carriages *current, int8_t arg_1)
 {
-	if (ft_putstr_fd("Aff : ", STDOUT_FILENO) == FAILURE
-	|| ft_putchar_fd(current->registres[arg_1 - 1] % 256,
-			STDOUT_FILENO) == FAILURE
-	|| ft_putchar_fd('\n', STDOUT_FILENO) == FAILURE)
+	if (ft_printf("Aff : %c\n", current->registres[arg_1 - 1] % 256) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }

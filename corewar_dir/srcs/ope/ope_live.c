@@ -6,19 +6,18 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:02:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 17:36:53 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 18:36:44 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static void	print_live(t_data *data, int32_t dir)
+static int	print_live(t_data *data, int32_t dir)
 {
-	ft_putstr_fd("Un processus dit que le joueur ", STDOUT_FILENO);
-	ft_putnbr_fd(dir, STDOUT_FILENO);
-	ft_putstr_fd("(", STDOUT_FILENO);
-	ft_putstr_fd(data->champs[dir]->name, STDOUT_FILENO);
-	ft_putstr_fd(") est en vie.\n", STDOUT_FILENO);
+	if (ft_printf("Un processus dit que le joueur %d (%s) est en vie.\n",
+			dir, data->champs[dir]->name) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
 }
 
 int8_t		ope_live(t_carriages *current, t_data *data)
@@ -38,7 +37,7 @@ int8_t		ope_live(t_carriages *current, t_data *data)
 		data->champs[dir]->last_alive_cycle = data->vm->nb_cycles;
 		data->vm->last_alive_champ = (uint8_t)dir;
 		if (data->aff == ON)
-			print_live(data, dir);
+			return (print_live(data, dir));
 		return (SUCCESS);
 	}
 	return (SUCCESS);
