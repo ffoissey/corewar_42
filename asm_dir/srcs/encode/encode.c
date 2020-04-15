@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 16:43:58 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:25:21 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:30:03 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ uint8_t		*mem_rev(uint8_t *mem, size_t size)
 	return (mem);
 }
 
-size_t		fill_vector(t_vector *output, char *s, size_t len, size_t offset)
+size_t		fill_vector(t_vector *output, char *s,
+						const size_t len, const size_t offset)
 {
 	vct_addmemat(output, s, len, offset);
 	return (offset + len);

@@ -6,13 +6,13 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 16:43:58 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 14:37:25 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:34:29 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static char		create_mask(uint16_t mask_in)
+static char		create_mask(const uint16_t mask_in)
 {
 	char	mask_out;
 	uint8_t	i;

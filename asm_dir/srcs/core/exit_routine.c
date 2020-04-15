@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 13:51:02 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 15:11:27 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:32:47 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	exit_routine(void)
 	exit(ret);
 }
 
-void	exit_error(uint64_t err, t_token *token_error)
+void	exit_error(const uint64_t err, t_token *token_error)
 {
 	t_asm	*env_asm;
 

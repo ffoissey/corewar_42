@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:44:08 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:21:08 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:48:06 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,23 +332,38 @@ t_asm				*get_env_asm(t_asm *env_asm);
 *** error.c
 */
 
-void				exit_usage(uint64_t err, char c) __attribute__((noreturn));
-int					print_error(uint64_t err, t_token *token);
+void				exit_usage(const uint64_t err, const char c);
+
+/*
+** void exit_usage(const uint64_t err, const char c); __attribute__((noreturn));
+*/
+
+int					print_error(const uint64_t err, t_token *token);
 
 /*
 *** exit_routine.c
 */
 
-void				exit_error(uint64_t err, t_token *token)
-						__attribute__((noreturn));
-void				exit_routine(void) __attribute__((noreturn));
+void				exit_error(const uint64_t err, t_token *token);
+
+/*
+** void	exit_error(const uint64_t err, t_token *token);
+**  __attribute__((noreturn));
+*/
+
+void				exit_routine(void);
+
+/*
+** void exit_routine(void); __attribute__((noreturn));
+*/
+
 void				del_token(void *content, size_t content_size);
 
 /*
 *** file.c
 */
 
-void				get_file_fd(t_asm *env_asm, char *name);
+void				get_file_fd(t_asm *env_asm, const char *name);
 void				write_file(t_asm *env_asm, char *name);
 
 /*
@@ -380,11 +395,11 @@ void				op_checker(t_asm *env_asm);
 *** tools.c
 */
 
-int					is_arg_type(enum e_token type);
-int					is_label_type(enum e_token type);
-int					is_num_type(enum e_token type);
-int					check_label(char *label_name);
-int					is_label_uniq(t_list *label_list, char *str);
+int					is_arg_type(const enum e_token type);
+int					is_label_type(const enum e_token type);
+int					is_num_type(const enum e_token type);
+int					check_label(const char *label_name);
+int					is_label_uniq(t_list *label_list, const char *str);
 
 /*
 *** tools2.c
@@ -394,7 +409,7 @@ void				reset_split(void);
 int					is_comment(t_vector *split);
 void				reset_col_and_increment_line(t_asm *env_asm);
 t_list				*go_to_next_op(t_list *lst);
-int					is_op_token(t_token *token);
+int					is_op_token(const t_token *token);
 
 /*
 *** label_attribution.c

@@ -6,13 +6,13 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:40 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:21:28 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:32:17 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static char	*get_string_error(size_t index)
+static char	*get_string_error(const size_t index)
 {
 	static char *str_err[] = {ERR_NO_FILE_NAME, ERR_BAD_EXTENSION,
 							ERR_BAD_FD, ERR_WRONG_LABEL_NAME, ERR_DOUBLE_LABEL,
@@ -29,7 +29,7 @@ static char	*get_string_error(size_t index)
 	return (str_err[index]);
 }
 
-int			print_error(uint64_t err, t_token *token)
+int			print_error(const uint64_t err, t_token *token)
 {
 	char		*str_error;
 	size_t		i;
@@ -54,7 +54,7 @@ int			print_error(uint64_t err, t_token *token)
 	return (NO_ERR);
 }
 
-void		exit_usage(uint64_t err, char c)
+void		exit_usage(const uint64_t err, const char c)
 {
 	if (err == INVALID_OPT)
 		ft_dprintf(STDERR_FILENO, "%s'%c'\n", ERR_INVALID_OPT, c);

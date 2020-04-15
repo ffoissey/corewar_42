@@ -6,13 +6,13 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 13:28:18 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 14:37:14 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:36:00 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	check_len_name_and_comment(char *str, const uint8_t flag)
+static void	check_len_name_and_comment(const char *str, const uint8_t flag)
 {
 	if (str == NULL)
 		exit_error(flag == GET_NAME ? NO_STR_NAME : NO_STR_COMMENT, NULL);

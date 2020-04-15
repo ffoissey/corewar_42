@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 13:32:45 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 16:19:23 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:39:31 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		is_comment(t_vector *split)
 	return (first_char == COMMENT_CHAR || first_char == ALT_COMMENT_CHAR);
 }
 
-int		is_op_token(t_token *token)
+int		is_op_token(const t_token *token)
 {
 	return (token->type >= 1 && token->type <= 16);
 }

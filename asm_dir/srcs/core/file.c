@@ -6,14 +6,14 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 17:03:42 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:33:16 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include <fcntl.h>
 
-void	get_file_fd(t_asm *env_asm, char *name)
+void	get_file_fd(t_asm *env_asm, const char *name)
 {
 	size_t	len;
 

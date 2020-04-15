@@ -6,13 +6,13 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 13:35:13 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:23:08 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:35:19 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int	get_lab_val(t_list *label_list, char *str, long *value)
+static int	get_lab_val(t_list *label_list, const char *str, long *value)
 {
 	t_token	*label;
 

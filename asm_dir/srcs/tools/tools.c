@@ -6,29 +6,29 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 21:04:00 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 14:20:48 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:37:32 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		is_arg_type(enum e_token type)
+int		is_arg_type(const enum e_token type)
 {
 	return (is_num_type(type) || type == INDIRECT_LABEL
 		|| type == DIRECT_LABEL);
 }
 
-int		is_label_type(enum e_token type)
+int		is_label_type(const enum e_token type)
 {
 	return (type == LABEL || type == INDIRECT_LABEL || type == INDIRECT_LABEL);
 }
 
-int		is_num_type(enum e_token type)
+int		is_num_type(const enum e_token type)
 {
 	return (type == REG || type == INDIRECT || type == DIRECT);
 }
 
-int		check_label(char *label_name)
+int		check_label(const char *label_name)
 {
 	size_t		i;
 
@@ -42,7 +42,7 @@ int		check_label(char *label_name)
 	return (i != 0);
 }
 
-int		is_label_uniq(t_list *label_list, char *str)
+int		is_label_uniq(t_list *label_list, const char *str)
 {
 	t_token	*label;
 

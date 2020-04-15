@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:42:45 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 15:17:20 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:31:18 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_asm			*get_env_asm(t_asm *env_asm)
 	return (keep_env);
 }
 
-static uint8_t	get_option(char **av, int ac)
+static uint8_t	get_option(char **av, const int ac)
 {
 	int		i;
 	int		j;
@@ -50,7 +50,7 @@ static uint8_t	get_option(char **av, int ac)
 	return (opt_a);
 }
 
-static void		init_env(t_asm *env_asm, int ac, char **av)
+static void		init_env(t_asm *env_asm, const int ac, char **av)
 {
 	static char	*grammar[NB_TOKEN] = {"", LIVE, LD, ST, ADD, SUB,
 									AND, OR, XOR, ZJMP,

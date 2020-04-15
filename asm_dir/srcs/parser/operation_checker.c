@@ -6,14 +6,14 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:28:13 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:24:55 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:36:45 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int		size_of_arg(enum e_token op_type, t_token *arg,
-				uint16_t *arg_code, int shift)
+static int		size_of_arg(const enum e_token op_type, t_token *arg,
+				uint16_t *arg_code, const int shift)
 {
 	const uint16_t	size[4] = {T_REG, T_IND, T_DIR, T_DIR};
 	const uint8_t	dir[] = {0, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, 4};
@@ -56,7 +56,7 @@ static int		is_end_by_sep(t_list *token_list)
 }
 
 static void		too_many_args(t_list *token_list, t_token *op,
-								uint8_t count, uint8_t flag)
+								const uint8_t count, const uint8_t flag)
 {
 	const int	nb_arg[] = {0, 1, 2, 2, 3, 3, 3, 3, 3, 1, 3, 3, 1, 2, 3, 1, 1};
 	t_token		*token;
@@ -72,7 +72,7 @@ static void		too_many_args(t_list *token_list, t_token *op,
 		exit_error(BAD_NB_ARG, op);
 }
 
-static ssize_t	parse_op_arg(t_list *token_list, enum e_token op_type,
+static ssize_t	parse_op_arg(t_list *token_list, const enum e_token op_type,
 					uint16_t *arg_code, t_token *op)
 {
 	t_token		*token;

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 19:44:35 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 14:36:38 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:34:01 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	debug_list_label(t_asm *env_asm)
 	}
 }
 
-static int	is_sep_or_endl(enum e_token type)
+static int	is_sep_or_endl(const enum e_token type)
 {
 	return (type == SPACE || type == SEP || type == ENDL);
 }
