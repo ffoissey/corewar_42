@@ -27,7 +27,7 @@
 # define ERROR_MSG5 " : 4 octets nulls requis\n"
 # define ERROR_MSG6	" : fichier .cor trop court\n"
 # define ERROR_MSG7	" : la taille du code executable n'est pas valable\n"
-# define ERROR_MSG8	"Erreur : sortie standard fermée\n"
+# define ERROR_MSG8 "Erreur : sortie standard fermée\n"
 # define ERROR_MSG9 "Usage : ./corewar [-dump] [0 - INT_MAX] .cor\n"
 
 /*

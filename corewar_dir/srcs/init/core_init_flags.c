@@ -1,4 +1,4 @@
-# include "core.h"
+#include "core.h"
 
 static int8_t		check_n_args(int32_t count_arg, char **av, t_data *data)
 {

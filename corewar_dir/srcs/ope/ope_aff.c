@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static int8_t	print_aff(t_carriages *current, int8_t arg_1)
+static	int8_t	print_aff(t_carriages *current, int8_t arg_1)
 {
 	if (ft_putstr_fd("Aff : ", STDIN_FILENO) == FAILURE
 	|| ft_putchar_fd(current->registres[arg_1 - 1] % 256,

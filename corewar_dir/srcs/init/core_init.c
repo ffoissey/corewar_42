@@ -51,14 +51,13 @@ int8_t			init_champ(int8_t nb_player, char *file_path, t_data *data)
 	return (SUCCESS);
 }
 
-int8_t				core_init_data(int32_t ac, char **av, t_data *data)
+int8_t			core_init_data(int32_t ac, char **av, t_data *data)
 {
 	int32_t		count_arg;
 
 	data->initialised_players = 0;
 	count_arg = 0;
 	data->dump = OFF;
-	data->aff = OFF;
 	while (++count_arg < ac && data->initialised_players <= MAX_PLAYERS)
 	{
 		if (ft_strequ(av[count_arg], "-n") == TRUE ||

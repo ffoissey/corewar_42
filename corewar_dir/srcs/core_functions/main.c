@@ -42,6 +42,7 @@ int				main(int32_t ac, char **av)
 		ft_putstr_fd(ERROR_MSG1, STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
+	data->aff = OFF;
 	if (core_init_data(ac, av, data) == FAILURE
 		|| core_init_vm(data) == FAILURE)
 	{
