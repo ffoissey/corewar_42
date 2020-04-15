@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   core_init_flags.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/03 11:15:37 by cde-moul          #+#    #+#             */
+/*   Updated: 2020/03/09 12:15:01 by cde-moul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "core.h"
 
 static int8_t		check_n_args(int32_t count_arg, char **av, t_data *data)
@@ -26,7 +38,8 @@ static int8_t		check_n_args(int32_t count_arg, char **av, t_data *data)
 	return (SUCCESS);
 }
 
-static int8_t		check_dump_args(int32_t count_arg, char **av, t_data *data)
+static int8_t		check_dump_args(int32_t count_arg, char **av,
+				t_data *data)
 {
 	if (av[count_arg + 1] == NULL)
 		return (core_error(9));
@@ -52,7 +65,8 @@ static int8_t		check_dump_args(int32_t count_arg, char **av, t_data *data)
 	return (SUCCESS);
 }
 
-int8_t		core_init_flag(int32_t *count_arg, char **av, t_data *data)
+int8_t				core_init_flag(int32_t *count_arg, char **av,
+					t_data *data)
 {
 	if (ft_strequ(av[*count_arg], "-n") == TRUE)
 	{

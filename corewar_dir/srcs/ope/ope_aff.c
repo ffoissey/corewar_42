@@ -22,7 +22,7 @@ static	int8_t	print_aff(t_carriages *current, int8_t arg_1)
 	return (SUCCESS);
 }
 
-int8_t		ope_aff(t_carriages *current, t_data *data)
+int8_t			ope_aff(t_carriages *current, t_data *data)
 {
 	int8_t	arg_1;
 	uint8_t	ocp;
