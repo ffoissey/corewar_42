@@ -6,7 +6,7 @@
 #    By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/11 17:23:00 by ffoissey          #+#    #+#              #
-#    Updated: 2020/04/13 13:34:25 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/15 15:05:30 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ COREWAR_DIR = ./corewar_dir
 
 all: $(ASM) $(COREWAR)
 
-$(ASM):
+$(ASM): FORCE
 	$(MAKE) -C $(ASM_DIR)
 
-$(COREWAR):
+$(COREWAR): FORCE
 	$(MAKE) -C $(COREWAR_DIR)
 
 clean:
@@ -43,6 +43,8 @@ re:
 	$(MAKE) re -C $(ASM_DIR)
 	$(MAKE) re -C $(COREWAR_DIR)
 
+FORCE:
+
 #----------------------------------- Special ----------------------------------#
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all FORCE
