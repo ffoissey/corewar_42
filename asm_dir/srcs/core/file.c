@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 16:07:24 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 17:57:00 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_file_fd(t_asm *env_asm, const char *name)
 	{
 		if (ft_strequ(name + len - LEN_EXTENSION, EXTENSION) == FALSE)
 			exit_error(BAD_EXTENSION, NULL);
-		env_asm->fd = open(name, O_RDONLY);
+		env_asm->fd = open(name, O_RDONLY | O_NOFOLLOW);
 		if (env_asm->fd == FAILURE)
 			exit_error(OPEN_ERROR, NULL);
 	}
@@ -44,7 +44,7 @@ void	write_file(t_asm *env_asm, char *name)
 	env_asm->cor_file = ft_strjoin(name, EXTENSION_COR);
 	if (env_asm->cor_file == NULL)
 		exit_error(MALLOC_ERROR, NULL);
-	fd = open(env_asm->cor_file, O_CREAT | O_WRONLY,
+	fd = open(env_asm->cor_file, O_CREAT | O_TRUNC | O_WRONLY | O_NOFOLLOW,
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (fd != FAILURE)
 	{
