@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 16:06:24 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 16:07:24 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_file_fd(t_asm *env_asm, const char *name)
 		exit_error(NO_FILE_NAME, NULL);
 	else if (len != 0 && ft_strchr(name, '.') != NULL)
 		exit_error(BAD_EXTENSION, NULL);
-	else if (len == 0)
+	else
 		exit_error(NO_FILE_NAME, NULL);
 }
 
