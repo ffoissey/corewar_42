@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 16:43:58 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 16:14:57 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:25:21 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 uint8_t		*mem_rev(uint8_t *mem, size_t size)
 {
 	size_t		i;
-	char		tmp;
+	uint8_t		tmp;
 
 	i = 0;
 	if (size < 2)

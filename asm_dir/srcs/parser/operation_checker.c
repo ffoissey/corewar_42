@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:28:13 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 17:01:40 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:24:55 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,13 @@ void			op_checker(t_asm *env_asm)
 								ZJMP_ARG, LDI_ARG, STI_ARG, FORK_ARG, LLD_ARG,
 								LLDI_ARG, LFORK_ARG, AFF_ARG};
 	uint16_t		arg_code;
-	int				mem_offset;
+	size_t			mem_offset;
 	t_token			*op;
 
 	arg_code = 0;
 	op = (t_token *)((env_asm->op_ptr)->content);
 	op->value = op->type;
-	mem_offset = (int)parse_op_arg(env_asm->op_ptr->next, op->type,
+	mem_offset = (size_t)parse_op_arg(env_asm->op_ptr->next, op->type,
 					&arg_code, op);
 	if (arg_code == 0 || (op_arg[op->type] ^ arg_code) & arg_code)
 		exit_error(arg_code == 0 ? BAD_NB_ARG : BAD_ARG_OP, op);
@@ -126,6 +126,6 @@ void			op_checker(t_asm *env_asm)
 		mem_offset++;
 	}
 	op->op_size = mem_offset;
-	env_asm->mem_count += (size_t)mem_offset;
+	env_asm->mem_count += mem_offset;
 	env_asm->op_ptr = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoisssey@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:06:56 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:22:56 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:24:04 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 static int	find_token(t_vector *elem, t_asm *env_asm)
 {
-	size_t	size;
-	size_t	len;
+	enum e_token	type;
+	size_t			len;
 
-	size = NB_TRUE_TOKEN;
+	type = NB_TRUE_TOKEN;
 	if (vct_getlastchar(elem) == ':')
 		return (extract_token(LABEL, elem, env_asm, 0));
-	while (--size > 0)
+	while (--type > 0)
 	{
-		len = ft_strlen(env_asm->grammar[size]);
-		if (size <= NB_KEYWORD_TOKEN)
+		len = ft_strlen(env_asm->grammar[type]);
+		if (type <= NB_KEYWORD_TOKEN)
 		{
-			if (ft_strequ(vct_getstr(elem), env_asm->grammar[size]) == TRUE)
-				return (extract_token(size, elem, env_asm, 0));
+			if (ft_strequ(vct_getstr(elem), env_asm->grammar[type]) == TRUE)
+				return (extract_token(type, elem, env_asm, 0));
 		}
-		else if (ft_strnequ(vct_getstr(elem), env_asm->grammar[size], len)
+		else if (ft_strnequ(vct_getstr(elem), env_asm->grammar[type], len)
 				== TRUE)
-			return (extract_token(size, elem, env_asm, 0));
+			return (extract_token(type, elem, env_asm, 0));
 	}
 	if (vct_apply(elem, IS_NUMBER) == TRUE)
 		return (extract_token(INDIRECT, elem, env_asm, 0));
@@ -47,7 +47,7 @@ static int	get_dquote(t_vector *line, t_asm *env_asm, const uint8_t flag)
 			exit_error(MALLOC_ERROR, NULL);
 	}
 	else if (flag == CUT_TIL_DQUOTE)
-		vct_popfrom(line, vct_chr(line, '\"') + 1);
+		vct_popfrom(line, (size_t)(vct_chr(line, '\"') + 1));
 	len_dquote = vct_clen(line, '\"');
 	if (vct_addnstr(env_asm->dquote, vct_getstr(line), len_dquote) == FAILURE)
 		exit_error(MALLOC_ERROR, NULL);

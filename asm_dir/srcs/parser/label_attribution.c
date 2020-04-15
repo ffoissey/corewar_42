@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 13:35:13 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/13 17:21:48 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:23:08 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	get_lab_val(t_list *label_list, char *str, long *value)
 		label = (t_token *)(label_list->content);
 		if (ft_strequ(str, label->str) == TRUE)
 		{
-			*value = label->mem_offset;
+			*value = (long)label->mem_offset;
 			return (SUCCESS);
 		}
 		label_list = label_list->next;
@@ -44,7 +44,7 @@ void		label_attribution(t_asm *env_asm)
 			value = 0;
 			if (get_lab_val(env_asm->label_list, token->str, &value) == FAILURE)
 				exit_error(UNKNOW_LABEL, token);
-			token->value = (int32_t)(value - token->mem_offset);
+			token->value = (int32_t)(value - (int32_t)token->mem_offset);
 		}
 		token_list = token_list->next;
 	}

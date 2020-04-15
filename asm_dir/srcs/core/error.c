@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:02:40 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 16:04:28 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:21:28 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			print_error(uint64_t err, t_token *token)
 				ft_dprintf(STDERR_FILENO,
 				"\t-> token: `%s' | line: %d | col: %d\n",
 				token->initial_str, token->line, token->col);
-			return (i + 2);
+			return ((int)(i + 2));
 		}
 		i++;
 	}

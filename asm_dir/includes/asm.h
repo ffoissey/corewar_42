@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:44:08 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 17:01:01 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:21:08 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,15 +332,16 @@ t_asm				*get_env_asm(t_asm *env_asm);
 *** error.c
 */
 
-void				exit_usage(uint64_t err, char c);
+void				exit_usage(uint64_t err, char c) __attribute__((noreturn));
 int					print_error(uint64_t err, t_token *token);
 
 /*
 *** exit_routine.c
 */
 
-void				exit_error(uint64_t err, t_token *token);
-void				exit_routine(void);
+void				exit_error(uint64_t err, t_token *token)
+						__attribute__((noreturn));
+void				exit_routine(void) __attribute__((noreturn));
 void				del_token(void *content, size_t content_size);
 
 /*
