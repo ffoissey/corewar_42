@@ -39,8 +39,12 @@
 **************************
 */
 
-# define USAGE			"Usage: ./asm [-a] {file.s}"
-# define EXIT_USAGE		1
+# define USAGE					"Usage: ./asm [-a] {file.s}"
+# define EXIT_USAGE				1
+
+# define LIMIT_SYSCALL_ERR		25
+
+# define ERROR_HEAD				"\033[31mERROR: \033[0m"
 
 # define NO_ERR					0x0000000000000000
 
@@ -113,22 +117,28 @@
 # define TOO_BIG_NBR			0x0000000000400000
 # define ERR_TOO_BIG_NBR		"Number out of bounds (greater than ULONG_MAX)"
 
-# define WRITE_ERROR			0x0000000000800000
+# define NO_STR_NAME			0x0000000000800000
+# define ERR_NO_STR_NAME		"No string associated with token `.name'"
+
+# define NO_STR_COMMENT			0x0000000001000000
+# define ERR_NO_STR_COMMENT		"No string associated with token `.comment'"
+
+# define WRITE_ERROR			0x0000000002000000
 # define ERR_WRITE				"write: "
 
-# define READ_ERROR				0x0000000001000000
+# define READ_ERROR				0x0000000004000000
 # define ERR_READ				"read: "
 
-# define OPEN_ERROR				0x0000000002000000
+# define OPEN_ERROR				0x0000000008000000
 # define ERR_OPEN				"open: "
 
-# define MALLOC_ERROR			0x0000000004000000
+# define MALLOC_ERROR			0x0000000010000000
 # define ERR_MALLOC				"malloc: "
 
-# define INVALID_OPT			0x0000000008000000
+# define INVALID_OPT			0x0000000020000000
 # define ERR_INVALID_OPT		"asm: invalid option -- "
 
-# define TOO_MANY_ARG			0x0000000010000000
+# define TOO_MANY_ARG			0x0000000040000000
 # define ERR_TOO_MANY_ARG		"asm: too many arguments"
 
 /*

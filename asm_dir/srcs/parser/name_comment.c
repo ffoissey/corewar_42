@@ -12,6 +12,16 @@
 
 #include "asm.h"
 
+static void	check_len_name_and_comment(char *str, const uint8_t flag)
+{
+	if (str == NULL)
+		exit_error(flag == GET_NAME ? NO_STR_NAME : NO_STR_COMMENT, NULL);
+	if (flag == GET_NAME && ft_strlen(str) > PROG_NAME_LENGTH)
+		exit_error(NAME_TOO_LONG, NULL);
+	else if (flag == GET_COM && ft_strlen(str) > PROG_COMMENT_LENGTH)
+		exit_error(COMMENT_TOO_LONG, NULL);
+}
+
 static char	*get_str(t_list **token_list, const uint8_t flag)
 {
 	t_token	*token;
@@ -33,10 +43,7 @@ static char	*get_str(t_list **token_list, const uint8_t flag)
 		}
 		*token_list = (*token_list)->next;
 	}
-	if (flag == GET_NAME && ft_strlen(str) > PROG_NAME_LENGTH)
-		exit_error(NAME_TOO_LONG, NULL);
-	else if (flag == GET_COM && ft_strlen(str) > PROG_COMMENT_LENGTH)
-		exit_error(COMMENT_TOO_LONG, NULL);
+	check_len_name_and_comment(str, flag);
 	return (str);
 }
 
