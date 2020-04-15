@@ -83,7 +83,7 @@ static ssize_t	parse_op_arg(t_list *token_list, enum e_token op_type,
 	count = 0;
 	token = (t_token *)(token_list->content);
 	if (token->type != SPACE)
-		exit_error(BAD_ARG_OP, op);
+		exit_error(token->type == ENDL ? BAD_NB_ARG : BAD_ARG_OP, op);
 	while (token_list != NULL && token->type != ENDL)
 	{
 		if (token->type != SPACE)
@@ -118,7 +118,7 @@ void			op_checker(t_asm *env_asm)
 	mem_offset = (int)parse_op_arg(env_asm->op_ptr->next, op->type,
 					&arg_code, op);
 	if (arg_code == 0 || (op_arg[op->type] ^ arg_code) & arg_code)
-		exit_error(BAD_ARG_OP, op);
+		exit_error(arg_code == 0 ? BAD_NB_ARG : BAD_ARG_OP, op);
 	mem_offset++;
 	if (op_arg[op->type] & IS_OP_CODE)
 	{

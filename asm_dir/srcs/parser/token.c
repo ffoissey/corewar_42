@@ -23,6 +23,8 @@ static int64_t		get_value(t_token *token)
 	str = token->str;
 	len_str = ft_strlen(str);
 	len_ulong = ft_strlen(ulong_str);
+	if (len_str == 0)
+		exit_error(BAD_TOKEN, token);
 	if (len_str > len_ulong)
 		exit_error(TOO_BIG_NBR, token);
 	else if (len_str == len_ulong && str[0] != '-')
