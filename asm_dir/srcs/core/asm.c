@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 17:42:45 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:31:18 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 15:57:48 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static uint8_t	get_option(char **av, const int ac)
 
 	i = 0;
 	opt_a = FALSE;
-	while (++i < ac - 1 && av[i][0] == '-')
+	while (++i < ac && av[i][0] == '-')
 	{
 		j = 1;
 		if (ft_strequ(av[i], "--") == TRUE)
 		{
-			i++;
+			++i;
 			break ;
 		}
 		while (av[i][j] == 'a')
@@ -46,7 +46,7 @@ static uint8_t	get_option(char **av, const int ac)
 			exit_usage(INVALID_OPT, av[i][j]);
 	}
 	if (i != ac - 1)
-		exit_usage(TOO_MANY_ARG, 0);
+		i < ac ? exit_usage(TOO_MANY_ARG, 0) : exit_usage(NO_ERR, 0);
 	return (opt_a);
 }
 
