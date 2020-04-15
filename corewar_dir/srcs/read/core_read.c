@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:31:09 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/14 15:29:53 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 16:38:00 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int8_t			read_header(t_champs *champs, int32_t fd)
 	int32_t			ret;
 	int32_t			header;
 
-	header = 0;
 	ret = read(fd, magic, 4);
 	if (ret == 4)
 	{

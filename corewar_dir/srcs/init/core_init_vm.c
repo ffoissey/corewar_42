@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:00:13 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/11 19:14:32 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 16:55:46 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int8_t			core_install_champ(t_champs *champs,
 		return (FAILURE);
 	champs->copy_start = (MEM_SIZE / data->initialised_players) * (champ_nb);
 	while (count_cpy < champs->exec_code_size)
-		data->vm->arena[champs->copy_start++] = tmp_code[count_cpy++];
+		data->vm->arena[champs->copy_start++] = (uint8_t)tmp_code[count_cpy++];
 	champs->copy_start = champs->copy_start - champs->exec_code_size;
 	return (SUCCESS);
 }

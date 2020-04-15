@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 16:24:43 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 17:00:47 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct		s_champs
 
 typedef struct		s_vm
 {
-	unsigned char	arena[MEM_SIZE];
+	uint32_t		arena[MEM_SIZE];
 	int32_t			nb_cycles;
 	int32_t			nb_lives;
 	int32_t			cycle_last_check;

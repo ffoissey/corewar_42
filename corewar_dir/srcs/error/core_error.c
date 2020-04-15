@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 18:41:49 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/11 19:04:48 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 17:40:13 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int8_t		core_error(int8_t error_nbr)
 					ERROR_MSG5, ERROR_MSG6, ERROR_MSG7,
 					ERROR_MSG8, ERROR_MSG9};
 
-	if (ft_putstr_fd(messages[error_nbr], STDERR_FILENO) == FAILURE)
-		ft_putstr_fd("Erreur : Sortie d'erreur fermée\n", STDIN_FILENO);
+	ft_putstr_fd(messages[error_nbr], STDERR_FILENO);
 	return (FAILURE);
 }

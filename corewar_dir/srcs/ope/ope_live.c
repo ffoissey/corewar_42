@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:02:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/12 10:55:15 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 17:36:53 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	print_live(t_data *data, int32_t dir)
 {
-	ft_putstr_fd("Un processus dit que le joueur ", STDIN_FILENO);
-	ft_putnbr_fd(dir, STDIN_FILENO);
-	ft_putstr_fd("(", STDIN_FILENO);
-	ft_putstr_fd(data->champs[dir]->name, STDIN_FILENO);
-	ft_putstr_fd(") est en vie.\n", STDIN_FILENO);
+	ft_putstr_fd("Un processus dit que le joueur ", STDOUT_FILENO);
+	ft_putnbr_fd(dir, STDOUT_FILENO);
+	ft_putstr_fd("(", STDOUT_FILENO);
+	ft_putstr_fd(data->champs[dir]->name, STDOUT_FILENO);
+	ft_putstr_fd(") est en vie.\n", STDOUT_FILENO);
 }
 
 int8_t		ope_live(t_carriages *current, t_data *data)

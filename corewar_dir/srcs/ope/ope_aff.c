@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:15:37 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/09 12:15:01 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 17:37:17 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static	int8_t	print_aff(t_carriages *current, int8_t arg_1)
 {
-	if (ft_putstr_fd("Aff : ", STDIN_FILENO) == FAILURE
+	if (ft_putstr_fd("Aff : ", STDOUT_FILENO) == FAILURE
 	|| ft_putchar_fd(current->registres[arg_1 - 1] % 256,
-			STDIN_FILENO) == FAILURE
-	|| ft_putchar_fd('\n', STDIN_FILENO) == FAILURE)
+			STDOUT_FILENO) == FAILURE
+	|| ft_putchar_fd('\n', STDOUT_FILENO) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
