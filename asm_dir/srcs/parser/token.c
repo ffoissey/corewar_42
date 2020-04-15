@@ -6,13 +6,13 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 19:55:22 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/14 14:28:53 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:12:07 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int64_t		get_value(t_token *token)
+static int64_t	get_value(t_token *token)
 {
 	const char	*ulong_str = "18446744073709551615";
 	char		*str;
@@ -34,7 +34,7 @@ static int64_t		get_value(t_token *token)
 		{
 			if (str[i] > ulong_str[i])
 				exit_error(TOO_BIG_NBR, token);
-			i++;	
+			i++;
 		}
 	}
 	return (ft_atol(token->str));
