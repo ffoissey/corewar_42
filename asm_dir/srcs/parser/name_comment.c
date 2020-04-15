@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/12 13:28:18 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:36:00 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 15:30:53 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ void		get_name_and_comment(t_asm *env_asm)
 			check_token_name_and_comment(&token_list, token, env_asm, &code_s);
 		if (head == NULL && (code_s = is_start_of_code(token_list)) == TRUE)
 			head = token_list;
+		token = (t_token *)(token_list->content);
+		if (code_s == TRUE && token->type == STRING)
+			exit_error(BAD_TOKEN, token);
 		token_list = token_list->next;
 	}
 	if (env_asm->name == NULL)
