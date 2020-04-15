@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/12 12:49:19 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 16:26:33 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static void		get_new_op_code(t_carriages *current, t_data *data)
 		current->cycle_needed = cycle_needed[op_code - 1] - 1;
 	else
 		current->position = (current->position + 1) % MEM_SIZE;
-	return ;
 }
 
 static void		exec_current_carriage(t_carriages *current, t_data *data)
@@ -86,7 +85,6 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 	}
 	else
 		get_new_op_code(current, data);
-	return ;
 }
 
 void			corewar_dump(t_data *data)
@@ -114,7 +112,10 @@ void			core_cycle(t_data *data)
 	while (data->carriages != NULL)
 	{
 		if (data->vm->nb_cycles == data->dump)
-			return (corewar_dump(data));
+		{
+			corewar_dump(data);
+			break ;
+		}
 		data->vm->nb_cycles += 1;
 		current = data->carriages;
 		exec_current_carriage(current, data);
@@ -130,5 +131,4 @@ void			core_cycle(t_data *data)
 		else
 			data->vm->cycle_last_check += 1;
 	}
-	return ;
 }
