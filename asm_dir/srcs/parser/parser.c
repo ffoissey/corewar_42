@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoisssey@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:06:56 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:24:04 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 14:53:17 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	find_token(t_vector *elem, t_asm *env_asm)
 	size_t			len;
 
 	type = NB_TRUE_TOKEN;
-	if (vct_getlastchar(elem) == ':')
+	if (vct_getlastchar(elem) == LABEL_CHAR)
 		return (extract_token(LABEL, elem, env_asm, 0));
 	while (--type > 0)
 	{
