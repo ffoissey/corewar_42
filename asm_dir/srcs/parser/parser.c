@@ -23,9 +23,13 @@ static int	find_token(t_vector *elem, t_asm *env_asm)
 	while (--size > 0)
 	{
 		len = ft_strlen(env_asm->grammar[size]);
-		if (size <= NB_OP)
-			len++;
-		if (ft_strnequ(vct_getstr(elem), env_asm->grammar[size], len) == TRUE)
+		if (size <= NB_KEYWORD_TOKEN)
+		{
+			if (ft_strequ(vct_getstr(elem), env_asm->grammar[size]) == TRUE)
+				return (extract_token(size, elem, env_asm, 0));
+		}
+		else if (ft_strnequ(vct_getstr(elem), env_asm->grammar[size], len)
+				== TRUE)
 			return (extract_token(size, elem, env_asm, 0));
 	}
 	if (vct_apply(elem, IS_NUMBER) == TRUE)

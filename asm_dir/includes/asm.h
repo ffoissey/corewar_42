@@ -234,9 +234,10 @@
 # define LFORK			"lfork"
 # define AFF			"aff"
 
-# define NB_TOKEN		33
-# define NB_TRUE_TOKEN	30
-# define NB_OP			16
+# define NB_TOKEN			33
+# define NB_TRUE_TOKEN		30
+# define NB_KEYWORD_TOKEN	18
+# define NB_OP				16
 
 # define CONTINUE		2
 # define DQUOTE			4

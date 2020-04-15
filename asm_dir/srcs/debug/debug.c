@@ -49,7 +49,7 @@ static void	print_debug_token(t_asm *env_asm, t_token *token)
 		ft_printf("   |%s%10s%s -> ", color[2], noname_token[token->type - 19],
 				color[6]);
 	else
-		ft_printf("   |%s%10s%s    ", color[3], env_asm->grammar[token->type],
+		ft_printf("   |%s%10s%s    ", color[5], env_asm->grammar[token->type],
 				color[6]);
 	if (token->type == STRING)
 		ft_printf(" | %sValue:%s %30s |", color[0], color[6], token->str);
