@@ -209,10 +209,6 @@ ERROR			+=		core_error.c
 
 FREE			+=		core_free.c
 
-#											  --- Print de Data ---
-
-PRINT			+=		core_print.c
-PRINT			+=		core_print_carriages.c
 
 #------------------------------------------------------------------------------#
 #																			   #
@@ -283,4 +279,4 @@ FORCE		:
 
 .PHONY		:		all clean fclean re FORCE
 
-#.SILENT:
+.SILENT:

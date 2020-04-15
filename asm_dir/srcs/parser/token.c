@@ -12,6 +12,32 @@
 
 #include "asm.h"
 
+static int64_t		get_value(t_token *token)
+{
+	const char	*ulong_str = "18446744073709551615";
+	char		*str;
+	size_t		len_ulong;
+	size_t		len_str;
+	size_t		i;
+
+	str = token->str;
+	len_str = ft_strlen(str);
+	len_ulong = ft_strlen(ulong_str);
+	if (len_str > len_ulong)
+		exit_error(TOO_BIG_NBR, token);
+	else if (len_str == len_ulong && str[0] != '-')
+	{
+		i = 0;
+		while (str[i] != '\0')
+		{
+			if (str[i] > ulong_str[i])
+				exit_error(TOO_BIG_NBR, token);
+			i++;	
+		}
+	}
+	return (ft_atol(token->str));
+}
+
 static t_token	get_token(enum e_token type, t_vector *elem, t_asm *env_asm,
 				const uint8_t flag)
 {
@@ -33,12 +59,12 @@ static t_token	get_token(enum e_token type, t_vector *elem, t_asm *env_asm,
 	token.mask = 0;
 	token.op_size = 0;
 	token.arg_size = 1;
-	token.value = (type == REG || type == INDIRECT || type == DIRECT)
-			? ft_atol(token.str) : 0;
-	token.truevalue = token.value;
 	token.mem_offset = env_asm->mem_count;
 	token.line = flag == DQUOTE ? env_asm->start_line_dquote : env_asm->line;
 	token.col = flag == DQUOTE ? env_asm->start_col_dquote : env_asm->col;
+	token.value = (type == REG || type == INDIRECT || type == DIRECT) ?
+			get_value(&token) : 0;
+	token.truevalue = token.value;
 	return (token);
 }
 

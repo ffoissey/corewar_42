@@ -110,22 +110,25 @@
 # define BAD_NB_ARG				0x0000000000200000
 # define ERR_BAD_NB_ARG			"Bad number of arguments for this operation"
 
-# define WRITE_ERROR			0x0000000000400000
+# define TOO_BIG_NBR			0x0000000000400000
+# define ERR_TOO_BIG_NBR		"Number out of bounds (greater than ULONG_MAX)"
+
+# define WRITE_ERROR			0x0000000000800000
 # define ERR_WRITE				"write: "
 
-# define READ_ERROR				0x0000000000800000
+# define READ_ERROR				0x0000000001000000
 # define ERR_READ				"read: "
 
-# define OPEN_ERROR				0x0000000001000000
+# define OPEN_ERROR				0x0000000002000000
 # define ERR_OPEN				"open: "
 
-# define MALLOC_ERROR			0x0000000002000000
+# define MALLOC_ERROR			0x0000000004000000
 # define ERR_MALLOC				"malloc: "
 
-# define INVALID_OPT			0x0000000004000000
+# define INVALID_OPT			0x0000000008000000
 # define ERR_INVALID_OPT		"asm: invalid option -- "
 
-# define TOO_MANY_ARG			0x0000000008000000
+# define TOO_MANY_ARG			0x0000000010000000
 # define ERR_TOO_MANY_ARG		"asm: too many arguments"
 
 /*
