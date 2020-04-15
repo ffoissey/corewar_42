@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:16:04 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/11 18:26:57 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:38:11 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int8_t			ope_lfork(t_carriages *current, t_data *data)
 		return (FAILURE);
 	data->carriages->position =
 		(current->position + arg) % MEM_SIZE;
-	data->vm->nb_carriages++;
+	data->vm.nb_carriages++;
 	return (SUCCESS);
 }

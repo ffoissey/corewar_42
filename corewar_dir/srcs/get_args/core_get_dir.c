@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:03:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 16:53:04 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:46:24 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 int32_t		core_get_dir(t_data *data, int16_t position)
 {
 	int32_t		dir;
-	t_vm		*vm;
 
-	vm = data->vm;
-	dir = (vm->arena[position % MEM_SIZE] << 24
-		| vm->arena[(position + 1) % MEM_SIZE] << 16
-		| vm->arena[(position + 2) % MEM_SIZE] << 8
-		| vm->arena[(position + 3) % MEM_SIZE]);
+	dir = (data->vm.arena[position % MEM_SIZE] << 24
+		| data->vm.arena[(position + 1) % MEM_SIZE] << 16
+		| data->vm.arena[(position + 2) % MEM_SIZE] << 8
+		| data->vm.arena[(position + 3) % MEM_SIZE]);
 	return (dir);
 }

@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:46:23 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/12 10:54:46 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:39:20 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int8_t		core_init_champs_carriages(t_data *data, uint8_t champ_nb,
 		carriage->registres[0] = -data->champs[champ_nb]->nb_player;
 		carriage->carry = CARRY_OFF;
 		last = carriage;
-		data->vm->nb_carriages++;
+		data->vm.nb_carriages++;
 		return (SUCCESS);
 	}
 	return (SUCCESS);

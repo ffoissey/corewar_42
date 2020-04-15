@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 17:00:47 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:43:38 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct		s_vm
 	int32_t			nb_checks;
 	int32_t			nb_carriages;
 	uint8_t			last_alive_champ;
-	char			pad[3];
+	char			pad[7];
 }					t_vm;
 
 /*
@@ -71,8 +71,8 @@ typedef struct		s_carriages
 typedef struct		s_data
 {
 	t_champs		*champs[4];
-	t_vm			*vm;
 	t_carriages		*carriages;
+	t_vm			vm;
 	int32_t			dump;
 	int8_t			aff;
 	uint8_t			initialised_players;
