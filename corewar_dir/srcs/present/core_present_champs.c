@@ -19,7 +19,7 @@ static int8_t	core_print_champ_pres(t_data *data, const int8_t i)
 		data->champs[i]->exec_code_size, 
 		(char *)data->champs[i]->name,
 		(char *)data->champs[i]->comment) == FAILURE)
-		return (core_error(8));
+		return (core_error(ER_STDCLOSED));
 	return (SUCCESS);
 }
 
@@ -29,8 +29,8 @@ int8_t			core_present_champs(t_data *data)
 
 	i = 0;
 	if (ft_putendl("Introducing contestants...") == FAILURE)
-		return (FAILURE);
-	while (i < MAX_PLAYERS) // CEST QUOI 4
+		return (core_error(ER_STDCLOSED));
+	while (i < MAX_PLAYERS)
 	{
 		if (data->champs[i] != NULL)
 		{

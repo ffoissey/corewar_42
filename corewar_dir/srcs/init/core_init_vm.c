@@ -15,12 +15,14 @@
 int8_t			core_install_champ(t_champs *champs,
 				int32_t fd, t_data *data, int8_t champ_nb)
 {
-	int32_t			ret;
+	ssize_t			ret;
 	unsigned char	tmp_code[champs->exec_code_size];
 	int32_t			count_cpy;
 
 	count_cpy = 0;
 	ret = read(fd, tmp_code, champs->exec_code_size);
+	if (ret == FAILURE)
+		return (core_error(ER_READ));
 	if (ret != champs->exec_code_size)
 		return (FAILURE);
 	champs->copy_start = (MEM_SIZE / data->initialised_players) * (champ_nb);

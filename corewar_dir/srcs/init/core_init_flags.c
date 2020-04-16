@@ -15,7 +15,7 @@
 static int32_t	get_arg_number(char *number_str)
 {
 	if (number_str == NULL || ft_isanint(number_str) == FALSE)
-		return (core_error(9));
+		return (core_error(ER_DUMP));
 	return (ft_atoi(number_str));
 }
 
@@ -34,7 +34,7 @@ int8_t			get_player_number(char **av, int32_t *i)
 		else
 			nb_player = get_arg_number(av[*i] + 2);
 		if (nb_player <= 0 || nb_player > MAX_PLAYERS)
-			return (core_error(2));
+			return (core_error(ER_N_USAGE));
 		(*i)++;
 	}
 	return (nb_player);

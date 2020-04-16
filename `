@@ -21,7 +21,7 @@ static int8_t			read_header(t_champs *champs, int32_t fd)
 
 	ret = read(fd, magic, 4);
 	if (ret == FAILURE)
-		return (core_error(ER_READ));
+		return (core_error(10));
 	if (ret == 4)
 	{
 		header = (magic[0] << 24 | magic[1] << 16 | magic[2] << 8
@@ -30,8 +30,8 @@ static int8_t			read_header(t_champs *champs, int32_t fd)
 			return (SUCCESS);
 	}
 	if (ft_putstr_fd(champs->file_path, STDERR_FILENO) == FAILURE)
-		return (core_error(ER_STDCLOSED));
-	return (core_error(ER_MAGIC));
+		return (core_error(8));
+	return (core_error(3));
 }
 
 static int8_t			read_name(t_champs *champs, int32_t fd)
@@ -40,12 +40,12 @@ static int8_t			read_name(t_champs *champs, int32_t fd)
 
 	ret = read(fd, champs->name, PROG_NAME_LENGTH);
 	if (ret == FAILURE)
-		return (core_error(ER_READ));
+		return (core_error(10));
 	if (ret != PROG_NAME_LENGTH)
 	{
 		if (ft_putstr_fd(champs->name, STDERR_FILENO) == FAILURE)
-			return (core_error(ER_STDCLOSED));
-		return (core_error(ER_NAME));
+			return (core_error(8));
+		return (core_error(4));
 	}
 	return (SUCCESS);
 }
@@ -57,12 +57,12 @@ static	int8_t			skip_null(t_champs *champs, int32_t fd)
 
 	ret = read(fd, buff, 4);
 	if (ret == FAILURE)
-		return (core_error(ER_READ));
+		return (core_error(10));
 	if (buff[0] == 0 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 		return (SUCCESS);
 	if (ft_putstr_fd(champs->name, STDERR_FILENO) == FALSE)
-		return (core_error(ER_STDCLOSED));
-	return (core_error(ER_NULL));
+		return (core_error(8));
+	return (core_error(5));
 }
 
 static int8_t			core_open_management(t_champs *champs,
@@ -76,7 +76,7 @@ static int8_t			core_open_management(t_champs *champs,
 	{
 		if (ft_putstr_fd(champs->file_path, STDERR_FILENO) == FAILURE
 		|| ft_putstr_fd(" : ", STDERR_FILENO) == FAILURE)
-			return (core_error(ER_STDCLOSED));
+			return (core_error(8));
 		perror(NULL);
 		return (FAILURE);
 	}

@@ -39,7 +39,7 @@ static int8_t			get_next_player(t_data *data, char *file_path,
 							int8_t nb_player)
 {
 	if (is_valid_player_name(file_path) == FALSE)
-		return (core_error(0));
+		return (core_error(ER_FILE));
 	if (data->initialised_players == MAX_PLAYERS)
 		return (FAILURE);
 	if (nb_player != NATURAL_ORDER && data->champs[--nb_player] == NULL)
@@ -91,8 +91,8 @@ int8_t			core_init_data(int32_t ac, char **av, t_data *data)
 			return (FAILURE);
 		i++;
 	}
-	if (data->initialised_players < 2 || i != ac) 
-		return (FAILURE);
+	if (data->initialised_players < 1 || i != ac) 
+		return (core_error(ER_FILE));
 	reorder_champs(data->champs);
 	return (SUCCESS); 
 }
