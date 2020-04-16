@@ -36,6 +36,17 @@ int8_t		core_read_exec_code_size(t_champs *champs, int32_t fd)
 	return (SUCCESS);
 }
 
+int8_t		core_fd_empty(int32_t fd)
+{
+	int32_t		ret;
+	unsigned char 	read_test[2];
+
+	ret = read(fd, read_test, 2);
+	if (ret != 0)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
 int8_t		core_read_comment(t_champs *champs, int32_t fd)
 {
 	int32_t		ret;

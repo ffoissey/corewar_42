@@ -80,7 +80,8 @@ static int8_t			core_open_management(t_champs *champs,
 		|| (core_read_exec_code_size(champs, fd) == FAILURE)
 		|| (core_read_comment(champs, fd) == FAILURE)
 		|| (skip_null(champs, fd) == FAILURE)
-		|| (core_install_champ(champs, fd, data, champ_nb) == FAILURE))
+		|| (core_install_champ(champs, fd, data, champ_nb) == FAILURE)
+		|| (core_fd_empty(fd) == FAILURE))
 		return (FAILURE);
 	close(fd);
 	return (SUCCESS);
