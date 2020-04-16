@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:19:12 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/12 10:55:56 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/16 21:06:16 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,10 @@
 
 int8_t		ope_zjmp(t_carriages *current, t_data *data)
 {
-	short		arg;
+	int32_t		arg;
 
-	arg = core_get_small_dir(data,
-		(current->position + MEM_OP_CODE) % MEM_SIZE);
+	arg = get_arg(current, data, 1, NO_OCP | SMALL_DIR | DIR_FLAG);
 	if (current->carry == CARRY_ON)
 		current->to_jump = arg % IDX_MOD;
-	else
-	{
-		current->to_jump = MEM_OP_CODE;
-		current->to_jump += MEM_SMALL_DIR;
-	}
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:16:04 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 17:38:36 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 21:06:50 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,11 @@ int8_t			ope_fork(t_carriages *current, t_data *data)
 {
 	int16_t		arg;
 
-	current->to_jump = MEM_OP_CODE;
-	arg = core_get_small_dir(data,
-		(current->position + current->to_jump) % MEM_SIZE);
-	current->to_jump += MEM_SMALL_DIR;
+	arg = get_arg(current, data, 1, NO_OCP | SMALL_DIR | DIR_FLAG);
 	if (get_new_carriage(current, data) == FAILURE)
 		return (FAILURE);
-	data->carriages->position =
-		(current->position + (arg % IDX_MOD)) % MEM_SIZE;
+	data->carriages->position = 
+		get_pos(get_pos(current->position) + (arg % IDX_MOD));
 	data->vm.nb_carriages++;
 	return (SUCCESS);
 }

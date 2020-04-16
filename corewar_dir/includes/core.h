@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 16:54:22 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 21:13:55 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ void		core_free_all(t_data *data);
 **		CORE_GET *
 */
 
-int8_t		core_get_reg(t_data *data, int16_t position);
-int16_t		core_get_ind(t_data *data, int16_t position);
-int32_t		core_get_dir(t_data *data, int16_t position);
 uint8_t		core_get_ocp(t_data *data, int16_t position);
-int16_t		core_get_small_dir(t_data *data, int16_t position);
+int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
+					uint16_t flag);
+int32_t		get_arg(t_carriages *current, t_data *data, uint8_t arg_nb,
+				uint16_t flag);
 
 /*
 **		CORE_PUT *
@@ -133,5 +133,12 @@ int8_t		ope_lld(t_carriages *current, t_data *data);
 int8_t		ope_lldi(t_carriages *current, t_data *data);
 int8_t		ope_lfork(t_carriages *current, t_data *data);
 int8_t		ope_aff(t_carriages *current, t_data *data);
+
+
+/*
+**		TOOL (ope_lib/core_put_reg_ind)
+*/
+
+uint16_t	get_pos(int16_t position);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/11 16:56:30 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/16 21:08:26 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 
-# define T_REG					1
-# define T_DIR					2
-# define T_IND					4
 # define T_LAB					8
 
 # define PROG_NAME_LENGTH			128

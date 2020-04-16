@@ -6,7 +6,7 @@
 #    By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 10:48:43 by cde-moul          #+#    #+#              #
-#    Updated: 2020/03/11 19:22:30 by cde-moul         ###   ########.fr        #
+#    Updated: 2020/04/16 19:54:30 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -193,13 +193,7 @@ OPE_LIB			+=		ft_isanint.c
 
 #									  	  --- Recuperation des arguments ---
 
-GET_ARGS		+=		core_get_dir.c
-GET_ARGS		+=		core_get_ind.c
-GET_ARGS		+=		core_ind_value.c
-GET_ARGS		+=		core_ind_value_lld.c
-GET_ARGS		+=		core_get_reg.c
-GET_ARGS		+=		core_get_ocp.c
-GET_ARGS		+=		core_get_small_dir.c
+GET_ARGS		+=		get_args.c
 
 #  											 --- Gestion d'erreurs  ---
 

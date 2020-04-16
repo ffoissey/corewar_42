@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 16:03:14 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 21:02:55 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@
 /*
 **		------------------------------ OCP
 */
+
+# define NO_NEED		0x0000
+# define IND_LLD		0x0001
+# define IND			0x0002
+# define SMALL_DIR		0x0004
+# define BIG_DIR		0x0008
+# define OCP			0x0010
+# define NO_OCP			0x0020
+# define REG_FLAG		0x0100
+# define DIR_FLAG		0x0200
+# define IND_FLAG		0x0300
+
+# define T_REG			1
+# define T_DIR			2
+# define T_IND			3
 
 # define DIR_			128
 # define REG_			64
