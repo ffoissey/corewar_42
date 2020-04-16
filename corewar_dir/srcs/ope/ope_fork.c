@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:16:04 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 19:38:19 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 17:38:36 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int8_t	get_new_carriage(t_carriages *current, t_data *data)
 	new->next = last;
 	last->previous = new;
 	new->id = last->id + 1;
-	while (nb_registre < 16)
+	while (nb_registre < REG_NUMBER)
 	{
 		new->registres[nb_registre] = current->registres[nb_registre];
 		nb_registre++;

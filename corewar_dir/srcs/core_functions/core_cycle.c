@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 19:36:02 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 17:27:43 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,15 @@ void			corewar_dump(t_data *data)
 {
 	int	i;
 
-	i = -1;
-	while (++i < MEM_SIZE)
+	i = 0;
+	while (i < MEM_SIZE)
 	{
 		if (i % 64 == 0)
 			ft_printf("0x%04x : ", i);
-		ft_printf("%02x ", data->vm.arena[i]);
+		ft_printf("%02x ", (uint8_t)data->vm.arena[i]);
 		if (i > 0 && ((i + 1) % 64 == 0))
 			ft_putchar('\n');
+		i++;
 	}
 	data->dump = DONE;
 }

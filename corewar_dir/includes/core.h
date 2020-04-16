@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 19:25:04 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 16:54:22 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@
 */
 
 int8_t		core_init_data(int ac, char **av, t_data *data);
-int8_t		core_init_flag(int32_t *count_arg, char **av, t_data *data);
-int8_t		init_champ(int8_t nb_player, char *file_path, t_data *data);
-int8_t		core_nb_player(t_champs *new_champ,
-		int8_t nb_player, t_data *data, char *file_path);
+int32_t		core_init_flag(int32_t ac, char **av, t_data *data);
+int8_t		get_player_number(char **av, int32_t *i);
 
 /*
 **		CORE_CYCLE

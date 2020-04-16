@@ -6,85 +6,62 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:15:37 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/09 12:15:01 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/16 17:24:25 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static int8_t		check_n_args(int32_t count_arg, char **av, t_data *data)
+static int32_t	get_arg_number(char *number_str)
 {
-	int8_t	nb_player;
-
-	if (av[count_arg + 1] == NULL)
-		return (core_error(2));
-	if (ft_isanint(av[count_arg + 1]) == FALSE)
-		return (core_error(2));
-	nb_player = ft_atoi(av[count_arg + 1]);
-	if ((nb_player > 0 && nb_player <= MAX_PLAYERS)
-		&& (av[count_arg + 2] != NULL) && (ft_strequ(av[count_arg + 2]
-		+ ft_strlen(av[count_arg + 2]) - 4, ".cor") == TRUE))
-	{
-		if (init_champ(nb_player, av[count_arg + 2], data) == SUCCESS)
-		{
-			data->initialised_players += 1;
-			return (SUCCESS);
-		}
-		return (FAILURE);
-	}
-	else
-		return (core_error(2));
-	data->initialised_players += 1;
-	return (SUCCESS);
+	if (number_str == NULL || ft_isanint(number_str) == FALSE)
+		return (core_error(9));
+	return (ft_atoi(number_str));
 }
 
-static int8_t		check_dump_args(int32_t count_arg, char **av,
-				t_data *data)
+int8_t			get_player_number(char **av, int32_t *i)
 {
-	if (av[count_arg + 1] == NULL)
-		return (core_error(9));
-	if (ft_isanint(av[count_arg + 1]) == FALSE)
-		return (core_error(9));
-	data->dump = ft_atoi(av[count_arg + 1]);
-	if (data->dump < 0)
-		return (core_error(9));
-	if ((av[count_arg + 2] != NULL)
-		&& (ft_strequ(av[count_arg + 2]
-			+ ft_strlen(av[count_arg + 2]) - 4, ".cor") == TRUE))
+	int8_t		nb_player;
+
+	nb_player = NATURAL_ORDER;
+	if (ft_strnequ(av[*i], "-n", 2) == TRUE)
 	{
-		if (init_champ(-1, av[count_arg + 2], data) == SUCCESS)
+		if (ft_strequ(av[*i], "-n") == TRUE)
 		{
-			data->initialised_players += 1;
-			return (SUCCESS);
+			(*i)++;
+			nb_player = get_arg_number(av[*i]);
 		}
-		return (FAILURE);
+		else
+			nb_player = get_arg_number(av[*i] + 2);
+		if (nb_player <= 0 || nb_player > MAX_PLAYERS)
+			return (core_error(2));
+		(*i)++;
 	}
-	else
-		return (core_error(9));
-	data->initialised_players += 1;
-	return (SUCCESS);
+	return (nb_player);
 }
 
-int8_t				core_init_flag(int32_t *count_arg, char **av,
+int32_t			core_init_flag(int32_t ac, char **av,
 					t_data *data)
 {
-	if (ft_strequ(av[*count_arg], "-n") == TRUE)
+	int32_t	i;
+	
+	i = 1;
+	data->dump = OFF;
+	data->aff = OFF;
+	while (i < ac)
 	{
-		if (check_n_args(*count_arg, av, data) == FAILURE)
-			return (FAILURE);
-		*count_arg += 2;
+		if (ft_strequ(av[i], "-dump") == TRUE)
+		{
+			i++;
+			data->dump = get_arg_number(av[i]);
+			if (data->dump < 0)
+				return (FAILURE);
+		}
+		else if (ft_strequ(av[i], "-a") == TRUE)
+			data->aff = ON;
+		else
+			break ;
+		i++;
 	}
-	else if (ft_strequ(av[*count_arg], "-dump") == TRUE)
-	{
-		if (check_dump_args(*count_arg, av, data) == FAILURE)
-			return (FAILURE);
-		*count_arg += 2;
-	}
-	else if (ft_strequ(av[*count_arg], "-a") == TRUE)
-	{
-		data->aff = ON;
-		if (av[*count_arg + 1] == NULL && data->initialised_players == 0)
-			return (core_error(9));
-	}
-	return (SUCCESS);
+	return (i);
 }

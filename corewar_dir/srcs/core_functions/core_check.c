@@ -6,13 +6,13 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:43:09 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 19:35:52 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 17:47:21 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static void		core_kill(t_carriages *current, t_data *data)
+void		core_kill(t_carriages *current, t_data *data)
 {
 	t_carriages *next;
 	t_carriages *previous;
@@ -36,7 +36,8 @@ void			core_check(t_data *data)
 
 	current = data->carriages;
 	data->vm.nb_checks += 1;
-	while (current)
+	data->vm.nb_carriages = 0;
+	while (current != NULL)
 	{
 		next = current->next;
 		if (data->vm.nb_cycles - current->last_live_cycle

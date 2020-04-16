@@ -6,12 +6,18 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/11 19:22:13 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/16 16:03:14 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CORE_DEFINE_H
 # define CORE_DEFINE_H
+
+/*
+**		------------------------------ Autres
+*/
+
+# define NATURAL_ORDER 0
 
 /*
 **		------------------------------ Gestion d'erreurs

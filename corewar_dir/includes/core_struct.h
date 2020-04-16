@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 19:43:38 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 14:56:54 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct		s_carriages
 
 typedef struct		s_data
 {
-	t_champs		*champs[4];
+	t_champs		*champs[MAX_PLAYERS + 1];
 	t_carriages		*carriages;
 	t_vm			vm;
 	int32_t			dump;

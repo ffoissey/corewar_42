@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:51:30 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 19:40:15 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 17:48:13 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 static int8_t	main_part2(t_data *data)
 {
 	if (core_init_carriages(data) == FAILURE)
-	{
-		core_free_all(data);
 		return (FAILURE);
-	}
 	if (core_present_champs(data) == FAILURE)
 		return (FAILURE);
 	core_cycle(data);
@@ -36,13 +33,16 @@ int				main(int32_t ac, char **av)
 		ft_putstr_fd(ERROR_MSG0, STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	if (core_init_data(ac, av, &data) == FAILURE)
+	if (core_init_data(ac, av, &data) == FAILURE) 
 	{
 		core_free_all(&data);
 		return (EXIT_FAILURE);
 	}
 	if (core_read(&data) == FAILURE || main_part2(&data) == FAILURE)
+	{
+		core_free_all(&data);
 		return (EXIT_FAILURE);
+	}
 	core_free_all(&data);
 	return (EXIT_SUCCESS);
 }

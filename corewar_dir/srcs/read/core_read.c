@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:31:09 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 19:42:20 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 14:10:12 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static	int8_t			skip_null(t_champs *champs, int32_t fd)
 	unsigned char	buff[4];
 
 	ret = read(fd, buff, 4);
+	(void)ret;
 	if (buff[0] == 0 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 		return (SUCCESS);
 	if (ft_putstr_fd(champs->name, STDERR_FILENO) == FALSE)
