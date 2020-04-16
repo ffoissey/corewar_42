@@ -37,7 +37,6 @@ static void		get_arg_1(t_carriages *current,
 		args[0] = core_ind_value(data, current->position % MEM_SIZE, args[0]);
 		current->to_jump += MEM_IND;
 	}
-	return ;
 }
 
 static void		get_arg_2(t_carriages *current,
@@ -64,7 +63,6 @@ static void		get_arg_2(t_carriages *current,
 		args[1] = core_ind_value(data, current->position % MEM_SIZE, args[1]);
 		current->to_jump = MEM_IND;
 	}
-	return ;
 }
 
 static void		get_arg_3(t_carriages *current,
@@ -85,7 +83,6 @@ static void		get_arg_3(t_carriages *current,
 	}
 	else
 		args[3] = FAILURE;
-	return ;
 }
 
 int8_t			ope_or(t_carriages *current, t_data *data)
