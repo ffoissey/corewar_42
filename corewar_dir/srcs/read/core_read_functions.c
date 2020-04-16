@@ -14,11 +14,13 @@
 
 int8_t		core_read_exec_code_size(t_champs *champs, int32_t fd)
 {
-	int32_t			ret;
+	ssize_t			ret;
 	int32_t			size;
 	unsigned char	buff[4];
 
 	ret = read(fd, buff, 4);
+	if (ret == FAILURE)
+		return (core_error(10));
 	if (ret != 4)
 	{
 		if (ft_putstr_fd(champs->name, STDERR_FILENO) == FAILURE)
@@ -38,9 +40,11 @@ int8_t		core_read_exec_code_size(t_champs *champs, int32_t fd)
 
 int8_t		core_read_comment(t_champs *champs, int32_t fd)
 {
-	int32_t		ret;
+	ssize_t		ret;
 
 	ret = read(fd, champs->comment, COMMENT_LENGTH);
+	if (ret == FAILURE)
+		return (core_error(10));
 	if (ret != COMMENT_LENGTH)
 		return (FAILURE);
 	champs->comment[ret] = '\0';

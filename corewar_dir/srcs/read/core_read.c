@@ -16,10 +16,12 @@
 static int8_t			read_header(t_champs *champs, int32_t fd)
 {
 	unsigned char	magic[4];
-	int32_t			ret;
+	ssize_t			ret;
 	int32_t			header;
 
 	ret = read(fd, magic, 4);
+	if (ret == FAILURE)
+		return (core_error(10));
 	if (ret == 4)
 	{
 		header = (magic[0] << 24 | magic[1] << 16 | magic[2] << 8
@@ -34,9 +36,11 @@ static int8_t			read_header(t_champs *champs, int32_t fd)
 
 static int8_t			read_name(t_champs *champs, int32_t fd)
 {
-	int32_t			ret;
+	ssize_t			ret;
 
 	ret = read(fd, champs->name, PROG_NAME_LENGTH);
+	if (ret == FAILURE)
+		return (core_error(10));
 	if (ret != PROG_NAME_LENGTH)
 	{
 		if (ft_putstr_fd(champs->name, STDERR_FILENO) == FAILURE)
@@ -48,10 +52,12 @@ static int8_t			read_name(t_champs *champs, int32_t fd)
 
 static	int8_t			skip_null(t_champs *champs, int32_t fd)
 {
-	int32_t			ret;
+	ssize_t			ret;
 	unsigned char	buff[4];
 
 	ret = read(fd, buff, 4);
+	if (ret == FAILURE)
+		return (core_error(10));
 	if (buff[0] == 0 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 		return (SUCCESS);
 	if (ft_putstr_fd(champs->name, STDERR_FILENO) == FALSE)

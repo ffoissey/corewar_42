@@ -17,7 +17,7 @@
 **		------------------------------ Gestion d'erreurs
 */
 
-# define ERROR_NB 10
+# define ERROR_NB 11
 
 # define ERROR_MSG0 "Usage : joindre un fichier .cor a l'executable\n"
 # define ERROR_MSG1 "Erreur de Malloc\n"
@@ -29,6 +29,7 @@
 # define ERROR_MSG7	" : la taille du code executable n'est pas valable\n"
 # define ERROR_MSG8 "Erreur : sortie standard fermée\n"
 # define ERROR_MSG9 "Usage : ./corewar [-dump] [0 - INT_MAX] .cor\n"
+# define ERROR_MSG10 "Erreur lors de l'opération read\n"
 
 /*
 **		------------------------------ OCP

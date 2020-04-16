@@ -15,18 +15,18 @@
 int8_t			core_nb_player(t_champs *new_champ,
 		int8_t nb_player, t_data *data, char *file_path)
 {
-	int8_t		count;
+	uint8_t		count;
 
-	count = -1;
+	count = 0;
 	if (nb_player > 0 && data->champs[nb_player - 1] == NULL)
 	{
-		new_champ->nb_player = nb_player;
+		new_champ->nb_player = (uint8_t)nb_player;
 		new_champ->file_path = file_path;
 		data->champs[nb_player - 1] = new_champ;
 	}
 	else
 	{
-		while (++count < 4)
+		while (count < 4)
 		{
 			if (data->champs[count] == NULL)
 			{
@@ -35,6 +35,7 @@ int8_t			core_nb_player(t_champs *new_champ,
 				data->champs[count] = new_champ;
 				break ;
 			}
+			count += 1;
 		}
 	}
 	return (SUCCESS);
