@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/16 21:23:00 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/16 22:16:43 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,18 @@ int16_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
 	jump_pos = get_pos(position + to_jump);
 	ind = (data->vm.arena[jump_pos] << 8 | data->vm.arena[get_pos(jump_pos + 1)]);
 	return (get_ind_value(data, position, ind % IDX_MOD, flag));
+}
+
+int8_t		set_reg_value(t_carriages *current, int8_t reg, uint8_t value,
+				uint8_t flag)
+{
+	if (reg > 0 && reg <= REG_NUMBER)
+	{
+		if (flag & SET)
+			current->registres[reg - 1] = value;
+		return (current->registres[reg - 1]);
+	}
+	return (FAILURE);
 }
 
 int8_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
