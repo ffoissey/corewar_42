@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/15 17:48:39 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:36:02 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		get_new_op_code(t_carriages *current, t_data *data)
 	cycle_needed[13] = 50;
 	cycle_needed[14] = 1000;
 	cycle_needed[15] = 2;
-	op_code = data->vm->arena[current->position];
+	op_code = data->vm.arena[current->position];
 	if (op_code <= 16 && op_code > 0)
 		current->cycle_needed = cycle_needed[op_code - 1] - 1;
 	else
@@ -68,7 +68,7 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 {
 	int32_t		op_code;
 
-	op_code = data->vm->arena[current->position];
+	op_code = data->vm.arena[current->position];
 	if (current->cycle_needed > 1)
 		current->cycle_needed--;
 	else if (op_code < 1 || op_code > 16)
@@ -96,7 +96,7 @@ void			corewar_dump(t_data *data)
 	{
 		if (i % 64 == 0)
 			ft_printf("0x%04x : ", i);
-		ft_printf("%02x ", data->vm->arena[i]);
+		ft_printf("%02x ", data->vm.arena[i]);
 		if (i > 0 && ((i + 1) % 64 == 0))
 			ft_putchar('\n');
 	}
@@ -109,12 +109,12 @@ void			core_cycle(t_data *data)
 
 	while (data->carriages != NULL)
 	{
-		if (data->vm->nb_cycles == data->dump)
+		if (data->vm.nb_cycles == data->dump)
 		{
 			corewar_dump(data);
 			break ;
 		}
-		data->vm->nb_cycles += 1;
+		data->vm.nb_cycles += 1;
 		current = data->carriages;
 		exec_current_carriage(current, data);
 		while (current->next)
@@ -122,11 +122,11 @@ void			core_cycle(t_data *data)
 			current = current->next;
 			exec_current_carriage(current, data);
 		}
-		if (data->vm->cycle_last_check ==
-			data->vm->cycles_to_die
-			|| data->vm->cycles_to_die <= 0)
+		if (data->vm.cycle_last_check ==
+			data->vm.cycles_to_die
+			|| data->vm.cycles_to_die <= 0)
 			core_check(data);
 		else
-			data->vm->cycle_last_check += 1;
+			data->vm.cycle_last_check += 1;
 	}
 }

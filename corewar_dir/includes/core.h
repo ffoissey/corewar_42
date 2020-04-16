@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/11 19:15:45 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:25:04 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int8_t		core_present_winner(t_data *data);
 **		CORE_INIT_VM
 */
 
-int8_t		core_init_vm(t_data *data);
 int8_t		core_init_data_vm(t_data *data);
 int8_t		core_install_champ(t_champs *champs,
 		int32_t fd, t_data *data, int8_t champ_nb);

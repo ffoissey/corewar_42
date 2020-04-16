@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 17:14:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/07 15:33:41 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:11:28 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void		get_arg_1(t_carriages *current,
 	}
 	else
 		args[3] = FAILURE;
-	return ;
 }
 
 static void		get_arg_2(t_carriages *current,
@@ -54,7 +53,6 @@ static void		get_arg_2(t_carriages *current,
 		args[1] = core_ind_value(data, current->position % MEM_SIZE, args[1]);
 		current->to_jump += MEM_IND;
 	}
-	return ;
 }
 
 static void		get_arg_3(t_carriages *current,
@@ -75,17 +73,14 @@ static void		get_arg_3(t_carriages *current,
 		args[2] = current->registres[args[2] - 1];
 		current->to_jump += MEM_REG;
 	}
-	return ;
 }
 
 int8_t			ope_sti(t_carriages *current, t_data *data)
 {
 	uint8_t		ocp;
-	int32_t		*args;
+	int32_t		args[4];
 
-	args = (int32_t *)ft_memalloc(sizeof(int32_t) * 4);
-	if (args == NULL)
-		return (FAILURE);
+	ft_bzero(&args, 4);
 	current->to_jump = MEM_OP_CODE;
 	ocp = core_get_ocp(data, (current->position + current->to_jump) % MEM_SIZE);
 	current->to_jump += MEM_OCP;
@@ -93,13 +88,9 @@ int8_t			ope_sti(t_carriages *current, t_data *data)
 	get_arg_2(current, data, ocp, args);
 	get_arg_3(current, data, ocp, args);
 	if (args[3] == FAILURE)
-	{
-		free(args);
 		return (FAILURE);
-	}
 	core_put_reg_ind(data, (current->position +
 		((args[1] + args[2]) % IDX_MOD) % MEM_SIZE),
 			current->registres[args[0] - 1]);
-	free(args);
 	return (SUCCESS);
 }
