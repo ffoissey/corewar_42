@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 19:11:42 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 20:00:34 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,20 @@ static int8_t		ocp_verification(uint8_t ocp, enum e_type type)
 	uint16_t	tmp_mask;
 	uint8_t		i;
 
-	mask = ((ocp & 0xc0) << 12);
+	mask = (ocp & 0x03);
 	i = 0;
 	while (i < 3)
 	{
-		tmp_mask = ocp & (0x03 << (i * 2));
-		if (tmp_mask == (T_IND << (i * 2)))
+		tmp_mask = (ocp >> ((3 - i) * 2)) & 0x03;
+		if (tmp_mask == T_IND)
 			mask |= (MASK_IND << (i * 4));
-		else if (tmp_mask == (T_DIR << (i * 2)))
+		else if (tmp_mask == T_DIR)
 			mask |= (MASK_DIR << (i * 4));
-		else if (tmp_mask == (T_REG << (i * 2)))
+		else if (tmp_mask == T_REG)
 			mask |= (MASK_REG << (i * 4));
 		i++;
 	}
-	if (mask_tab[type] & (mask ^ mask_tab[type]))
+	if (mask & (mask ^ mask_tab[type]))
 		return (FAILURE);
 	return (SUCCESS);
 }
@@ -80,8 +80,11 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	uint8_t			mask;
 	int32_t			arg;
 
-	if (type == NO_OP)
+	if (type == NO_OP || arg_nb == 4)
+	{
+		arg_nb = 1;
 		return (FAILURE);
+	}
 	if (flag & INIT_ARG)
 		arg_nb = 1;
 	if (arg_nb == 1)
@@ -89,11 +92,12 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 		current->to_jump = MEM_OP_CODE;
 		if ((flag & NO_OCP) == FALSE)
 		{
-			current->to_jump += MEM_OCP;
 			ocp = core_get_ocp(data, current->position + current->to_jump);
+			current->to_jump += MEM_OCP;
 			if (ocp_verification(ocp, *type) == FAILURE)
 			{
 				*type = NO_OP;
+				arg_nb = 1;
 				return (FAILURE); 
 			}
 		}
@@ -106,12 +110,15 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	else
 	{
 		mask = ocp;
-		mask >>= ((arg_nb - 1) * 2);
+		mask >>= ((4 - arg_nb) * 2);
 		mask &= 0x03;
 	}
 	arg_nb++;
 	arg = find_arg(current, data, &flag, mask);
 	if (flag & BAD_REG_NB)
+	{
+		arg_nb = 1;
 		*type = NO_OP;
+	}
 	return (arg);
 }
