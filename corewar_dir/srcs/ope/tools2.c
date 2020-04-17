@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 16:05:45 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 16:08:42 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 16:52:07 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
 
 	i = 0;
 	max = (flag & IND) ? 4 : 2;
+	value = 0;
 	while (i < max)
 	{
 		add = ((uint8_t)data->vm.arena[get_pos(position + i + arg)]);

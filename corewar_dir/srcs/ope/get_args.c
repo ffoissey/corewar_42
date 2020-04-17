@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 16:06:37 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 16:54:14 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int8_t		ocp_verification(uint8_t ocp, enum e_type type)
 	uint16_t	tmp_mask;
 	uint8_t		i;
 
-	mask = ((ocp & 0b11000000) << 12);
+	mask = ((ocp & 0xc0) << 12);
 	i = 0;
 	while (i < 3)
 	{
@@ -100,7 +100,7 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	{
 		mask = ocp;
 		mask >>= ((arg_nb - 1) * 2);
-		mask &= 0b00000011;
+		mask &= 0x03;
 	}
 	arg_nb++;
 	return (find_arg(current, data, flag, mask));
