@@ -6,14 +6,14 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 16:54:14 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 17:12:31 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
 static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t flag,
-					int8_t mask)
+					uint8_t mask)
 {
 	int32_t			arg;
 
@@ -59,7 +59,6 @@ static int8_t		ocp_verification(uint8_t ocp, enum e_type type)
 			mask |= (MASK_REG << (i * 4));
 		i++;
 	}
-//	ft_printf("ocp  = %#.16b\nmask = %#.16b\ngood = %#.16b\n       ####-IDR -IDR-IDR\n", ocp, mask, mask_tab[type]);
 	if (mask_tab[type] & (mask ^ mask_tab[type]))
 		return (FAILURE);
 	return (SUCCESS);
@@ -85,17 +84,16 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 			ocp = core_get_ocp(data, current->position + current->to_jump);
 			if (ocp_verification(ocp, *type) == FAILURE)
 			{
-			//	ft_printf("NO\n\n");
 				*type = NO_OP;
 				return (FAILURE); 
 			}
-		//	ft_printf("YES\n\n");
 		}
-	//	else
-		//	ft_printf("PAS_OCP\n\n");
 	}
 	if (flag & NO_OCP)
+	{
+		flag &= ~INIT_ARG;
 		mask = flag >> 8;
+	}
 	else
 	{
 		mask = ocp;
