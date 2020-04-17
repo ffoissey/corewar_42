@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 13:30:10 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:32:33 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,34 @@ static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t flag,
 	return (arg);	
 }
 
-int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag)
+static int8_t		ocp_verification(uint8_t ocp, enum e_type type)
+{
+	static const uint16_t mask_tab[] = {MASK_LIVE, MASK_LD, MASK_ST, MASK_ADD,
+									MASK_SUB, MASK_AND, MASK_OR, MASK_XOR,
+									MASK_ZJMP, MASK_LDI, MASK_STI, MASK_FORK,
+									MASK_LLD, MASK_LLDI, MASK_LFORK, MASK_AFF};
+	uint16_t	mask;
+
+	mask = 0;
+	mask |= (ocp & 0b00000011);
+	mask |= ((ocp & 0b00001100) << 4);
+	mask |= ((ocp & 0b00110000) << 8);
+	mask |= ((ocp & 0b11000000) << 12);
+	ft_printf("mask = %#.16b\ngood = %#.16b\n\n", mask, mask_tab[type]);
+	if (mask_tab[type] & (mask ^ mask_tab[type]))
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
+					enum e_type *type)
 {
 	static uint8_t	ocp = 0;
 	static uint8_t	arg_nb = 1;
 	uint8_t			mask;
 
+	if (type == NO_OP)
+		return (FAILURE);
 	if (flag & INIT_ARG)
 		arg_nb = 1;
 	if (arg_nb == 1)
@@ -131,6 +153,11 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag)
 		{
 			current->to_jump += MEM_OCP;
 			ocp = core_get_ocp(data, current->position + current->to_jump);
+			if (ocp_verification(ocp, *type) == FAILURE)
+			{
+				*type = NO_OP;
+				return (FAILURE); 
+			}
 		}
 	}
 	if (flag & NO_OCP)

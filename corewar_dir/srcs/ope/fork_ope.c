@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:11:59 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 13:36:10 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:14:14 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,17 @@ static void			add_carriage(t_carriages *new, t_data *data)
 }
 
 
-static int8_t		do_fork(t_carriages *current, t_data *data, uint16_t flag)
+static int8_t		do_fork(t_carriages *current, t_data *data,
+						enum e_type type)
 {
 	int16_t		arg;
 	t_carriages	*new;
 
-	arg = get_arg(current, data, INIT_ARG | NO_OCP | SMALL_DIR | DIR_FLAG);
-	arg = (flag == IDX_MOD) ? get_pos(arg) % IDX_MOD : get_pos(arg);
+	arg = get_arg(current, data,
+				INIT_ARG | NO_OCP | SMALL_DIR | DIR_FLAG, &type);
+	if (type == NO_OP)
+		return (FAILURE);
+	arg = (type == OP_FORK) ? get_pos(arg) % IDX_MOD : get_pos(arg);
 	new = get_new_carriage(current, get_pos(current->position) + arg,
 			data->carriages == NULL ? 0 : data->carriages->id + 1);
 	if (new == NULL)
@@ -68,7 +72,7 @@ static int8_t		do_fork(t_carriages *current, t_data *data, uint16_t flag)
 
 int8_t			ope_fork(t_carriages *current, t_data *data)
 {
-	return (do_fork(current, data, IDX_MOD));
+	return (do_fork(current, data, OP_FORK));
 }
 
 /*
@@ -77,5 +81,5 @@ int8_t			ope_fork(t_carriages *current, t_data *data)
 
 int8_t			ope_lfork(t_carriages *current, t_data *data)
 {
-	return (do_fork(current, data, NO_NEED));
+	return (do_fork(current, data, OP_LFORK));
 }

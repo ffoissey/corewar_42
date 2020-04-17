@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 13:35:33 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:24:38 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 	int16_t		reg_value;
 	uint8_t		flag;
 	uint8_t		ocp;
+	enum e_type	type;
 
+	type = OP_ST;
 	ocp = core_get_ocp(data, current->position + current->to_jump);
-	arg[0] = get_arg(current, data, INIT_ARG | NO_NEED);
-	arg[1] = get_arg(current, data, IND);
+	arg[0] = get_arg(current, data, INIT_ARG | NO_NEED, &type);
+	if (type == NO_OP)
+		return (FAILURE);
+	arg[1] = get_arg(current, data, IND, &type);
 	flag = SET;
 	if (ocp == REG_REG_)
 		set_reg_value(current, arg[1], arg[0], &flag);
@@ -53,10 +57,14 @@ int8_t			ope_sti(t_carriages *current, t_data *data)
 	int32_t		arg[3];
 	int16_t		reg_value;
 	uint8_t		flag;
+	enum e_type	type;
 
-	arg[0] = get_arg(current, data, INIT_ARG |  NO_NEED);
-	arg[1] = get_arg(current, data, SMALL_DIR | IND);
-	arg[2] = get_arg(current, data, SMALL_DIR);
+	type = OP_STI;
+	arg[0] = get_arg(current, data, INIT_ARG | NO_NEED, &type);
+	if (type == NO_OP)
+		return (FAILURE);
+	arg[1] = get_arg(current, data, SMALL_DIR | IND, &type);
+	arg[2] = get_arg(current, data, SMALL_DIR, &type);
 	flag = GET;
 	reg_value = set_reg_value(current, arg[0], NO_NEED, &flag);
 	if (flag == BAD_REG)

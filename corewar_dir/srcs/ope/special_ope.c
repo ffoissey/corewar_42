@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 13:39:24 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:21:58 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,15 @@ static int		print_live(t_data *data, int32_t arg)
 int8_t			ope_live(t_carriages *current, t_data *data)
 {
 	int32_t		arg;
+	enum e_type	type;
 
 	data->vm.nb_lives += 1;
 	current->last_live_cycle = data->vm.nb_cycles;
-	arg = get_arg(current, data, INIT_ARG | BIG_DIR | NO_OCP | DIR_FLAG);
+	type = OP_LIVE;
+	arg = get_arg(current, data,
+			INIT_ARG | BIG_DIR | NO_OCP | DIR_FLAG, &type);
+	if (type == NO_OP)
+		return (FAILURE);
 	arg = arg + 1;
 	arg = -arg;
 	if (arg >= 0 && arg < data->initialised_players
@@ -58,8 +63,12 @@ static int8_t	print_aff(t_carriages *current, int8_t arg_1)
 int8_t			ope_aff(t_carriages *current, t_data *data)
 {
 	int8_t	arg_1;
+	enum e_type	type;
 
-	arg_1 = get_arg(current, data, INIT_ARG | NO_OCP | REG_FLAG);
+	type = OP_AFF;
+	arg_1 = get_arg(current, data, INIT_ARG | NO_OCP | REG_FLAG, &type);
+	if (type == NO_OP)
+		return (FAILURE);
 	if (data->aff == ON)
 		return (print_aff(current, arg_1));
 	return (SUCCESS);
@@ -72,8 +81,13 @@ int8_t			ope_aff(t_carriages *current, t_data *data)
 int8_t			ope_zjmp(t_carriages *current, t_data *data)
 {
 	int32_t		arg;
+	enum e_type	type;
 
-	arg = get_arg(current, data, INIT_ARG | NO_OCP | SMALL_DIR | DIR_FLAG);
+	type = OP_ZJMP;
+	arg = get_arg(current, data,
+			INIT_ARG | NO_OCP | SMALL_DIR | DIR_FLAG, &type);
+	if (type == NO_OP)
+		return (FAILURE);
 	if (current->carry == CARRY_ON)
 		current->to_jump = arg % IDX_MOD;
 	return (SUCCESS);

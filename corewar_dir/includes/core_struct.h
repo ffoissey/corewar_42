@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 14:56:54 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:28:26 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,26 @@ typedef struct		s_data
 	uint8_t			initialised_players;
 	char			pad[2];
 }					t_data;
+
+enum	e_type
+{
+	NO_OP,
+	OP_LIVE,
+	OP_LD,
+	OP_ST,
+	OP_ADD,
+	OP_SUB,
+	OP_AND,
+	OP_OR,
+	OP_XOR,
+	OP_ZJMP,
+	OP_LDI,
+	OP_STI,
+	OP_FORK,
+	OP_LLD,
+	OP_LLDI,
+	OP_LFORK,
+	OP_AFF,
+};
 
 #endif

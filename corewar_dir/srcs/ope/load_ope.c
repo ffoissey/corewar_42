@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:14:01 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 13:37:37 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:18:32 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int8_t			ope_ld(t_carriages *current, t_data *data)
 {
-	return (load_value(current, data, SMALL_DIR));
+	return (load_value(current, data, OP_LD));
 }
 
 /*
@@ -27,7 +27,7 @@ int8_t			ope_ld(t_carriages *current, t_data *data)
 
 int8_t			ope_lld(t_carriages *current, t_data *data)
 {
-	return (load_value(current, data, BIG_DIR));
+	return (load_value(current, data, OP_LLD));
 }
 
 /*
@@ -36,7 +36,7 @@ int8_t			ope_lld(t_carriages *current, t_data *data)
 
 int8_t			ope_ldi(t_carriages *current, t_data *data)
 {
-	return (load_indvalue(current, data, IND));
+	return (load_indvalue(current, data, OP_LDI));
 }
 
 /*
@@ -45,5 +45,5 @@ int8_t			ope_ldi(t_carriages *current, t_data *data)
 
 int8_t			ope_lldi(t_carriages *current, t_data *data)
 {
-	return (load_indvalue(current, data, IND_LLD));
+	return (load_indvalue(current, data, OP_LLDI));
 }

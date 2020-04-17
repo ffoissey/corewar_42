@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 13:30:55 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:12:03 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,6 @@
 # define ERROR_MSG8 "Erreur : sortie standard fermée\n"
 # define ERROR_MSG9 "Usage : ./corewar [-dump] [0 - INT_MAX] .cor\n"
 
-
-/*
-**		------------------------------ OPE
-*/
-
-# define BINARY_AND		0x01
-# define BINARY_OR		0x02
-# define BINARY_XOR		0x04
-# define ARITHMETIC_ADD	0x08
-# define ARITHMETIC_SUB	0x10
-
 /*
 **		------------------------------ OCP
 */
@@ -72,6 +61,27 @@
 # define T_REG			1
 # define T_DIR			2
 # define T_IND			3
+
+# define MASK_REG		0x01
+# define MASK_DIR		0x02
+# define MASK_IND		0x04
+
+# define MASK_LIVE		0x0002
+# define MASK_LD		0x0016
+# define MASK_ST		0x0051
+# define MASK_ADD		0x0111
+# define MASK_SUB		0x0111
+# define MASK_AND		0x0177
+# define MASK_OR		0x0177
+# define MASK_XOR		0x0177
+# define MASK_ZJMP		0x0002
+# define MASK_LDI		0x0137
+# define MASK_STI		0x0371
+# define MASK_FORK		0x0002
+# define MASK_LLD		0x0016
+# define MASK_LLDI		0x0137
+# define MASK_LFORK		0x0002
+# define MASK_AFF		0x0001
 
 # define DIR_			128
 # define REG_			64

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:07:10 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 12:10:04 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:11:45 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int8_t		ope_add(t_carriages *current, t_data *data)
 {
-	return (do_op(current, data, ARITHMETIC_ADD));
+	return (do_op(current, data, OP_ADD));
 }
 
 /*
@@ -27,7 +27,7 @@ int8_t		ope_add(t_carriages *current, t_data *data)
 
 int8_t		ope_sub(t_carriages *current, t_data *data)
 {
-	return (do_op(current, data, ARITHMETIC_SUB));
+	return (do_op(current, data, OP_SUB));
 }
 
 /*
@@ -36,7 +36,7 @@ int8_t		ope_sub(t_carriages *current, t_data *data)
 
 int8_t			ope_and(t_carriages *current, t_data *data)
 {
-	return (do_op(current, data, BINARY_AND));
+	return (do_op(current, data, OP_AND));
 }
 
 /*
@@ -45,7 +45,7 @@ int8_t			ope_and(t_carriages *current, t_data *data)
 
 int8_t			ope_or(t_carriages *current, t_data *data)
 {
-	return (do_op(current, data, BINARY_OR));
+	return (do_op(current, data, OP_OR));
 }
 
 /*
@@ -54,5 +54,5 @@ int8_t			ope_or(t_carriages *current, t_data *data)
 
 int8_t			ope_xor(t_carriages *current, t_data *data)
 {
-	return (do_op(current, data, BINARY_XOR));
+	return (do_op(current, data, OP_XOR));
 }

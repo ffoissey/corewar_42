@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 13:38:12 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:17:30 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void		core_free_all(t_data *data);
 uint8_t		core_get_ocp(t_data *data, int16_t position);
 int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
 					uint16_t flag);
-int32_t		get_arg(t_carriages *current, t_data *data, uint16_t flag);
+int32_t		get_arg(t_carriages *current, t_data *data, uint16_t flag,
+				enum e_type *type);
 int16_t		set_reg_value(t_carriages *current, int8_t reg, uint8_t value,
 				uint8_t *flag);
 
@@ -118,9 +119,9 @@ int16_t		core_ind_value_lld(t_data *data, int16_t position, int32_t ind);
 **		CORE_OPE
 */
 
-int8_t		do_op(t_carriages *current, t_data *data, uint8_t ope);
-int8_t		load_indvalue(t_carriages *current, t_data *data, uint16_t flag);
-int8_t		load_value(t_carriages *current, t_data *data, uint16_t flag);
+int8_t		do_op(t_carriages *current, t_data *data, enum e_type type);
+int8_t		load_value(t_carriages *current, t_data *data, enum e_type type);
+int8_t		load_indvalue(t_carriages *current, t_data *data, enum e_type type);
 
 int8_t		ope_live(t_carriages *current, t_data *data);
 int8_t		ope_ld(t_carriages *current, t_data *data);
