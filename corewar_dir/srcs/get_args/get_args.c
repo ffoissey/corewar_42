@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/16 22:16:43 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 11:35:37 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,16 @@ int16_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
 	return (get_ind_value(data, position, ind % IDX_MOD, flag));
 }
 
-int8_t		set_reg_value(t_carriages *current, int8_t reg, uint8_t value,
-				uint8_t flag)
+int16_t		set_reg_value(t_carriages *current, int8_t reg, uint8_t value,
+				uint8_t *flag)
 {
 	if (reg > 0 && reg <= REG_NUMBER)
 	{
-		if (flag & SET)
+		if (*flag & SET)
 			current->registres[reg - 1] = value;
 		return (current->registres[reg - 1]);
 	}
+	*flag = BAD_REG;
 	return (FAILURE);
 }
 

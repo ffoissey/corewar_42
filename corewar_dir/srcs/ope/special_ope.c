@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ope_live.c                                         :+:      :+:    :+:   */
+/*   special_ope.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/03 11:02:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 21:04:31 by ffoissey         ###   ########.fr       */
+/*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
+/*   Updated: 2020/04/17 11:11:48 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static int	print_live(t_data *data, int32_t dir)
+/*
+**** LIVE 0x01
+*/
+
+static int		print_live(t_data *data, int32_t dir)
 {
 	if (ft_printf("Un processus dit que le joueur %d (%s) est en vie.\n",
 			dir, data->champs[dir]->name) == FAILURE)
@@ -20,7 +24,7 @@ static int	print_live(t_data *data, int32_t dir)
 	return (SUCCESS);
 }
 
-int8_t		ope_live(t_carriages *current, t_data *data)
+int8_t			ope_live(t_carriages *current, t_data *data)
 {
 	int32_t		dir;
 
@@ -38,5 +42,40 @@ int8_t		ope_live(t_carriages *current, t_data *data)
 			return (print_live(data, dir));
 		return (SUCCESS);
 	}
+	return (SUCCESS);
+}
+
+/*
+**** AFF 0x10
+*/
+
+static int8_t	print_aff(t_carriages *current, int8_t arg_1)
+{
+	if (ft_printf("Aff : %c\n", current->registres[arg_1 - 1] % 256) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
+int8_t			ope_aff(t_carriages *current, t_data *data)
+{
+	int8_t	arg_1;
+
+	arg_1 = get_arg(current, data, 1, NO_OCP | REG_FLAG);
+	if (data->aff == ON)
+		return (print_aff(current, arg_1));
+	return (SUCCESS);
+}
+
+/*
+**** ZJMP 0x09
+*/
+
+int8_t			ope_zjmp(t_carriages *current, t_data *data)
+{
+	int32_t		arg;
+
+	arg = get_arg(current, data, 1, NO_OCP | SMALL_DIR | DIR_FLAG);
+	if (current->carry == CARRY_ON)
+		current->to_jump = arg % IDX_MOD;
 	return (SUCCESS);
 }

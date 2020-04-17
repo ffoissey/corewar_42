@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 22:16:05 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 11:32:42 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,23 @@
 # define ERROR_MSG8 "Erreur : sortie standard fermée\n"
 # define ERROR_MSG9 "Usage : ./corewar [-dump] [0 - INT_MAX] .cor\n"
 
+
+/*
+**		------------------------------ OPE
+*/
+
+# define BIN_AND		0x01
+# define BIN_OR			0x02
+# define BIN_XOR		0x04
+
 /*
 **		------------------------------ OCP
 */
 
+
 # define GET			0x01
 # define SET			0x02
+# define BAD_REG		0x04
 
 # define NO_NEED		0x0000
 # define IND_LLD		0x0001

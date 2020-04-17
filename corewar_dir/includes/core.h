@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 22:15:58 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 11:33:27 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
 					uint16_t flag);
 int32_t		get_arg(t_carriages *current, t_data *data, uint8_t arg_nb,
 				uint16_t flag);
-int8_t		set_reg_value(t_carriages *current, int8_t reg, uint8_t value,
-				uint8_t flag);
+int16_t		set_reg_value(t_carriages *current, int8_t reg, uint8_t value,
+				uint8_t *flag);
 
 /*
 **		CORE_PUT *

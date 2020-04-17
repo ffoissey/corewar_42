@@ -6,7 +6,7 @@
 #    By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 10:48:43 by cde-moul          #+#    #+#              #
-#    Updated: 2020/04/16 19:54:30 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/17 11:22:48 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -169,22 +169,12 @@ PRESENT			+=		core_present_winner.c
 
 #												   --- Operations ---
 
-OPE				+=		ope_live.c
-OPE				+=		ope_ld.c
-OPE				+=		ope_st.c
-OPE				+=		ope_add.c
-OPE				+=		ope_sub.c
-OPE				+=		ope_and.c
-OPE				+=		ope_or.c
-OPE				+=		ope_xor.c
-OPE				+=		ope_zjmp.c
-OPE				+=		ope_ldi.c
-OPE				+=		ope_sti.c
-OPE				+=		ope_fork.c
-OPE				+=		ope_lld.c
-OPE				+=		ope_lldi.c
-OPE				+=		ope_lfork.c
-OPE				+=		ope_aff.c
+OPE				+= 		arithmetic_ope.c
+OPE 			+= 		binary_ope.c
+OPE				+= 		fork_ope.c
+OPE 			+= 		load_ope.c
+OPE 			+= 		special_ope.c
+OPE 			+= 		stock_ope.c
 
 #										  --- Fonctions utiles aux operations ---
 

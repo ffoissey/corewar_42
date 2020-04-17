@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ope_fork.c                                         :+:      :+:    :+:   */
+/*   fork_ope.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/03 11:16:04 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 21:06:50 by ffoissey         ###   ########.fr       */
+/*   Created: 2020/04/17 11:11:59 by ffoissey          #+#    #+#             */
+/*   Updated: 2020/04/17 11:13:46 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ static int8_t	get_new_carriage(t_carriages *current, t_data *data)
 	return (SUCCESS);
 }
 
+/*
+**** FORK 0x0c
+*/
+
 int8_t			ope_fork(t_carriages *current, t_data *data)
 {
 	int16_t		arg;
@@ -46,6 +50,23 @@ int8_t			ope_fork(t_carriages *current, t_data *data)
 		return (FAILURE);
 	data->carriages->position = 
 		get_pos(get_pos(current->position) + (arg % IDX_MOD));
+	data->vm.nb_carriages++;
+	return (SUCCESS);
+}
+
+/*
+**** FORK 0x0f
+*/
+
+int8_t			ope_lfork(t_carriages *current, t_data *data)
+{
+	int16_t		arg;
+
+	arg = get_arg(current, data, 1, NO_OCP | SMALL_DIR | DIR_FLAG);
+	if (get_new_carriage(current, data) == FAILURE)
+		return (FAILURE);
+	data->carriages->position =
+		(current->position + arg) % MEM_SIZE;
 	data->vm.nb_carriages++;
 	return (SUCCESS);
 }
