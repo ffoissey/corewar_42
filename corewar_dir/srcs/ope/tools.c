@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 16:04:32 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 18:14:17 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:21:26 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int16_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
 
 	reg = (data->vm.arena[get_pos(position)]);
 	if (reg > 0 && reg <= REG_NUMBER)
-		return (current->registres[reg - 1]);
+		return (reg);
 	return (FAILURE);
 }
 

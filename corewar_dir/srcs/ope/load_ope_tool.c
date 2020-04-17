@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 13:37:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 15:29:33 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:33:10 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 			INIT_ARG | IND | (type == OP_LD) ? SMALL_DIR : BIG_DIR, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	arg[1] = get_arg(current, data, NO_NEED, &type);
+	arg[1] = get_arg(current, data, REG_NUM, &type);
+	if (type == NO_OP)
+		return (FAILURE);
 	flag_reg = SET | GET;
 	reg_val = set_reg_value(current, arg[1], arg[0], &flag_reg);
 	if (flag_reg != BAD_REG && reg_val == 0)
@@ -43,7 +45,9 @@ int8_t	load_indvalue(t_carriages *current, t_data *data, enum e_type type)
 	if (type == NO_OP)
 		return (FAILURE);
 	arg[1] = get_arg(current, data, SMALL_DIR, &type);
-	arg[2] = get_arg(current, data, NO_NEED, &type);
+	arg[2] = get_arg(current, data, REG_NUM, &type);
+	if (type == NO_OP)
+		return (FAILURE);
 	pos = get_pos(arg[0] + arg[1]);
 	if (type == OP_LDI)
 		pos %= IDX_MOD;

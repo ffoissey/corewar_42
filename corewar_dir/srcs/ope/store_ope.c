@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 15:24:38 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:32:18 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 	arg[0] = get_arg(current, data, INIT_ARG | NO_NEED, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	arg[1] = get_arg(current, data, IND, &type);
+	arg[1] = get_arg(current, data, IND | REG_NUM, &type);
+	if (type == NO_OP)
+		return (FAILURE);
 	flag = SET;
 	if (ocp == REG_REG_)
 		set_reg_value(current, arg[1], arg[0], &flag);

@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 15:12:03 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:23:18 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 
 # define GET			0x01
 # define SET			0x02
-# define BAD_REG		0x04
+# define BAD_REG		0x08
 
 # define NO_NEED		0x0000
 # define IND_LLD		0x0001
@@ -52,6 +52,7 @@
 # define BIG_DIR		0x0008
 # define OCP			0x0010
 # define NO_OCP			0x0020
+# define REG_NUM		0x0040
 # define REG_FLAG		0x0100
 # define DIR_FLAG		0x0200
 # define IND_FLAG		0x0300

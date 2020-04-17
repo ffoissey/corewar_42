@@ -6,13 +6,13 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 18:14:20 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:34:36 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t flag,
+static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t *flag,
 					uint8_t mask)
 {
 	int32_t			arg;
@@ -21,16 +21,23 @@ static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t flag,
 	if (mask == T_REG)
 	{
 		arg = core_get_reg(data, current->position + current->to_jump, current);
+		if (arg == FAILURE)
+			*flag |= BAD_REG; 
+		else if ((*flag & REG_NUM) == FALSE)
+		{
+			*flag = GET;
+			arg = set_reg_value(current, arg, NO_NEED, (uint8_t *)flag);
+		}
 		current->to_jump += MEM_REG;
 	}
 	else if  (mask == T_DIR)
 	{
-		arg = core_get_dir(data, current->position + current->to_jump, flag);
-		current->to_jump += (flag == SMALL_DIR) ? MEM_SMALL_DIR : MEM_DIR;
+		arg = core_get_dir(data, current->position + current->to_jump, *flag);
+		current->to_jump += (*flag == SMALL_DIR) ? MEM_SMALL_DIR : MEM_DIR;
 	}
 	else if  (mask == T_IND)
 	{
-		arg = core_get_ind(data, current->position, current->to_jump, flag);
+		arg = core_get_ind(data, current->position, current->to_jump, *flag);
 		current->to_jump += MEM_IND;
 	}
 	return (arg);	
@@ -71,6 +78,7 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	static uint8_t	ocp = 0;
 	static uint8_t	arg_nb = 1;
 	uint8_t			mask;
+	int32_t			arg;
 
 	if (type == NO_OP)
 		return (FAILURE);
@@ -102,5 +110,8 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 		mask &= 0x03;
 	}
 	arg_nb++;
-	return (find_arg(current, data, flag, mask));
+	arg = find_arg(current, data, &flag, mask);
+	if (flag & BAD_REG)
+		*type = NO_OP;
+	return (arg);
 }

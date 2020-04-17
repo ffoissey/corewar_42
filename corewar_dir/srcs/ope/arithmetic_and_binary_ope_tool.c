@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:07:18 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 15:37:30 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:32:57 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int8_t			do_op(t_carriages *current, t_data *data, enum e_type type)
 	if (type == NO_OP)
 		return (FAILURE);
 	arg[1] = get_arg(current, data, BIG_DIR | IND, &type);
-	arg[2] = get_arg(current, data, NO_NEED, &type);
+	arg[2] = get_arg(current, data, REG_NUM, &type);
+	if (type == NO_OP)
+		return (FAILURE);
 	flag_reg = SET | GET;
 	if (type == OP_AND)
 		reg_val = set_reg_value(current, arg[2], arg[0] & arg[1], &flag_reg);
