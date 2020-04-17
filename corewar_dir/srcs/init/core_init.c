@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:25:50 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 17:25:05 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 13:24:54 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int8_t			get_next_player(t_data *data, char *file_path,
 		return (core_error(0));
 	if (data->initialised_players == MAX_PLAYERS)
 		return (FAILURE);
-	if (nb_player != NATURAL_ORDER && data->champs[--nb_player] == NULL)
+	if (nb_player != NATURAL_ORDER && data->champs[--nb_player] != NULL)
 		nb_player = NATURAL_ORDER;
 	if (nb_player == NATURAL_ORDER)
 	{

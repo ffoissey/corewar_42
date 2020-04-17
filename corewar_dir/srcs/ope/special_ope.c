@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 11:11:48 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 13:04:25 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,30 @@
 **** LIVE 0x01
 */
 
-static int		print_live(t_data *data, int32_t dir)
+static int		print_live(t_data *data, int32_t arg)
 {
 	if (ft_printf("Un processus dit que le joueur %d (%s) est en vie.\n",
-			dir, data->champs[dir]->name) == FAILURE)
+			arg, data->champs[arg]->name) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
 
 int8_t			ope_live(t_carriages *current, t_data *data)
 {
-	int32_t		dir;
+	int32_t		arg;
 
 	data->vm.nb_lives += 1;
 	current->last_live_cycle = data->vm.nb_cycles;
-	dir = get_arg(current, data, 1, BIG_DIR | NO_OCP | DIR_FLAG);
-	dir = dir + 1;
-	dir = -dir;
-	if (dir >= 0 && dir < data->initialised_players
-		&& data->champs[dir] != NULL)
+	arg = get_arg(current, data, 1, BIG_DIR | NO_OCP | DIR_FLAG);
+	arg = arg + 1;
+	arg = -arg;
+	if (arg >= 0 && arg < data->initialised_players
+		&& data->champs[arg] != NULL)
 	{
-		data->champs[dir]->last_alive_cycle = data->vm.nb_cycles;
-		data->vm.last_alive_champ = (uint8_t)dir;
+		data->champs[arg]->last_alive_cycle = data->vm.nb_cycles;
+		data->vm.last_alive_champ = (uint8_t)arg;
 		if (data->aff == ON)
-			return (print_live(data, dir));
-		return (SUCCESS);
+			return (print_live(data, arg));
 	}
 	return (SUCCESS);
 }
