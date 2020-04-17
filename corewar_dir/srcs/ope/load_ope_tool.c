@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 13:37:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 19:57:14 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 20:52:27 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 
 	current->carry = CARRY_OFF;
 	arg[0] = get_arg(current, data,
-			INIT_ARG | IND | (type == OP_LD) ? SMALL_DIR : BIG_DIR, &type);
+			INIT_ARG | IND | BIG_DIR, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	arg[1] = get_arg(current, data, REG_NUM, &type);
