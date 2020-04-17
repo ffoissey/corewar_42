@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:25:50 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 13:45:36 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 16:38:02 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,6 @@ static int8_t			get_next_player(t_data *data, char *file_path,
 	return (SUCCESS);
 }
 
-static void			reorder_champs(t_champs **champs)
-{
-	uint8_t	i;
-
-	i = 1;
-	while (i < MAX_PLAYERS)
-	{
-		if (champs[i - 1] == NULL && champs[i] != NULL)
-		{
-			champs[i - 1] = champs[i];
-			champs[i] = NULL;
-			i = 0;
-		}
-		i++;
-	}	
-}
-
 int8_t			core_init_data(int32_t ac, char **av, t_data *data)
 {
 	int32_t		i;
@@ -91,8 +74,5 @@ int8_t			core_init_data(int32_t ac, char **av, t_data *data)
 			return (FAILURE);
 		i++;
 	}
-	if (data->initialised_players < 2 || i != ac) 
-		return (FAILURE);
-	reorder_champs(data->champs);
 	return (SUCCESS); 
 }

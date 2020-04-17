@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 15:21:58 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 16:42:27 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int8_t			ope_live(t_carriages *current, t_data *data)
 		return (FAILURE);
 	arg = arg + 1;
 	arg = -arg;
-	if (arg >= 0 && arg < data->initialised_players
-		&& data->champs[arg] != NULL)
+	if (arg > 0 && arg <= MAX_PLAYERS
+		&& data->champs[arg - 1] != NULL)
 	{
-		data->champs[arg]->last_alive_cycle = data->vm.nb_cycles;
+		data->champs[arg - 1]->last_alive_cycle = data->vm.nb_cycles;
 		data->vm.last_alive_champ = (uint8_t)arg;
 		if (data->aff == ON)
 			return (print_live(data, arg));
