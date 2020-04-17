@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 18:34:36 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:43:37 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t *flag,
 	{
 		arg = core_get_reg(data, current->position + current->to_jump, current);
 		if (arg == FAILURE)
-			*flag |= BAD_REG; 
+			*flag |= BAD_REG_NB; 
 		else if ((*flag & REG_NUM) == FALSE)
 		{
 			*flag = GET;
@@ -111,7 +111,7 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	}
 	arg_nb++;
 	arg = find_arg(current, data, &flag, mask);
-	if (flag & BAD_REG)
+	if (flag & BAD_REG_NB)
 		*type = NO_OP;
 	return (arg);
 }
