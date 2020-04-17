@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stock_ope.c                                        :+:      :+:    :+:   */
+/*   store_ope.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 11:16:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 12:12:17 by ffoissey         ###   ########.fr       */
+/*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
+/*   Updated: 2020/04/17 12:26:32 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
+
+static void store_value(t_data *data, int16_t position, int16_t reg_value)
+{
+	core_put_reg_ind(data, get_pos(position) % IDX_MOD, reg_value);
+}
 
 /*
 **** ST 0x03
@@ -19,9 +24,9 @@
 int8_t			ope_st(t_carriages *current, t_data *data)
 {
 	int32_t		arg[2];
-	uint8_t		ocp;
 	int16_t		reg_value;
 	uint8_t		flag;
+	uint8_t		ocp;
 
 	ocp = core_get_ocp(data, current->position + current->to_jump);
 	arg[0] = get_arg(current, data, 1, NO_NEED);
@@ -35,7 +40,7 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 	reg_value = set_reg_value(current, arg[0], NO_NEED, &flag);
 	if (flag == BAD_REG)
 		return (FAILURE);
-	core_put_reg_ind(data, get_pos(current->position + arg[1]) % IDX_MOD, reg_value);
+	store_value(data, get_pos(current->position) + arg[1], reg_value);
 	return (SUCCESS);
 }
 
@@ -45,15 +50,17 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 
 int8_t			ope_sti(t_carriages *current, t_data *data)
 {
-	int32_t		args[3];
+	int32_t		arg[3];
+	int16_t		reg_value;
+	uint8_t		flag;
 
-	args[0] = get_arg(current, data, 1, NO_NEED);
-	args[1] = get_arg(current, data, 2, SMALL_DIR | IND);
-	args[2] = get_arg(current, data, 3, SMALL_DIR);
-	if (args[0] > 0 && args[0] <= REG_NUMBER)
-		core_put_reg_ind(data, get_pos((current->position +
-			args[1] + args[2]) % IDX_MOD), current->registres[args[0] - 1]);
-	else
-		return (FAILURE); //exit
+	arg[0] = get_arg(current, data, 1, NO_NEED);
+	arg[1] = get_arg(current, data, 2, SMALL_DIR | IND);
+	arg[2] = get_arg(current, data, 3, SMALL_DIR);
+	flag = GET;
+	reg_value = set_reg_value(current, arg[0], NO_NEED, &flag);
+	if (flag == BAD_REG)
+		return (FAILURE);
+	store_value(data, get_pos(current->position) + arg[1] + arg[2], reg_value);
 	return (SUCCESS);
 }

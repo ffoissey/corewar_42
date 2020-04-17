@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 11:35:37 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 12:14:52 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ int32_t		get_arg(t_carriages *current, t_data *data, uint8_t arg_nb,
 	if (mask == T_REG)
 	{
 		arg = core_get_reg(data, current->position + current->to_jump, current);
-		if (arg < 0)
-			exit(1); // gerer quand c'est negatif
 		current->to_jump += MEM_REG;
 	}
 	else if  (mask == T_DIR)
@@ -131,7 +129,5 @@ int32_t		get_arg(t_carriages *current, t_data *data, uint8_t arg_nb,
 		arg = core_get_ind(data, current->position, current->to_jump, flag);
 		current->to_jump += MEM_IND;
 	}
-	else
-		exit(1); // ATTENTION
 	return (arg);	
 }
