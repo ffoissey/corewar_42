@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 17:40:29 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:14:20 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t flag,
 
 static int8_t		ocp_verification(uint8_t ocp, enum e_type type)
 {
-	static const uint16_t mask_tab[] = {MASK_LIVE, MASK_LD, MASK_ST, MASK_ADD,
-									MASK_SUB, MASK_AND, MASK_OR, MASK_XOR,
-									MASK_ZJMP, MASK_LDI, MASK_STI, MASK_FORK,
-									MASK_LLD, MASK_LLDI, MASK_LFORK, MASK_AFF};
+	static const uint16_t mask_tab[] = {0x00, MASK_LIVE, MASK_LD, MASK_ST,
+									MASK_ADD, MASK_SUB, MASK_AND, MASK_OR,
+									MASK_XOR, MASK_ZJMP, MASK_LDI, MASK_STI,
+									MASK_FORK, MASK_LLD, MASK_LLDI, MASK_LFORK,
+									MASK_AFF};
 	uint16_t	mask;
 	uint16_t	tmp_mask;
 	uint8_t		i;
