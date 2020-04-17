@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 17:12:31 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 17:40:29 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 		arg_nb = 1;
 	if (arg_nb == 1)
 	{
-		current->to_jump += MEM_OP_CODE;
+		current->to_jump = MEM_OP_CODE;
 		if ((flag & NO_OCP) == FALSE)
 		{
 			current->to_jump += MEM_OCP;

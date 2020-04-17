@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 16:04:32 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 16:11:18 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 17:24:43 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ int32_t		core_get_dir(t_data *data, int16_t position, uint16_t flag)
 
 	if (flag & SMALL_DIR)
 	{
-		dir = (data->vm.arena[position % MEM_SIZE] << 8
-			| data->vm.arena[(position + 1) % MEM_SIZE]);
+		dir = (data->vm.arena[get_pos(position)] << 8
+			| data->vm.arena[get_pos(position + 1)]);
 		return (dir);
 	}
 	else
 	{
-		dir = (data->vm.arena[position % MEM_SIZE] << 24
-			| data->vm.arena[(position + 1) % MEM_SIZE] << 16
-			| data->vm.arena[(position + 2) % MEM_SIZE] << 8
-			| data->vm.arena[(position + 3) % MEM_SIZE]);
+		dir = (data->vm.arena[get_pos(position)] << 24
+			| data->vm.arena[get_pos(position + 1)] << 16
+			| data->vm.arena[get_pos(position + 2)] << 8
+			| data->vm.arena[get_pos(position + 3)]);
 	}
 	return (dir);
 }
@@ -48,7 +48,8 @@ int16_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
 	int16_t		jump_pos;
 
 	jump_pos = get_pos(position + to_jump);
-	ind = (data->vm.arena[jump_pos] << 8 | data->vm.arena[get_pos(jump_pos + 1)]);
+	ind = (data->vm.arena[jump_pos] << 8
+			| data->vm.arena[get_pos(jump_pos + 1)]);
 	return (get_ind_value(data, position, ind % IDX_MOD, flag));
 }
 

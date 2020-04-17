@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 17:12:00 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 17:37:37 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static int		print_live(t_data *data, int32_t arg)
 {
 	if (ft_printf("Un processus dit que le joueur %d (%s) est en vie.\n",
-			arg, data->champs[arg]->name) == FAILURE)
+			arg, data->champs[arg - 1]->name) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
@@ -36,7 +36,6 @@ int8_t			ope_live(t_carriages *current, t_data *data)
 			INIT_ARG | BIG_DIR | NO_OCP | DIR_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	arg = arg + 1;
 	arg = -arg;
 	if (arg > 0 && arg <= MAX_PLAYERS
 		&& data->champs[arg - 1] != NULL)
@@ -55,7 +54,14 @@ int8_t			ope_live(t_carriages *current, t_data *data)
 
 static int8_t	print_aff(t_carriages *current, int8_t arg_1)
 {
-	if (ft_printf("Aff : %c\n", current->registres[arg_1 - 1] % 256) == FAILURE)
+	uint8_t	flag_reg;
+	uint8_t	value;
+
+	flag_reg = GET;
+	value = set_reg_value(current, arg_1, NO_NEED, &flag_reg);
+	if (flag_reg == BAD_REG)
+		return (FAILURE);
+	if (ft_printf("Aff : %c\n", value) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
