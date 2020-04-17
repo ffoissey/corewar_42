@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 20:24:38 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 20:54:24 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t *flag,
 	else if  (mask == T_IND)
 	{
 		arg = core_get_ind(data, current->position, current->to_jump, *flag);
-	ft_printf("arg = %d\n", arg);
 		current->to_jump += MEM_IND;
 	}
 	return (arg);	
