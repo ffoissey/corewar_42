@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 12:09:09 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 13:30:55 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@
 # define REG_FLAG		0x0100
 # define DIR_FLAG		0x0200
 # define IND_FLAG		0x0300
+
+# define INIT_ARG		0x8000
 
 # define T_REG			1
 # define T_DIR			2

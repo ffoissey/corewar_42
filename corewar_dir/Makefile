@@ -6,7 +6,7 @@
 #    By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 10:48:43 by cde-moul          #+#    #+#              #
-#    Updated: 2020/04/17 12:25:44 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/17 13:38:36 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -173,6 +173,7 @@ OPE				+= 		arithmetic_and_binary_ope.c
 OPE				+= 		arithmetic_and_binary_ope_tool.c
 OPE				+= 		fork_ope.c
 OPE 			+= 		load_ope.c
+OPE 			+= 		load_ope_tool.c
 OPE 			+= 		special_ope.c
 OPE 			+= 		store_ope.c
 

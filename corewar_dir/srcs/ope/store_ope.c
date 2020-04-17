@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 12:26:32 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 13:35:33 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 	uint8_t		ocp;
 
 	ocp = core_get_ocp(data, current->position + current->to_jump);
-	arg[0] = get_arg(current, data, 1, NO_NEED);
-	arg[1] = get_arg(current, data, 2, IND);
+	arg[0] = get_arg(current, data, INIT_ARG | NO_NEED);
+	arg[1] = get_arg(current, data, IND);
 	flag = SET;
 	if (ocp == REG_REG_)
 		set_reg_value(current, arg[1], arg[0], &flag);
@@ -54,9 +54,9 @@ int8_t			ope_sti(t_carriages *current, t_data *data)
 	int16_t		reg_value;
 	uint8_t		flag;
 
-	arg[0] = get_arg(current, data, 1, NO_NEED);
-	arg[1] = get_arg(current, data, 2, SMALL_DIR | IND);
-	arg[2] = get_arg(current, data, 3, SMALL_DIR);
+	arg[0] = get_arg(current, data, INIT_ARG |  NO_NEED);
+	arg[1] = get_arg(current, data, SMALL_DIR | IND);
+	arg[2] = get_arg(current, data, SMALL_DIR);
 	flag = GET;
 	reg_value = set_reg_value(current, arg[0], NO_NEED, &flag);
 	if (flag == BAD_REG)

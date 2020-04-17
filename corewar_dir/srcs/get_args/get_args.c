@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 13:21:18 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 13:30:10 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,39 @@ int8_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
 	return (FAILURE); // exit
 }
 
-int32_t		get_arg(t_carriages *current, t_data *data, uint8_t arg_nb,
-				uint16_t flag)
+
+static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t flag,
+					int8_t mask)
 {
-	static int8_t	ocp = 0;
-	static int8_t	mask;
 	int32_t			arg;
 
+	arg = 0;
+	if (mask == T_REG)
+	{
+		arg = core_get_reg(data, current->position + current->to_jump, current);
+		current->to_jump += MEM_REG;
+	}
+	else if  (mask == T_DIR)
+	{
+		arg = core_get_dir(data, current->position + current->to_jump, flag);
+		current->to_jump += (flag == SMALL_DIR) ? MEM_SMALL_DIR : MEM_DIR;
+	}
+	else if  (mask == T_IND)
+	{
+		arg = core_get_ind(data, current->position, current->to_jump, flag);
+		current->to_jump += MEM_IND;
+	}
+	return (arg);	
+}
+
+int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag)
+{
+	static uint8_t	ocp = 0;
+	static uint8_t	arg_nb = 1;
+	uint8_t			mask;
+
+	if (flag & INIT_ARG)
+		arg_nb = 1;
 	if (arg_nb == 1)
 	{
 		current->to_jump += MEM_OP_CODE;
@@ -115,21 +141,6 @@ int32_t		get_arg(t_carriages *current, t_data *data, uint8_t arg_nb,
 		mask >>= ((arg_nb - 1) * 2);
 		mask &= 0b00000011;
 	}
-	arg = FAILURE;
-	if (mask == T_REG)
-	{
-		arg = core_get_reg(data, current->position + current->to_jump, current);
-		current->to_jump += MEM_REG;
-	}
-	else if  (mask == T_DIR)
-	{
-		arg = core_get_dir(data, current->position + current->to_jump, flag);
-		current->to_jump += (flag == SMALL_DIR) ? MEM_SMALL_DIR : MEM_DIR;
-	}
-	else if  (mask == T_IND)
-	{
-		arg = core_get_ind(data, current->position, current->to_jump, flag);
-		current->to_jump += MEM_IND;
-	}
-	return (arg);	
+	arg_nb++;
+	return (find_arg(current, data, flag, mask));
 }
