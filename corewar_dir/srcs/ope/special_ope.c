@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 18:44:18 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 19:15:12 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int8_t			ope_aff(t_carriages *current, t_data *data)
 	enum e_type	type;
 
 	type = OP_AFF;
-	arg_1 = get_arg(current, data, INIT_ARG | REG_FLAG, &type);
+	arg_1 = get_arg(current, data, REG_NUM | INIT_ARG | REG_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	if (data->aff == ON)
