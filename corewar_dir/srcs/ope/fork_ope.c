@@ -6,34 +6,59 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:11:59 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 11:13:46 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 13:01:35 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static int8_t	get_new_carriage(t_carriages *current, t_data *data)
+static t_carriages	*get_new_carriage(t_carriages *current, int16_t position,
+									int32_t id)
 {
 	t_carriages		*new;
-	t_carriages		*last;
-	int8_t			nb_registre;
+	uint8_t			nb_reg;
 
-	nb_registre = 0;
 	new = (t_carriages *)ft_memalloc(sizeof(t_carriages));
-	if (new == NULL)
-		return (FAILURE);
-	last = data->carriages;
-	data->carriages = new;
-	new->next = last;
-	last->previous = new;
-	new->id = last->id + 1;
-	while (nb_registre < REG_NUMBER)
+	if (new != NULL)
 	{
-		new->registres[nb_registre] = current->registres[nb_registre];
-		nb_registre++;
+		new->position = get_pos(position);
+		new->id = id;
+		new->carry = current->carry;
+		new->last_live_cycle = current->last_live_cycle;
+		nb_reg = 0;
+		while (nb_reg < REG_NUMBER)
+		{
+			new->registres[nb_reg] = current->registres[nb_reg];
+			nb_reg++;
+		}
 	}
-	new->carry = current->carry;
-	new->last_live_cycle = current->last_live_cycle;
+	return (new);
+}
+
+static void			add_carriage(t_carriages *new, t_data *data)
+{
+	if (data->carriages != NULL)
+	{
+		data->carriages->previous = new;
+		new->next = data->carriages;
+	}
+	data->carriages = new;
+	data->vm.nb_carriages++;
+}
+
+
+static int8_t		do_fork(t_carriages *current, t_data *data, uint16_t flag)
+{
+	int16_t		arg;
+	t_carriages	*new;
+
+	arg = get_arg(current, data, 1, NO_OCP | SMALL_DIR | DIR_FLAG);
+	arg = (flag == IDX_MOD) ? get_pos(arg) % IDX_MOD : get_pos(arg);
+	new = get_new_carriage(current, get_pos(current->position) + arg,
+			data->carriages == NULL ? 0 : data->carriages->id + 1);
+	if (new == NULL)
+		return (FAILURE); // exit malloc
+	add_carriage(new, data);
 	return (SUCCESS);
 }
 
@@ -43,15 +68,7 @@ static int8_t	get_new_carriage(t_carriages *current, t_data *data)
 
 int8_t			ope_fork(t_carriages *current, t_data *data)
 {
-	int16_t		arg;
-
-	arg = get_arg(current, data, 1, NO_OCP | SMALL_DIR | DIR_FLAG);
-	if (get_new_carriage(current, data) == FAILURE)
-		return (FAILURE);
-	data->carriages->position = 
-		get_pos(get_pos(current->position) + (arg % IDX_MOD));
-	data->vm.nb_carriages++;
-	return (SUCCESS);
+	return (do_fork(current, data, IDX_MOD));
 }
 
 /*
@@ -60,13 +77,5 @@ int8_t			ope_fork(t_carriages *current, t_data *data)
 
 int8_t			ope_lfork(t_carriages *current, t_data *data)
 {
-	int16_t		arg;
-
-	arg = get_arg(current, data, 1, NO_OCP | SMALL_DIR | DIR_FLAG);
-	if (get_new_carriage(current, data) == FAILURE)
-		return (FAILURE);
-	data->carriages->position =
-		(current->position + arg) % MEM_SIZE;
-	data->vm.nb_carriages++;
-	return (SUCCESS);
+	return (do_fork(current, data, NO_NEED));
 }
