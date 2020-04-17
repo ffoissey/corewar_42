@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 11:33:27 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 12:08:14 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int16_t		core_ind_value_lld(t_data *data, int16_t position, int32_t ind);
 /*
 **		CORE_OPE
 */
+
+int8_t		do_op(t_carriages *current, t_data *data, uint8_t ope);
 
 int8_t		ope_live(t_carriages *current, t_data *data);
 int8_t		ope_ld(t_carriages *current, t_data *data);

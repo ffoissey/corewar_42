@@ -6,7 +6,7 @@
 #    By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 10:48:43 by cde-moul          #+#    #+#              #
-#    Updated: 2020/04/17 11:22:48 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/17 12:08:47 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -169,8 +169,8 @@ PRESENT			+=		core_present_winner.c
 
 #												   --- Operations ---
 
-OPE				+= 		arithmetic_ope.c
-OPE 			+= 		binary_ope.c
+OPE				+= 		arithmetic_and_binary_ope.c
+OPE				+= 		arithmetic_and_binary_ope_tool.c
 OPE				+= 		fork_ope.c
 OPE 			+= 		load_ope.c
 OPE 			+= 		special_ope.c

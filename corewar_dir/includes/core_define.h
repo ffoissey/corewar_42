@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 11:32:42 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 12:09:09 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@
 **		------------------------------ OPE
 */
 
-# define BIN_AND		0x01
-# define BIN_OR			0x02
-# define BIN_XOR		0x04
+# define BINARY_AND		0x01
+# define BINARY_OR		0x02
+# define BINARY_XOR		0x04
+# define ARITHMETIC_ADD	0x08
+# define ARITHMETIC_SUB	0x10
 
 /*
 **		------------------------------ OCP
