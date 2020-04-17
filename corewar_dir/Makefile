@@ -6,7 +6,7 @@
 #    By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 10:48:43 by cde-moul          #+#    #+#              #
-#    Updated: 2020/04/17 13:38:36 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/17 16:08:17 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,6 @@ SRCS		+=		$(READ)
 SRCS		+=		$(INIT)
 SRCS		+=		$(PRESENT)
 SRCS		+=		$(OPE)
-SRCS		+=		$(GET_ARGS)
-SRCS		+=		$(OPE_LIB)
 SRCS		+=		$(PUT)
 SRCS		+=		$(ERROR)
 SRCS		+=		$(FREE)
@@ -54,8 +52,6 @@ P_CORE		+=		./read/
 P_CORE		+=		./present/
 P_CORE		+=		./init/
 P_CORE		+=		./ope/
-P_CORE		+=		./get_args/
-P_CORE		+=		./ope_lib/
 P_CORE		+=		./error/
 P_CORE		+=		./free/
 P_CORE		+=		./print_debug/
@@ -176,15 +172,9 @@ OPE 			+= 		load_ope.c
 OPE 			+= 		load_ope_tool.c
 OPE 			+= 		special_ope.c
 OPE 			+= 		store_ope.c
-
-#										  --- Fonctions utiles aux operations ---
-
-OPE_LIB			+=		core_put_reg_ind.c
-OPE_LIB			+=		ft_isanint.c
-
-#									  	  --- Recuperation des arguments ---
-
-GET_ARGS		+=		get_args.c
+OPE 			+= 		get_args.c
+OPE 			+= 		tools.c
+OPE 			+= 		tools2.c
 
 #  											 --- Gestion d'erreurs  ---
 
