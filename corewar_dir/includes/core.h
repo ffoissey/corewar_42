@@ -128,7 +128,7 @@ int32_t		get_arg(t_carriages *current, t_data *data, uint16_t flag,
 uint16_t	get_pos(int16_t position);
 int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
 					uint16_t flag);
-int16_t		set_reg_value(t_carriages *current, int8_t reg, uint8_t value,
+int16_t		set_reg_value(t_carriages *current, int8_t reg, int32_t value,
 				uint8_t *flag);
 int			ft_isanint(char *str);
 

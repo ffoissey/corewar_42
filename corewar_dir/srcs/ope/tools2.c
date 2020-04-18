@@ -40,7 +40,7 @@ int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
 	return (value);
 }
 
-int16_t		set_reg_value(t_carriages *current, int8_t reg, uint8_t value,
+int16_t		set_reg_value(t_carriages *current, int8_t reg, int32_t value,
 				uint8_t *flag)
 {
 	if (reg > 0 && reg <= REG_NUMBER)
