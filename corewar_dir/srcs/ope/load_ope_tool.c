@@ -15,7 +15,7 @@
 int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 {
 	int32_t		arg[2];
-	int16_t		reg_val;
+	int32_t		reg_val;
 	uint8_t		flag_reg;
 
 	current->carry = CARRY_OFF;

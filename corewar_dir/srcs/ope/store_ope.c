@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static void store_value(t_data *data, int16_t position, int16_t reg_value)
+static void store_value(t_data *data, int16_t position, int32_t reg_value)
 {
 	core_put_reg_ind(data, get_pos(position) % IDX_MOD, reg_value);
 }
