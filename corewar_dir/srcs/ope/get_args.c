@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/18 19:10:39 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/18 23:15:46 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	uint8_t			mask;
 	int32_t			arg;
 
+	if (flag & INIT_ARG)
+		arg_nb = 1;
 	if (type == NO_OP || arg_nb == 4)
 	{
 		arg_nb = 1;
 		return (FAILURE);
 	}
-	if (flag & INIT_ARG)
-		arg_nb = 1;
 	if (arg_nb == 1)
 	{
 		current->to_jump = MEM_OP_CODE;

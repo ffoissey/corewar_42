@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 13:37:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/18 19:09:29 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/18 23:21:45 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ int8_t	load_indvalue(t_carriages *current, t_data *data, enum e_type type)
 	arg[2] = get_arg(current, data, REG_NUM, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	pos = get_pos(arg[0] + arg[1]);
+	pos = get_pos((arg[0] + arg[1]));
 	if (type == OP_LDI)
 		pos %= IDX_MOD;
 	to_load = get_ind_value(data, current->position, pos, IND);
 	flag_reg = SET;
+	//ft_printf("arg[0] %d, arg[1] %d, arg[2] %d\n", arg[0], arg[1], arg[2]);
 	set_reg_value(current, arg[2], to_load, &flag_reg);
 	return (flag_reg == BAD_REG ? FAILURE : SUCCESS);
 }

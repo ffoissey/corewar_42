@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 17:50:56 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/18 22:05:56 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 		if (exec_op_code(op_code, current, data) == FAILURE)
 			current->position = (current->position + 1) % MEM_SIZE;
 		else
+		{
 			current->position = (current->position
 				+ current->to_jump)
 				% MEM_SIZE;
+		}
 		current->to_jump = 0;
 		current->cycle_needed--;
 	}

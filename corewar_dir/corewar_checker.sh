@@ -30,6 +30,8 @@ rm -Rf result
 mkdir result
 for ((i=$start;i<=$nb_dump;++i))
 do
+	rm -f $corewar_of
+	rm -f $corewar_pf
 	if [ -z $4 ]
 	then
 		echo -n -e "\t./corewar -dump $i $3 $4"
@@ -61,8 +63,6 @@ do
 	else
 		echo -e "\t\033[32m[OK]\033[0m"
 	fi
-	rm -f ./result/test.tmp
-	rm -f ./result/test2.tmp
 	i=$((i++))
 done
 echo -e "\n\033[32mNo difference found! Good job !\033[0m"
