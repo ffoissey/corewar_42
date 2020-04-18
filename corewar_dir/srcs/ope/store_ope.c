@@ -12,11 +12,14 @@
 
 #include "core.h"
 
-static void store_value(t_data *data, int16_t position, int32_t reg_value)
+static void store_value(t_data *data, int16_t position, int32_t arg_1, int32_t reg_value)
 {
-	core_put_reg_ind(data, get_pos(position) % IDX_MOD, reg_value);
-}
+	int16_t	pos;
 
+	pos = arg_1 % IDX_MOD;
+	pos = get_pos(position + pos);
+	core_put_reg_ind(data, pos, reg_value);
+}
 /*
 **** ST 0x03
 */
@@ -45,7 +48,7 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 			return (FAILURE);
 	}
 	else
-		store_value(data, get_pos(current->position) + arg[1], arg[0]);
+		store_value(data, get_pos(current->position), arg[1], arg[0]);
 	return (SUCCESS);
 }
 
@@ -64,6 +67,6 @@ int8_t			ope_sti(t_carriages *current, t_data *data)
 		return (FAILURE);
 	arg[1] = get_arg(current, data, SMALL_DIR | IND, &type);
 	arg[2] = get_arg(current, data, SMALL_DIR, &type);
-	store_value(data, get_pos(current->position) + arg[1] + arg[2], arg[0]);
+	store_value(data, get_pos(current->position), arg[1] + arg[2], arg[0]);
 	return (SUCCESS);
 }
