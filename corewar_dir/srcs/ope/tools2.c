@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 16:05:45 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 18:14:25 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/18 20:56:53 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ uint16_t	get_pos(int16_t position)
 	return ((uint16_t)(position % MEM_SIZE));
 }
 
-int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
+int32_t		get_ind_value(t_data *data, int16_t position, int16_t arg,
 					uint16_t flag)
 {
 	uint8_t		i;
@@ -28,15 +28,18 @@ int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
 	int64_t		add;
 
 	i = 0;
+	(void)position;
 	max = (flag & IND) ? 4 : 2;
 	value = 0;
 	while (i < max)
 	{
-		add = ((uint8_t)data->vm.arena[get_pos(position + i + arg)]);
-		add <<= (8 * i) ; // position + TO_JMP ? 
+		add = ((uint8_t)data->vm.arena[get_pos(arg + i + position)]);
+		add <<= (8 * i) ; 
 		value |= (int32_t)add;
 		i++;
 	}
+	if ((flag & IND) == FALSE)
+		value = (int16_t)value;
 	return (value);
 }
 

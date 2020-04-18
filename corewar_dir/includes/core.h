@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 16:13:35 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/18 18:16:14 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int32_t		get_arg(t_carriages *current, t_data *data, uint16_t flag,
 */
 
 uint16_t	get_pos(int16_t position);
-int16_t		get_ind_value(t_data *data, int16_t position, int32_t arg,
+int32_t		get_ind_value(t_data *data, int16_t position, int16_t arg,
 					uint16_t flag);
 int32_t		set_reg_value(t_carriages *current, int8_t reg, int32_t value,
 				uint8_t *flag);
@@ -138,7 +138,7 @@ int			ft_isanint(char *str);
 
 uint8_t		core_put_reg_ind(t_data *data, int16_t position, int32_t reg_value);
 int32_t		core_get_dir(t_data *data, int16_t position, uint16_t flag);
-int16_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
+int32_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
 				uint16_t flag);
 int16_t		core_get_reg(t_data *data, int16_t position, t_carriages *current);
 uint8_t		core_get_ocp(t_data *data, int16_t position);

@@ -66,4 +66,4 @@ do
 	i=$((i++))
 done
 echo -e "\n\033[32mNo difference found! Good job !\033[0m"
-rm -Rf result
+#rm -Rf result
