@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/18 22:10:04 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/19 17:29:28 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int8_t			ope_live(t_carriages *current, t_data *data)
 	current->last_live_cycle = data->vm.nb_cycles;
 	type = OP_LIVE;
 	arg = get_arg(current, data,
-			INIT_ARG | BIG_DIR | NO_OCP | DIR_FLAG, &type);
+			START_ARG | BIG_DIR | NO_OCP | DIR_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	arg = -arg;
@@ -72,7 +72,7 @@ int8_t			ope_aff(t_carriages *current, t_data *data)
 	enum e_type	type;
 
 	type = OP_AFF;
-	arg_1 = get_arg(current, data, REG_NUM | INIT_ARG | REG_FLAG, &type);
+	arg_1 = get_arg(current, data, REG_NUM | START_ARG | REG_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	if (data->aff == ON)
@@ -91,10 +91,10 @@ int8_t			ope_zjmp(t_carriages *current, t_data *data)
 
 	type = OP_ZJMP;
 	arg = get_arg(current, data,
-			INIT_ARG | NO_OCP | SMALL_DIR | DIR_FLAG, &type);
+			START_ARG | NO_OCP | SMALL_DIR | DIR_FLAG | IND_NUM, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	if (current->carry == CARRY_ON)
-		current->to_jump = arg % IDX_MOD;
+		current->to_jump = get_pos(arg % IDX_MOD);
 	return (SUCCESS);
 }

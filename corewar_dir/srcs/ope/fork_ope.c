@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:11:59 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 15:14:14 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/19 14:59:35 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int8_t		do_fork(t_carriages *current, t_data *data,
 	t_carriages	*new;
 
 	arg = get_arg(current, data,
-				INIT_ARG | NO_OCP | SMALL_DIR | DIR_FLAG, &type);
+				START_ARG | NO_OCP | SMALL_DIR | DIR_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	arg = (type == OP_FORK) ? get_pos(arg) % IDX_MOD : get_pos(arg);

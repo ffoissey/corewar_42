@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/18 23:15:46 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/19 15:51:54 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int32_t	find_arg(t_carriages *current, t_data *data, uint16_t *flag,
 	else if  (mask == T_DIR)
 	{
 		arg = core_get_dir(data, current->position + current->to_jump, *flag);
-		current->to_jump += (*flag == SMALL_DIR) ? MEM_SMALL_DIR : MEM_DIR;
+		current->to_jump += (*flag & SMALL_DIR) ? MEM_SMALL_DIR : MEM_DIR;
 	}
 	else if  (mask == T_IND)
 	{
@@ -80,11 +80,12 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	uint8_t			mask;
 	int32_t			arg;
 
-	if (flag & INIT_ARG)
+	if (flag & START_ARG)
 		arg_nb = 1;
-	if (type == NO_OP || arg_nb == 4)
+	if (*type == NO_OP || (arg_nb == 1 && (flag & START_ARG) == FALSE))
 	{
 		arg_nb = 1;
+		*type = NO_OP;
 		return (FAILURE);
 	}
 	if (arg_nb == 1)
@@ -104,8 +105,10 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	}
 	if (flag & NO_OCP)
 	{
-		flag &= ~INIT_ARG;
+		flag &= ~START_ARG;
+		flag &= ~END_ARG;
 		mask = flag >> 8;
+		flag |= END_ARG;
 	}
 	else
 	{
@@ -119,6 +122,11 @@ int32_t			get_arg(t_carriages *current, t_data *data, uint16_t flag,
 	{
 		arg_nb = 1;
 		*type = NO_OP;
+	}
+	if (flag & END_ARG)
+	{
+		ocp = 0;
+		arg_nb = 1;
 	}
 	return (arg);
 }

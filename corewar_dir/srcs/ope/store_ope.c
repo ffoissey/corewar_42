@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/18 21:51:13 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/19 18:43:42 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 	enum e_type	type;
 
 	type = OP_ST;
-	ocp = core_get_ocp(data, current->position);
-	arg[0] = get_arg(current, data, INIT_ARG, &type);
+	ocp = core_get_ocp(data, current->position + 1);
+	arg[0] = get_arg(current, data, START_ARG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	arg[1] = get_arg(current, data, IND_NUM | IND | REG_NUM, &type); // IND_NUM ? 
+	arg[1] = get_arg(current, data, END_ARG | IND_NUM | IND | REG_NUM, &type); 
 	if (type == NO_OP)
 		return (FAILURE);
 	flag = SET;
@@ -61,11 +61,11 @@ int8_t			ope_sti(t_carriages *current, t_data *data)
 	enum e_type	type;
 
 	type = OP_STI;
-	arg[0] = get_arg(current, data, INIT_ARG, &type);
+	arg[0] = get_arg(current, data, START_ARG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	arg[1] = get_arg(current, data, SMALL_DIR, &type);
-	arg[2] = get_arg(current, data, SMALL_DIR, &type);
+	arg[2] = get_arg(current, data, END_ARG | SMALL_DIR, &type);
 	store_value(data, get_pos(current->position), arg[1] + arg[2], arg[0]);
 	return (SUCCESS);
 }

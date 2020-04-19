@@ -8,7 +8,7 @@ make -j8 d=1
 ARG=$1
 file=`echo "${ARG%%.s}"`
 
-../doc/asm $file.s && mv $file.cor $file.cor_asm
+../DOC/asm $file.s && mv $file.cor $file.cor_asm
 ../asm $file.s
 ARG=0
 if [ -f $file.cor ]

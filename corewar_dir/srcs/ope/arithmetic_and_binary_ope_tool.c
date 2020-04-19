@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:07:18 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 18:32:57 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/19 18:38:02 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int8_t			do_op(t_carriages *current, t_data *data, enum e_type type)
 {
-	int32_t		arg[3];
+	int32_t	arg[3];
 	int16_t		reg_val;
 	uint8_t		flag_reg;
 
 	current->carry = CARRY_OFF;
-	arg[0] = get_arg(current, data, INIT_ARG | BIG_DIR | IND, &type);
+	arg[0] = get_arg(current, data, START_ARG | BIG_DIR | IND, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	arg[1] = get_arg(current, data, BIG_DIR | IND, &type);
-	arg[2] = get_arg(current, data, REG_NUM, &type);
+	arg[2] = get_arg(current, data, END_ARG | REG_NUM, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	flag_reg = SET | GET;
