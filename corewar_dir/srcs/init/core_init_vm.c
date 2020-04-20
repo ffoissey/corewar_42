@@ -34,8 +34,6 @@ int8_t			core_init_data_vm(t_data *data)
 {
 	int8_t	count;
 
-	if (data->champs[0] == NULL)
-		return (FAILURE);
 	count = MAX_PLAYERS - 1;
 	while (data->champs[count] == NULL && count >= 0)
 		count--;
