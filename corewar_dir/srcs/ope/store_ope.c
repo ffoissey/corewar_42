@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/19 18:43:42 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/20 16:42:37 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void store_value(t_data *data, int16_t position, int32_t arg_1, int32_t r
 {
 	int16_t	pos;
 
-	arg_1 = get_pos(arg_1 % IDX_MOD);
-	pos = get_pos((position + arg_1));
+	pos = get_pos((position + arg_1 % IDX_MOD));
 	core_put_reg_ind(data, pos, reg_value);
 }
 /*

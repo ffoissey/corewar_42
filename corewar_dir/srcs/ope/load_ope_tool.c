@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 13:37:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/19 18:42:14 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/20 16:41:06 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 		return (FAILURE);
 	if (((ocp >> 6) & 0x03) == T_IND)
 	{
-		pos = get_pos(arg[0]);
+		pos = arg[0];
 		if (type == OP_LD)
 			pos %= IDX_MOD;
-		arg[0] = get_ind_value(data, current->position, arg[0], IND);
+		arg[0] = get_ind_value(data, current->position, get_pos(arg[0]), IND);
 	}
 	arg[1] = get_arg(current, data, END_ARG | REG_NUM, &type);
 	if (type == NO_OP)
@@ -58,10 +58,10 @@ int8_t	load_indvalue(t_carriages *current, t_data *data, enum e_type type)
 	arg[2] = get_arg(current, data, END_ARG | REG_NUM, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	pos = get_pos((arg[0] + arg[1]));
+	pos = arg[0] + arg[1];
 	if (type == OP_LDI)
 		pos %= IDX_MOD;
-	to_load = get_ind_value(data, current->position, pos, IND);
+	to_load = get_ind_value(data, current->position, get_pos(pos), IND);
 	flag_reg = SET;
 	set_reg_value(current, arg[2], to_load, &flag_reg);
 //	ft_printf("ARG[0] = %d, ARG[1] = %d, ARG[2] = %d\n", arg[0], arg[1], arg[2]);
