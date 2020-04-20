@@ -57,8 +57,8 @@ static int8_t		do_fork(t_carriages *current, t_data *data,
 				START_ARG | NO_OCP | SMALL_DIR | DIR_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	arg = (type == OP_FORK) ? get_pos(arg) % IDX_MOD : get_pos(arg);
-	new = get_new_carriage(current, get_pos(current->position) + arg,
+	arg = (type == OP_FORK) ? arg % IDX_MOD : arg;
+	new = get_new_carriage(current, get_pos(current->position + arg),
 			data->carriages == NULL ? 0 : data->carriages->id + 1);
 	if (new == NULL)
 		return (FAILURE); // exit malloc
