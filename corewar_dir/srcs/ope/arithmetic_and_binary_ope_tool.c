@@ -14,20 +14,20 @@
 
 static int8_t	process_op(t_carriages *current, enum e_type type, int32_t *arg)
 {
-	int16_t		reg_val;
+	int32_t		reg_val;
 	uint8_t		flag_reg;
 
 	flag_reg = SET | GET;
 	if (type == OP_AND)
-		reg_val = set_reg_value(current, arg[2], arg[0] & arg[1], &flag_reg);
+		reg_val = set_reg_value(current, (int8_t)arg[2], arg[0] & arg[1], &flag_reg);
 	else if (type == OP_OR)
-		reg_val = set_reg_value(current, arg[2], arg[0] | arg[1], &flag_reg);
+		reg_val = set_reg_value(current, (int8_t)arg[2], arg[0] | arg[1], &flag_reg);
 	else if (type == OP_XOR)
-		reg_val = set_reg_value(current, arg[2], arg[0] ^ arg[1], &flag_reg);
+		reg_val = set_reg_value(current, (int8_t)arg[2], arg[0] ^ arg[1], &flag_reg);
 	else if (type == OP_ADD)
-		reg_val = set_reg_value(current, arg[2], arg[0] + arg[1], &flag_reg);
+		reg_val = set_reg_value(current, (int8_t)arg[2], arg[0] + arg[1], &flag_reg);
 	else if (type == OP_SUB)
-		reg_val = set_reg_value(current, arg[2], arg[0] - arg[1], &flag_reg);
+		reg_val = set_reg_value(current, (int8_t)arg[2], arg[0] - arg[1], &flag_reg);
 	else
 		return (FAILURE);
 	if (flag_reg == BAD_REG)

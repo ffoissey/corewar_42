@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static t_carriages	*get_new_carriage(t_carriages *current, int16_t position,
+static t_carriages	*get_new_carriage(t_carriages *current, uint16_t position,
 									int32_t id)
 {
 	t_carriages		*new;
@@ -21,7 +21,7 @@ static t_carriages	*get_new_carriage(t_carriages *current, int16_t position,
 	new = (t_carriages *)ft_memalloc(sizeof(t_carriages));
 	if (new != NULL)
 	{
-		new->position = get_pos(position);
+		new->position = get_pos((int16_t)position);
 		new->id = id;
 		new->carry = current->carry;
 		new->last_live_cycle = current->last_live_cycle;
@@ -52,7 +52,7 @@ static int8_t		do_fork(t_carriages *current, t_data *data,
 	int16_t		arg;
 	t_carriages	*new;
 
-	arg = get_arg(current, data,
+	arg = (int16_t)get_arg(current, data,
 				START_ARG | NO_OCP | SMALL_DIR | DIR_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);

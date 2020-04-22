@@ -16,7 +16,7 @@
 **** LIVE 0x01
 */
 
-static int		print_live(t_data *data, int32_t arg)
+static int8_t		print_live(t_data *data, int32_t arg)
 {
 	if (ft_printf("Un processus dit que le joueur %d (%s) est en vie.\n",
 			arg, data->champs[arg - 1]->name) == FAILURE)
@@ -58,7 +58,7 @@ static int8_t	print_aff(t_carriages *current, int8_t arg_1)
 	uint8_t	value;
 
 	flag_reg = GET;
-	value = set_reg_value(current, arg_1, NO_NEED, &flag_reg);
+	value = (uint8_t)set_reg_value(current, arg_1, NO_NEED, &flag_reg);
 	if (flag_reg == BAD_REG)
 		return (FAILURE);
 	if (ft_printf("Aff : %c\n", value) == FAILURE)
@@ -72,7 +72,7 @@ int8_t			ope_aff(t_carriages *current, t_data *data)
 	enum e_type	type;
 
 	type = OP_AFF;
-	arg_1 = get_arg(current, data, REG_NUM | START_ARG | REG_FLAG, &type);
+	arg_1 = (int8_t)get_arg(current, data, REG_NUM | START_ARG | REG_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	if (data->aff == ON)

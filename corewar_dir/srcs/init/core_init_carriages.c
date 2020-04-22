@@ -20,7 +20,7 @@ static int8_t		core_init_champs_carriages(t_data *data, uint8_t champ_nb)
 	if (carriage == NULL)
 		return (FAILURE);
 	ft_bzero(carriage->registres, REG_NUMBER);
-	carriage->position = data->champs[champ_nb]->copy_start;
+	carriage->position = (uint16_t)data->champs[champ_nb]->copy_start;
 	carriage->registres[0] = -data->champs[champ_nb]->nb_player;
 	carriage->cycle_needed = -1;
 	carriage->carry = CARRY_OFF;

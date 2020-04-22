@@ -19,7 +19,7 @@ uint16_t	get_pos(int16_t position)
 	return ((uint16_t)(position % MEM_SIZE));
 }
 
-int32_t		get_ind_value(t_data *data, int16_t position, int16_t arg,
+int32_t		get_ind_value(t_data *data, uint16_t position, int16_t arg,
 					uint16_t flag)
 {
 	uint8_t		i;

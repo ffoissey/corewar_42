@@ -21,7 +21,7 @@ int8_t			core_install_champ(t_champs *champs,
 
 	count_cpy = 0;
 	ft_bzero((void *)tmp_code, CHAMP_MAX_SIZE);
-	ret = read(fd, tmp_code, champs->exec_code_size);
+	ret = read(fd, tmp_code, (size_t)champs->exec_code_size);
 	if (ret == FAILURE)
 		return (core_error(ER_READ));
 	if (ret != champs->exec_code_size)
@@ -42,7 +42,7 @@ int8_t			core_init_data_vm(t_data *data)
 		count--;
 	if (count < 0)
 		return (FAILURE);
-	data->vm.last_alive_champ = count + 1;
+	data->vm.last_alive_champ = (uint8_t)(count + 1);
 	data->vm.cycles_to_die = CYCLE_TO_DIE;
 	data->vm.cycle_last_check = 1;
 	return (SUCCESS);

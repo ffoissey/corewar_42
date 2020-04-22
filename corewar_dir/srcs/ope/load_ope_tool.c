@@ -19,7 +19,7 @@ int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 	uint8_t		flag_reg;
 	uint8_t		ocp;
 
-	ocp = core_get_ocp(data, current->position + 1);
+	ocp = core_get_ocp(data, (int16_t)(current->position + MEM_OP_CODE));
 	arg[0] = get_arg(current, data,
 			START_ARG | IND_NUM | BIG_DIR, &type);
 	if (type == NO_OP)
@@ -28,13 +28,13 @@ int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 	{
 		if (type == OP_LD)
 			arg[0] %= IDX_MOD;
-		arg[0] = get_ind_value(data, current->position, get_pos(arg[0]), IND);
+		arg[0] = get_ind_value(data, current->position, (int16_t)get_pos((int16_t)arg[0]), IND);
 	}
 	arg[1] = get_arg(current, data, END_ARG | REG_NUM, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	flag_reg = SET | GET;
-	reg_val = set_reg_value(current, arg[1], arg[0], &flag_reg);
+	reg_val = set_reg_value(current, (int8_t)arg[1], arg[0], &flag_reg);
 	if (flag_reg == BAD_REG)
 		return (FAILURE);
 	current->carry = (reg_val == 0) ? CARRY_ON : CARRY_OFF;
@@ -56,11 +56,11 @@ int8_t	load_indvalue(t_carriages *current, t_data *data, enum e_type type)
 	arg[2] = get_arg(current, data, END_ARG | REG_NUM, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	pos = arg[0] + arg[1];
+	pos = (int16_t)(arg[0] + arg[1]);
 	if (type == OP_LDI)
 		pos %= IDX_MOD;
-	to_load = get_ind_value(data, current->position, get_pos(pos), IND);
+	to_load = get_ind_value(data, current->position, (int16_t)get_pos(pos), IND);
 	flag_reg = SET;
-	set_reg_value(current, arg[2], to_load, &flag_reg);
+	set_reg_value(current, (int8_t)arg[2], to_load, &flag_reg);
 	return (flag_reg == BAD_REG ? FAILURE : SUCCESS);
 }

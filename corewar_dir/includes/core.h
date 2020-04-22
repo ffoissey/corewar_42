@@ -135,7 +135,7 @@ uint8_t		core_get_ocp(t_data *data, int16_t position);
 */
 
 uint16_t	get_pos(int16_t position);
-int32_t		get_ind_value(t_data *data, int16_t position, int16_t arg,
+int32_t		get_ind_value(t_data *data, uint16_t position, int16_t arg,
 					uint16_t flag);
 int32_t		set_reg_value(t_carriages *current, int8_t reg, int32_t value,
 				uint8_t *flag);

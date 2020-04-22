@@ -25,8 +25,8 @@ typedef struct		s_champs
 	uint8_t			nb_player;
 	char			pad[1];
 	int32_t			exec_code_size;
-	int32_t			copy_start;
 	int32_t			last_alive_cycle;
+	int32_t			copy_start;
 }					t_champs;
 
 /*
@@ -58,7 +58,7 @@ typedef struct		s_carriages
 	int32_t					id;
 	int32_t					last_live_cycle;
 	int16_t					cycle_needed;
-	int16_t					position;
+	uint16_t					position;
 	int32_t					to_jump;
 	uint8_t					carry;
 	char					pad[7];

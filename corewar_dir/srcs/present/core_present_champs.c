@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static int8_t	core_print_champ_pres(t_data *data, const int8_t i)
+static int8_t	core_print_champ_pres(t_data *data, const uint8_t i)
 {
 	if (ft_printf("* Player %hhu, weighing %zu bytes, \"%s\" (\"%s\") !\n",
 		data->champs[i]->nb_player,
