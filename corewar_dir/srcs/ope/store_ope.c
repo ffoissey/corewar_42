@@ -45,8 +45,10 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 		if (flag == BAD_REG)
 			return (FAILURE);
 	}
-	else
+	else if (ocp == REG_IND_)
 		store_value(data, get_pos(current->position), arg[1], arg[0]);
+	else
+		return (FAILURE);
 	return (SUCCESS);
 }
 
