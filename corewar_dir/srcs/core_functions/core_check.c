@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-void		core_kill(t_carriages *current, t_data *data)
+static void	core_kill(t_carriages *current, t_data *data)
 {
 	t_carriages *next;
 	t_carriages *previous;
