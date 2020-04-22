@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 14:28:13 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/15 14:36:45 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 21:55:24 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		size_of_arg(const enum e_token op_type, t_token *arg,
 		exit_error(BAD_TOKEN, arg);
 	if (arg->type == INDIRECT)
 		code = T_IND;
-	else if ((scale = arg->type - 19) >= 0 && scale < 4)
+	else if ((scale = (int)(arg->type - 19)) >= 0 && scale < 4)
 		code = size[scale];
 	else
 		exit_error(BAD_TOKEN, arg);
