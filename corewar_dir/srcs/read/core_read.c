@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:31:09 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 16:31:14 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 16:49:03 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static int8_t			read_header(t_champs *champs, int32_t fd)
 {
 	unsigned char	magic[4];
 	ssize_t			ret;
-	int32_t			header;
+	int64_t			header;
 
 	ret = read(fd, magic, 4);
 	if (ret == FAILURE)
 		return (core_error(ER_READ));
 	if (ret == 4)
 	{
-		header = (magic[0] << 24 | magic[1] << 16 | magic[2] << 8
+		header = ((long)(magic[0]) << 24 | magic[1] << 16 | magic[2] << 8
 			| magic[3]);
 		if (header == COREWAR_EXEC_MAGIC)
 			return (SUCCESS);
