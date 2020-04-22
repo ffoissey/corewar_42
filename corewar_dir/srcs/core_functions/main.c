@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 12:51:30 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 17:48:13 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:38:20 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				main(int32_t ac, char **av)
 		ft_putstr_fd(ERROR_MSG0, STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	if (core_init_data(ac, av, &data) == FAILURE) 
+	if (core_init_data(ac, av, &data) == FAILURE)
 	{
 		core_free_all(&data);
 		return (EXIT_FAILURE);

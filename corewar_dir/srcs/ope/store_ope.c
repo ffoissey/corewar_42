@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/22 14:36:53 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:29:11 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void			core_put_reg_ind(t_data *data, int16_t position,
 	data->vm.arena[get_pos(position + 3)] = reg_value;
 }
 
-static void 		store_value(t_data *data, int16_t position, int32_t arg_1,
+static void			store_value(t_data *data, int16_t position, int32_t arg_1,
 						int32_t reg_value)
 {
 	int16_t	pos;
@@ -29,11 +29,12 @@ static void 		store_value(t_data *data, int16_t position, int32_t arg_1,
 	pos = get_pos((position + arg_1 % IDX_MOD));
 	core_put_reg_ind(data, pos, reg_value);
 }
+
 /*
 **** ST 0x03
 */
 
-int8_t			ope_st(t_carriages *current, t_data *data)
+int8_t				ope_st(t_carriages *current, t_data *data)
 {
 	int32_t		arg[2];
 	uint8_t		ocp;
@@ -45,7 +46,7 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 	arg[0] = get_arg(current, data, START_ARG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
-	arg[1] = get_arg(current, data, END_ARG | IND_NUM | IND | REG_NUM, &type); 
+	arg[1] = get_arg(current, data, END_ARG | IND_NUM | IND | REG_NUM, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	flag = SET;
@@ -66,7 +67,7 @@ int8_t			ope_st(t_carriages *current, t_data *data)
 **** STI 0x0b
 */
 
-int8_t			ope_sti(t_carriages *current, t_data *data)
+int8_t				ope_sti(t_carriages *current, t_data *data)
 {
 	int32_t		arg[3];
 	enum e_type	type;

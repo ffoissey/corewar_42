@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:43:09 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 17:47:21 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:38:44 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		core_kill(t_carriages *current, t_data *data)
 	free(current);
 }
 
-void			core_check(t_data *data)
+void		core_check(t_data *data)
 {
 	t_carriages *current;
 	t_carriages *next;

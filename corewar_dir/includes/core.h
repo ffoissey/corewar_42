@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 14:43:33 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:42:44 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int8_t		core_read(t_data *data);
 
 int8_t		core_read_exec_code_size(t_champs *champs, int32_t fd);
 int8_t		core_read_comment(t_champs *champs, int32_t fd);
-int8_t		core_fd_empty(int32_t);
+int8_t		core_fd_empty(int32_t fd);
 
 /*
 **		CORE_INIT_CARRIAGES

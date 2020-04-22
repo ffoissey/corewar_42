@@ -6,19 +6,20 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/18 22:05:56 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:40:56 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
 static int8_t	exec_op_code(int32_t op_code, t_carriages *current,
-			t_data *data)
+					t_data *data)
 {
-	static int8_t	(*ptr_operation[16])(t_carriages *current, t_data *data) =
-					{ope_live, ope_ld, ope_st, ope_add, ope_sub, ope_and,
-					ope_or, ope_xor, ope_zjmp, ope_ldi, ope_sti, ope_fork,
-					ope_lld, ope_lldi, ope_lfork, ope_aff};
+	static t_ope	ptr_operation[16] = {ope_live, ope_ld, ope_st, ope_add,
+										ope_sub, ope_and, ope_or, ope_xor,
+										ope_zjmp, ope_ldi, ope_sti, ope_fork,
+										ope_lld, ope_lldi, ope_lfork, ope_aff};
+
 	return (ptr_operation[op_code - 1](current, data));
 }
 

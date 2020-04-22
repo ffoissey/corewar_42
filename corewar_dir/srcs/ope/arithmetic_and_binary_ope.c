@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:07:10 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/17 15:11:45 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:20:58 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int8_t		ope_sub(t_carriages *current, t_data *data)
 *** AND 0x06
 */
 
-int8_t			ope_and(t_carriages *current, t_data *data)
+int8_t		ope_and(t_carriages *current, t_data *data)
 {
 	return (do_op(current, data, OP_AND));
 }
@@ -43,7 +43,7 @@ int8_t			ope_and(t_carriages *current, t_data *data)
 *** OR 0x07
 */
 
-int8_t			ope_or(t_carriages *current, t_data *data)
+int8_t		ope_or(t_carriages *current, t_data *data)
 {
 	return (do_op(current, data, OP_OR));
 }
@@ -52,7 +52,7 @@ int8_t			ope_or(t_carriages *current, t_data *data)
 *** XOR 0x08
 */
 
-int8_t			ope_xor(t_carriages *current, t_data *data)
+int8_t		ope_xor(t_carriages *current, t_data *data)
 {
 	return (do_op(current, data, OP_XOR));
 }

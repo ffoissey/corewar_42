@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/19 17:29:28 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:33:28 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int8_t	print_aff(t_carriages *current, int8_t arg_1)
 
 int8_t			ope_aff(t_carriages *current, t_data *data)
 {
-	int8_t	arg_1;
+	int8_t		arg_1;
 	enum e_type	type;
 
 	type = OP_AFF;

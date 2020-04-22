@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:11:39 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/18 16:24:31 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:36:11 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int8_t	core_print_champ_pres(t_data *data, const int8_t i)
 {
 	if (ft_printf("* Player %hhu, weighing %zu bytes, \"%s\" (\"%s\") !\n",
 		data->champs[i]->nb_player,
-		data->champs[i]->exec_code_size, 
+		data->champs[i]->exec_code_size,
 		(char *)data->champs[i]->name,
 		(char *)data->champs[i]->comment) == FAILURE)
 		return (core_error(8));
@@ -30,7 +30,7 @@ int8_t			core_present_champs(t_data *data)
 	i = 0;
 	if (ft_putendl("Introducing contestants...") == FAILURE)
 		return (FAILURE);
-	while (i < MAX_PLAYERS) // CEST QUOI 4
+	while (i < MAX_PLAYERS)
 	{
 		if (data->champs[i] != NULL)
 		{

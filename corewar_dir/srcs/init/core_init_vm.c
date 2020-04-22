@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:00:13 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 16:35:19 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:36:35 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ int8_t			core_init_data_vm(t_data *data)
 	data->vm.cycle_last_check = 1;
 	return (SUCCESS);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 14:39:54 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/22 14:39:55 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:34:24 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int32_t		core_get_dir(t_data *data, int16_t position, uint16_t flag)
 			| data->vm.arena[get_pos(position + 1)] << 16
 			| data->vm.arena[get_pos(position + 2)] << 8
 			| data->vm.arena[get_pos(position + 3)]);
-		
 	}
 	return (dir);
 }

@@ -6,13 +6,13 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:25:50 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/17 16:38:02 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:37:39 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static t_champs		*init_champ(char *file_path, uint8_t nb_player)
+static t_champs	*init_champ(char *file_path, uint8_t nb_player)
 {
 	t_champs		*new_champ;
 
@@ -25,7 +25,7 @@ static t_champs		*init_champ(char *file_path, uint8_t nb_player)
 	return (new_champ);
 }
 
-static uint8_t			is_valid_player_name(char *name)
+static uint8_t	is_valid_player_name(char *name)
 {
 	size_t	len;
 
@@ -35,7 +35,7 @@ static uint8_t			is_valid_player_name(char *name)
 	return (TRUE);
 }
 
-static int8_t			get_next_player(t_data *data, char *file_path,
+static int8_t	get_next_player(t_data *data, char *file_path,
 							int8_t nb_player)
 {
 	if (is_valid_player_name(file_path) == FALSE)
@@ -74,5 +74,5 @@ int8_t			core_init_data(int32_t ac, char **av, t_data *data)
 			return (FAILURE);
 		i++;
 	}
-	return (SUCCESS); 
+	return (SUCCESS);
 }
