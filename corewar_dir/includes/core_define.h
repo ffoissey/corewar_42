@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 16:03:14 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:43:18 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,52 @@
 /*
 **		------------------------------ OCP
 */
+
+# define GET			0x01
+# define SET			0x02
+# define BAD_REG		0x08
+
+# define NO_NEED		0x0000
+# define IND_LLD		0x0001
+# define IND			0x0002
+# define SMALL_DIR		0x0004
+# define BIG_DIR		0x0008
+# define NO_OCP			0x0010
+# define REG_NUM		0x0020
+# define IND_NUM		0x0040
+
+# define BAD_REG_NB		0x0080
+# define REG_FLAG		0x0100
+# define DIR_FLAG		0x0200
+# define IND_FLAG		0x0300
+
+# define START_ARG		0x4000
+# define END_ARG		0x8000
+
+# define T_REG			1
+# define T_DIR			2
+# define T_IND			3
+
+# define MASK_REG		0x01
+# define MASK_DIR		0x02
+# define MASK_IND		0x04
+
+# define MASK_LIVE		0x0002
+# define MASK_LD		0x0016
+# define MASK_ST		0x0051
+# define MASK_ADD		0x0111
+# define MASK_SUB		0x0111
+# define MASK_AND		0x0177
+# define MASK_OR		0x0177
+# define MASK_XOR		0x0177
+# define MASK_ZJMP		0x0002
+# define MASK_LDI		0x0137
+# define MASK_STI		0x0371
+# define MASK_FORK		0x0002
+# define MASK_LLD		0x0016
+# define MASK_LLDI		0x0137
+# define MASK_LFORK		0x0002
+# define MASK_AFF		0x0001
 
 # define DIR_			128
 # define REG_			64

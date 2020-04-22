@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:46:23 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 18:16:23 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/17 17:17:30 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int8_t		core_init_champs_carriages(t_data *data, uint8_t champ_nb)
 	carriage = (t_carriages *)ft_memalloc(sizeof(t_carriages));
 	if (carriage == NULL)
 		return (FAILURE);
-
 	ft_bzero(carriage->registres, REG_NUMBER);
 	carriage->position = data->champs[champ_nb]->copy_start;
 	carriage->registres[0] = -data->champs[champ_nb]->nb_player;
@@ -40,10 +39,13 @@ int8_t				core_init_carriages(t_data *data)
 	uint8_t			i;
 
 	i = 0;
-	while (i < data->initialised_players)
+	while (i < MAX_PLAYERS)
 	{
-		if (core_init_champs_carriages(data, i) == FAILURE)
-			return (FAILURE);
+		if (data->champs[i] != NULL)
+		{
+			if (core_init_champs_carriages(data, i) == FAILURE)
+				return (FAILURE);
+		}
 		i++;
 	}
 	return (SUCCESS);

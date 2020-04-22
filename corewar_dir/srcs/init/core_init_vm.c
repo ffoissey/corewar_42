@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:00:13 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 16:55:04 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:36:35 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,15 @@ int8_t			core_install_champ(t_champs *champs,
 
 int8_t			core_init_data_vm(t_data *data)
 {
-	uint8_t	count;
+	int8_t	count;
 
-	if (data->champs[0] == NULL)
+	count = MAX_PLAYERS - 1;
+	while (data->champs[count] == NULL && count >= 0)
+		count--;
+	if (count < 0)
 		return (FAILURE);
-	count = 0;
-	while (data->champs[count] != NULL)
-		count++;
-	data->vm.last_alive_champ = count - 1;
+	data->vm.last_alive_champ = count + 1;
 	data->vm.cycles_to_die = CYCLE_TO_DIE;
 	data->vm.cycle_last_check = 1;
 	return (SUCCESS);
 }
-

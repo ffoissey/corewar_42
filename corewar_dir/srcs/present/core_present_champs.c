@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:11:39 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 17:46:10 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 16:25:35 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int8_t	core_print_champ_pres(t_data *data, const int8_t i)
 {
-	if (ft_printf("* Player %hhu, weighing %zu, \"%s\" (\"%s\") !\n",
+	if (ft_printf("* Player %hhu, weighing %zu bytes, \"%s\" (\"%s\") !\n",
 		data->champs[i]->nb_player,
-		data->champs[i]->exec_code_size, 
+		data->champs[i]->exec_code_size,
 		(char *)data->champs[i]->name,
 		(char *)data->champs[i]->comment) == FAILURE)
 		return (core_error(ER_STDCLOSED));

@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:03:58 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/03/11 19:07:03 by cde-moul         ###   ########.fr       */
+/*   Updated: 2020/04/22 16:27:10 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int8_t		core_read_exec_code_size(t_champs *champs, int32_t fd)
 
 int8_t		core_fd_empty(int32_t fd)
 {
-	ssize_t		ret;
-	unsigned char 	read_test[2];
+	ssize_t			ret;
+	unsigned char	read_test[2];
 
 	ret = read(fd, read_test, 2);
 	if (ret != 0)

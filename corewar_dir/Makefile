@@ -6,7 +6,7 @@
 #    By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 10:48:43 by cde-moul          #+#    #+#              #
-#    Updated: 2020/03/11 19:22:30 by cde-moul         ###   ########.fr        #
+#    Updated: 2020/04/22 14:44:03 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,6 @@ SRCS		+=		$(READ)
 SRCS		+=		$(INIT)
 SRCS		+=		$(PRESENT)
 SRCS		+=		$(OPE)
-SRCS		+=		$(GET_ARGS)
-SRCS		+=		$(OPE_LIB)
 SRCS		+=		$(PUT)
 SRCS		+=		$(ERROR)
 SRCS		+=		$(FREE)
@@ -54,8 +52,6 @@ P_CORE		+=		./read/
 P_CORE		+=		./present/
 P_CORE		+=		./init/
 P_CORE		+=		./ope/
-P_CORE		+=		./get_args/
-P_CORE		+=		./ope_lib/
 P_CORE		+=		./error/
 P_CORE		+=		./free/
 P_CORE		+=		./print_debug/
@@ -169,37 +165,16 @@ PRESENT			+=		core_present_winner.c
 
 #												   --- Operations ---
 
-OPE				+=		ope_live.c
-OPE				+=		ope_ld.c
-OPE				+=		ope_st.c
-OPE				+=		ope_add.c
-OPE				+=		ope_sub.c
-OPE				+=		ope_and.c
-OPE				+=		ope_or.c
-OPE				+=		ope_xor.c
-OPE				+=		ope_zjmp.c
-OPE				+=		ope_ldi.c
-OPE				+=		ope_sti.c
-OPE				+=		ope_fork.c
-OPE				+=		ope_lld.c
-OPE				+=		ope_lldi.c
-OPE				+=		ope_lfork.c
-OPE				+=		ope_aff.c
-
-#										  --- Fonctions utiles aux operations ---
-
-OPE_LIB			+=		core_put_reg_ind.c
-OPE_LIB			+=		ft_isanint.c
-
-#									  	  --- Recuperation des arguments ---
-
-GET_ARGS		+=		core_get_dir.c
-GET_ARGS		+=		core_get_ind.c
-GET_ARGS		+=		core_ind_value.c
-GET_ARGS		+=		core_ind_value_lld.c
-GET_ARGS		+=		core_get_reg.c
-GET_ARGS		+=		core_get_ocp.c
-GET_ARGS		+=		core_get_small_dir.c
+OPE				+= 		arithmetic_and_binary_ope.c
+OPE				+= 		arithmetic_and_binary_ope_tool.c
+OPE				+= 		fork_ope.c
+OPE 			+= 		load_ope.c
+OPE 			+= 		load_ope_tool.c
+OPE 			+= 		special_ope.c
+OPE 			+= 		store_ope.c
+OPE 			+= 		get_args.c
+OPE 			+= 		get_args_tools.c
+OPE 			+= 		tools.c
 
 #  											 --- Gestion d'erreurs  ---
 

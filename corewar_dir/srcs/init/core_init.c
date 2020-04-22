@@ -6,13 +6,13 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:25:50 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 17:25:05 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 16:25:14 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static t_champs		*init_champ(char *file_path, uint8_t nb_player)
+static t_champs	*init_champ(char *file_path, uint8_t nb_player)
 {
 	t_champs		*new_champ;
 
@@ -25,7 +25,7 @@ static t_champs		*init_champ(char *file_path, uint8_t nb_player)
 	return (new_champ);
 }
 
-static uint8_t			is_valid_player_name(char *name)
+static uint8_t	is_valid_player_name(char *name)
 {
 	size_t	len;
 
@@ -35,14 +35,14 @@ static uint8_t			is_valid_player_name(char *name)
 	return (TRUE);
 }
 
-static int8_t			get_next_player(t_data *data, char *file_path,
+static int8_t	get_next_player(t_data *data, char *file_path,
 							int8_t nb_player)
 {
 	if (is_valid_player_name(file_path) == FALSE)
 		return (core_error(ER_FILE));
 	if (data->initialised_players == MAX_PLAYERS)
 		return (FAILURE);
-	if (nb_player != NATURAL_ORDER && data->champs[--nb_player] == NULL)
+	if (nb_player != NATURAL_ORDER && data->champs[--nb_player] != NULL)
 		nb_player = NATURAL_ORDER;
 	if (nb_player == NATURAL_ORDER)
 	{
@@ -54,23 +54,6 @@ static int8_t			get_next_player(t_data *data, char *file_path,
 		return (FAILURE);
 	data->initialised_players++;
 	return (SUCCESS);
-}
-
-static void			reorder_champs(t_champs **champs)
-{
-	uint8_t	i;
-
-	i = 1;
-	while (i < MAX_PLAYERS)
-	{
-		if (champs[i - 1] == NULL && champs[i] != NULL)
-		{
-			champs[i - 1] = champs[i];
-			champs[i] = NULL;
-			i = 0;
-		}
-		i++;
-	}	
 }
 
 int8_t			core_init_data(int32_t ac, char **av, t_data *data)
@@ -91,8 +74,5 @@ int8_t			core_init_data(int32_t ac, char **av, t_data *data)
 			return (FAILURE);
 		i++;
 	}
-	if (data->initialised_players < 1 || i != ac) 
-		return (core_error(ER_FILE));
-	reorder_champs(data->champs);
-	return (SUCCESS); 
+	return (SUCCESS);
 }

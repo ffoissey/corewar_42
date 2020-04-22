@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 16:54:22 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:42:44 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int8_t		core_read(t_data *data);
 
 int8_t		core_read_exec_code_size(t_champs *champs, int32_t fd);
 int8_t		core_read_comment(t_champs *champs, int32_t fd);
-int8_t		core_fd_empty(int32_t);
+int8_t		core_fd_empty(int32_t fd);
 
 /*
 **		CORE_INIT_CARRIAGES
@@ -90,32 +90,12 @@ void		print_carriages(t_data *data);
 void		core_free_all(t_data *data);
 
 /*
-**		CORE_GET *
-*/
-
-int8_t		core_get_reg(t_data *data, int16_t position);
-int16_t		core_get_ind(t_data *data, int16_t position);
-int32_t		core_get_dir(t_data *data, int16_t position);
-uint8_t		core_get_ocp(t_data *data, int16_t position);
-int16_t		core_get_small_dir(t_data *data, int16_t position);
-
-/*
-**		CORE_PUT *
-*/
-
-uint8_t		core_put_reg_ind(t_data *data, int16_t position, int32_t reg_value);
-int			ft_isanint(char *str);
-
-/*
-**		CORE_IND_VALUE
-*/
-
-int32_t		core_ind_value(t_data *data, int16_t position, int32_t ind);
-int16_t		core_ind_value_lld(t_data *data, int16_t position, int32_t ind);
-
-/*
 **		CORE_OPE
 */
+
+int8_t		do_op(t_carriages *current, t_data *data, enum e_type type);
+int8_t		load_value(t_carriages *current, t_data *data, enum e_type type);
+int8_t		load_indvalue(t_carriages *current, t_data *data, enum e_type type);
 
 int8_t		ope_live(t_carriages *current, t_data *data);
 int8_t		ope_ld(t_carriages *current, t_data *data);
@@ -133,5 +113,31 @@ int8_t		ope_lld(t_carriages *current, t_data *data);
 int8_t		ope_lldi(t_carriages *current, t_data *data);
 int8_t		ope_lfork(t_carriages *current, t_data *data);
 int8_t		ope_aff(t_carriages *current, t_data *data);
+
+/*
+**		get_args
+*/
+
+int32_t		get_arg(t_carriages *current, t_data *data, uint16_t flag,
+				enum e_type *type);
+/*
+**** get_args_tools.c
+*/
+
+int32_t		core_get_dir(t_data *data, int16_t position, uint16_t flag);
+int32_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
+				uint16_t flag);
+int16_t		core_get_reg(t_data *data, int16_t position, t_carriages *current);
+uint8_t		core_get_ocp(t_data *data, int16_t position);
+
+/*
+**** tools.c
+*/
+
+uint16_t	get_pos(int16_t position);
+int32_t		get_ind_value(t_data *data, int16_t position, int16_t arg,
+					uint16_t flag);
+int32_t		set_reg_value(t_carriages *current, int8_t reg, int32_t value,
+				uint8_t *flag);
 
 #endif
