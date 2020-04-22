@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:07:18 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/22 15:24:54 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 15:48:39 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int8_t	process_op(t_carriages *current, enum e_type type, int32_t *arg)
 		reg_val = set_reg_value(current, arg[2], arg[0] + arg[1], &flag_reg);
 	else if (type == OP_SUB)
 		reg_val = set_reg_value(current, arg[2], arg[0] - arg[1], &flag_reg);
+	else
+		return (FAILURE);
 	if (flag_reg == BAD_REG)
 		return (FAILURE);
 	current->carry = (reg_val == 0) ? CARRY_ON : CARRY_OFF;
