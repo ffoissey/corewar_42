@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static t_champs	*init_champ(char *file_path, uint8_t nb_player)
+static t_champs	*init_champ(char *file_path, int8_t nb_player)
 {
 	t_champs		*new_champ;
 

@@ -29,7 +29,7 @@ static int32_t	get_arg_number(char *number_str)
 
 int8_t			get_player_number(char **av, int32_t *i)
 {
-	int8_t		nb_player;
+	int32_t		nb_player;
 
 	nb_player = NATURAL_ORDER;
 	if (ft_strnequ(av[*i], "-n", 2) == TRUE)
@@ -45,7 +45,7 @@ int8_t			get_player_number(char **av, int32_t *i)
 			return (core_error(ER_N_USAGE));
 		(*i)++;
 	}
-	return (nb_player);
+	return ((int8_t)nb_player);
 }
 
 int32_t			core_init_flag(int32_t ac, char **av,

@@ -16,10 +16,11 @@ int8_t			core_install_champ(t_champs *champs,
 				int32_t fd, t_data *data, int8_t champ_nb)
 {
 	ssize_t			ret;
-	unsigned char	tmp_code[champs->exec_code_size];
+	unsigned char		tmp_code[CHAMP_MAX_SIZE];
 	int32_t			count_cpy;
 
 	count_cpy = 0;
+	ft_bzero((void *)tmp_code, CHAMP_MAX_SIZE);
 	ret = read(fd, tmp_code, champs->exec_code_size);
 	if (ret == FAILURE)
 		return (core_error(ER_READ));

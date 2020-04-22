@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static int8_t	exec_op_code(int32_t op_code, t_carriages *current,
+static int8_t		exec_op_code(uint32_t op_code, t_carriages *current,
 					t_data *data)
 {
 	static t_ope	ptr_operation[16] = {ope_live, ope_ld, ope_st, ope_add,
@@ -25,7 +25,7 @@ static int8_t	exec_op_code(int32_t op_code, t_carriages *current,
 
 static void		get_new_op_code(t_carriages *current, t_data *data)
 {
-	int32_t			op_code;
+	uint32_t			op_code;
 	const int16_t	cycle_needed[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25,
 										800, 10, 50, 1000, 2};
 
@@ -38,7 +38,7 @@ static void		get_new_op_code(t_carriages *current, t_data *data)
 
 static void		exec_current_carriage(t_carriages *current, t_data *data)
 {
-	int32_t		op_code;
+	uint32_t		op_code;
 
 	op_code = data->vm.arena[current->position];
 	if (current->cycle_needed > 1)
@@ -62,7 +62,7 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 		get_new_op_code(current, data);
 }
 
-void			corewar_dump(t_data *data)
+static void			corewar_dump(t_data *data)
 {
 	int	i;
 
