@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:03:58 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 16:27:10 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 16:31:38 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int8_t		core_read_comment(t_champs *champs, int32_t fd)
 	ssize_t		ret;
 
 	ret = read(fd, champs->comment, COMMENT_LENGTH);
+	if (ret == FAILURE)
+		return (core_error(10));
 	if (ret != COMMENT_LENGTH)
 		return (core_error(ER_SIZE_COMM));
 	champs->comment[ret] = '\0';
