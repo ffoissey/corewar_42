@@ -6,6 +6,8 @@ then
 	exit 1;
 fi
 
+COR=../DOC/corewar_linux
+
 keyword=$1
 nb_dump=$2
 
@@ -35,21 +37,21 @@ do
 	if [ -z $4 ]
 	then
 		echo -n -e "\t./corewar -dump $i $3 $4"
-		../DOC/corewar -d $i $3 $4 > $corewar_of 2>&1
+		$COR -d $i $3 $4 > $corewar_of 2>&1
 		../corewar -dump $i $3 $4 > $corewar_pf 2>&1
 	elif [ -z $5 ]
 	then
 		echo -ne "\t ./corewar -dump $i $3 $4 $5"
-		../DOC/corewar -d $i $3 $4 $5 > $corewar_of 2>&1
+		$COR -d $i $3 $4 $5 > $corewar_of 2>&1
 		../corewar -dump $i $3 $4 $5 > $corewar_pf 2>&1
 	elif [ -z $6 ]
 	then
 		echo -ne " ./corewar -dump $i $3 $4 $5 $6"
-		../DOC/corewar -d $i $3 $4 $5 $6 > $corewar_of 2>&1
+		$COR -d $i $3 $4 $5 $6 > $corewar_of 2>&1
 		../corewar -dump $i $3 $4 $5 $6 > $corewar_pf 2>&1
 	else 
 		echo -ne "./corewar -dump $i $3"
-		../DOC/corewar -d $i $3 > $corewar_of 2>&1
+		$COR -d $i $3 > $corewar_of 2>&1
 		../corewar -dump $i $3 > $corewar_pf 2>&1
 	fi
 	diff $corewar_of $corewar_pf > $diff_file
