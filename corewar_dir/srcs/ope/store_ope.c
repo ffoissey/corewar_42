@@ -6,13 +6,23 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/22 14:28:37 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 14:36:53 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static void store_value(t_data *data, int16_t position, int32_t arg_1, int32_t reg_value)
+static void			core_put_reg_ind(t_data *data, int16_t position,
+						int32_t reg_value)
+{
+	data->vm.arena[get_pos(position)] = reg_value >> 24;
+	data->vm.arena[get_pos(position + 1)] = reg_value >> 16;
+	data->vm.arena[get_pos(position + 2)] = reg_value >> 8;
+	data->vm.arena[get_pos(position + 3)] = reg_value;
+}
+
+static void 		store_value(t_data *data, int16_t position, int32_t arg_1,
+						int32_t reg_value)
 {
 	int16_t	pos;
 

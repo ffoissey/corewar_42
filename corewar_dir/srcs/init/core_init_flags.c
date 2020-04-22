@@ -6,11 +6,19 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:15:37 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/16 17:24:25 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/22 14:42:36 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
+
+static int		ft_isanint(char *str)
+{
+	long		nb;
+
+	nb = ft_atol(str);
+	return (nb <= INT_MAX && nb >= INT_MIN);
+}
 
 static int32_t	get_arg_number(char *number_str)
 {

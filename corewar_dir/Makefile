@@ -6,7 +6,7 @@
 #    By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 10:48:43 by cde-moul          #+#    #+#              #
-#    Updated: 2020/04/17 16:08:17 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/22 14:44:03 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -173,8 +173,8 @@ OPE 			+= 		load_ope_tool.c
 OPE 			+= 		special_ope.c
 OPE 			+= 		store_ope.c
 OPE 			+= 		get_args.c
+OPE 			+= 		get_args_tools.c
 OPE 			+= 		tools.c
-OPE 			+= 		tools2.c
 
 #  											 --- Gestion d'erreurs  ---
 

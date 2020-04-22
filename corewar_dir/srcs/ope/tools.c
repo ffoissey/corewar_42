@@ -5,69 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 16:04:32 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/18 23:20:46 by ffoissey         ###   ########.fr       */
+/*   Created: 2020/04/22 14:41:52 by ffoissey          #+#    #+#             */
+/*   Updated: 2020/04/22 14:42:25 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-uint8_t		core_put_reg_ind(t_data *data, int16_t position, int32_t reg_value)
+uint16_t	get_pos(int16_t position)
 {
-	data->vm.arena[get_pos(position)] = reg_value >> 24;
-	data->vm.arena[get_pos(position + 1)] = reg_value >> 16;
-	data->vm.arena[get_pos(position + 2)] = reg_value >> 8;
-	data->vm.arena[get_pos(position + 3)] = reg_value;
-	return (TRUE);
+	if (position < 0)
+		return ((uint16_t)(MEM_SIZE - (-position) % MEM_SIZE));
+	return ((uint16_t)(position % MEM_SIZE));
 }
 
-int32_t		core_get_dir(t_data *data, int16_t position, uint16_t flag)
+int32_t		get_ind_value(t_data *data, int16_t position, int16_t arg,
+					uint16_t flag)
 {
-	int32_t		dir;
+	uint8_t		i;
+	uint8_t		max;
+	int32_t		value;
+	int64_t		add;
 
-	if (flag & SMALL_DIR)
+	i = 0;
+	(void)position;
+	max = (flag & IND) ? 4 : 2;
+	value = 0;
+	while (i < max)
 	{
-		dir = (data->vm.arena[get_pos(position)] << 8
-			| data->vm.arena[get_pos(position + 1)]);
-		dir = (int16_t)dir;
+		add = ((uint8_t)data->vm.arena[get_pos(arg + i + position)]);
+		add <<= (8 * (max - 1 - i)) ; 
+		value |= (int32_t)add;
+		i++;
 	}
-	else
-	{
-		dir = (data->vm.arena[get_pos(position)] << 24
-			| data->vm.arena[get_pos(position + 1)] << 16
-			| data->vm.arena[get_pos(position + 2)] << 8
-			| data->vm.arena[get_pos(position + 3)]);
-		
-	}
-	return (dir);
+	if ((flag & IND) == FALSE)
+		value = (int16_t)value;
+	return (value);
 }
 
-int32_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
-				uint16_t flag)
+int32_t		set_reg_value(t_carriages *current, int8_t reg, int32_t value,
+				uint8_t *flag)
 {
-	int16_t		ind;
-	int16_t		jump_pos;
-
-	jump_pos = get_pos(position + to_jump);
-	ind = ((data->vm.arena[jump_pos] << 8)
-			| data->vm.arena[jump_pos + 1]);
-	if (flag & IND_NUM)
-		return (ind);
-	return (get_ind_value(data, position + to_jump, ind, flag));
-}
-
-int16_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
-{
-	int16_t		reg;
-
-	(void)current;
-	reg = (data->vm.arena[get_pos(position)]);
 	if (reg > 0 && reg <= REG_NUMBER)
-		return (reg);
+	{
+		if (*flag & SET)
+			current->registres[reg - 1] = value;
+		return (current->registres[reg - 1]);
+	}
+	*flag = BAD_REG;
 	return (FAILURE);
-}
-
-uint8_t		core_get_ocp(t_data *data, int16_t position)
-{
-	return (data->vm.arena[get_pos(position)]);
 }
