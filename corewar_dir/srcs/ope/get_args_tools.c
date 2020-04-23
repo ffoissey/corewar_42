@@ -18,16 +18,16 @@ int32_t		core_get_dir(t_data *data, int16_t position, uint16_t flag)
 
 	if (flag & SMALL_DIR)
 	{
-		dir = (data->vm.arena[get_pos(position)] << 8
-			| data->vm.arena[get_pos(position + 1)]);
+		dir = (int32_t)((data->vm.arena[get_pos(position)] << 8
+			| data->vm.arena[get_pos(position + 1)]));
 		dir = (int16_t)dir;
 	}
 	else
 	{
-		dir = (data->vm.arena[get_pos(position)] << 24
+		dir = (int32_t)((data->vm.arena[get_pos(position)] << 24
 			| data->vm.arena[get_pos(position + 1)] << 16
 			| data->vm.arena[get_pos(position + 2)] << 8
-			| data->vm.arena[get_pos(position + 3)]);
+			| data->vm.arena[get_pos(position + 3)]));
 	}
 	return (dir);
 }
@@ -36,14 +36,14 @@ int32_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
 				uint16_t flag)
 {
 	int16_t		ind;
-	int16_t		jump_pos;
+	uint16_t	jump_pos;
 
 	jump_pos = get_pos(position + to_jump);
-	ind = ((data->vm.arena[jump_pos] << 8)
-			| data->vm.arena[jump_pos + 1]);
+	ind = (int16_t)(((data->vm.arena[jump_pos] << 8)
+			| data->vm.arena[jump_pos + 1]));
 	if (flag & IND_NUM)
 		return (ind);
-	return (get_ind_value(data, position + to_jump, ind, flag));
+	return (get_ind_value(data, (uint16_t)(position + to_jump), ind, flag));
 }
 
 int16_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
@@ -51,7 +51,7 @@ int16_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
 	int16_t		reg;
 
 	(void)current;
-	reg = (data->vm.arena[get_pos(position)]);
+	reg = (int16_t)(data->vm.arena[get_pos(position)]);
 	if (reg > 0 && reg <= REG_NUMBER)
 		return (reg);
 	return (FAILURE);
@@ -59,5 +59,5 @@ int16_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
 
 uint8_t		core_get_ocp(t_data *data, int16_t position)
 {
-	return (data->vm.arena[get_pos(position)]);
+	return ((uint8_t)data->vm.arena[get_pos(position)]);
 }

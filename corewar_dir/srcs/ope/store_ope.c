@@ -15,19 +15,19 @@
 static void			core_put_reg_ind(t_data *data, int16_t position,
 						int32_t reg_value)
 {
-	data->vm.arena[get_pos(position)] = reg_value >> 24;
-	data->vm.arena[get_pos(position + 1)] = reg_value >> 16;
-	data->vm.arena[get_pos(position + 2)] = reg_value >> 8;
-	data->vm.arena[get_pos(position + 3)] = reg_value;
+	data->vm.arena[get_pos(position)] = (uint32_t)reg_value >> 24;
+	data->vm.arena[get_pos(position + 1)] = (uint32_t)reg_value >> 16;
+	data->vm.arena[get_pos(position + 2)] = (uint32_t)reg_value >> 8;
+	data->vm.arena[get_pos(position + 3)] = (uint32_t)reg_value;
 }
 
 static void			store_value(t_data *data, int16_t position, int32_t arg_1,
 						int32_t reg_value)
 {
-	int16_t	pos;
+	uint16_t	pos;
 
 	pos = get_pos((position + arg_1 % IDX_MOD));
-	core_put_reg_ind(data, pos, reg_value);
+	core_put_reg_ind(data, (int16_t)pos, reg_value);
 }
 
 /*
@@ -42,7 +42,7 @@ int8_t				ope_st(t_carriages *current, t_data *data)
 	enum e_type	type;
 
 	type = OP_ST;
-	ocp = core_get_ocp(data, current->position + 1);
+	ocp = core_get_ocp(data, (int16_t)(current->position + 1));
 	arg[0] = get_arg(current, data, START_ARG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
@@ -52,12 +52,12 @@ int8_t				ope_st(t_carriages *current, t_data *data)
 	flag = SET;
 	if (ocp == REG_REG_)
 	{
-		set_reg_value(current, arg[1], arg[0], &flag);
+		set_reg_value(current, (int8_t)arg[1], arg[0], &flag);
 		if (flag == BAD_REG)
 			return (FAILURE);
 	}
 	else if (ocp == REG_IND_)
-		store_value(data, get_pos(current->position), arg[1], arg[0]);
+		store_value(data, (int16_t)get_pos((int16_t)current->position), arg[1], arg[0]);
 	else
 		return (FAILURE);
 	return (SUCCESS);
@@ -78,6 +78,6 @@ int8_t				ope_sti(t_carriages *current, t_data *data)
 		return (FAILURE);
 	arg[1] = get_arg(current, data, SMALL_DIR, &type);
 	arg[2] = get_arg(current, data, END_ARG | SMALL_DIR, &type);
-	store_value(data, get_pos(current->position), arg[1] + arg[2], arg[0]);
+	store_value(data, (int16_t)get_pos((int16_t)current->position), arg[1] + arg[2], arg[0]);
 	return (SUCCESS);
 }
