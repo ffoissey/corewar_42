@@ -2,7 +2,7 @@
 
 if [ -z $1 ] || [ -z $2 ] || [ -z $3 ]
 then
-	echo "./corewar_checker [loop/one] [nb_dump] [champion.cor]{1...4}"
+	echo "./corewar_checker [[NB]/loop/one] [nb_dump] [champion.cor]{1...4}"
 	exit 1;
 fi
 
@@ -18,8 +18,7 @@ elif [ "$keyword" == "one" ]
 then
 	start=$nb_dump;
 else
-	echo "./corewar_checker [loop/one] [nb_dump] [champion.cor]{1...4}"
-	exit 1;
+	start=$keyword;
 fi
 make -j8 d=1 > /dev/null
 corewar_of=./result/test_corewar_origin.tmp
