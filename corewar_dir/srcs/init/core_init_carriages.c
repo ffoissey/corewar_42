@@ -12,13 +12,13 @@
 
 #include "core.h"
 
-static int8_t		core_init_champs_carriages(t_data *data, uint8_t champ_nb)
+static void		core_init_champs_carriages(t_data *data, uint8_t champ_nb)
 {
 	t_carriages *carriage;
 
 	carriage = (t_carriages *)ft_memalloc(sizeof(t_carriages));
 	if (carriage == NULL)
-		return (FAILURE);
+		core_error(data, ER_MALLOC);
 	ft_bzero(carriage->registres, REG_NUMBER);
 	carriage->position = (uint16_t)data->champs[champ_nb]->copy_start;
 	carriage->registres[0] = -data->champs[champ_nb]->nb_player;
@@ -31,10 +31,9 @@ static int8_t		core_init_champs_carriages(t_data *data, uint8_t champ_nb)
 		data->carriages->previous = carriage;
 	data->carriages = carriage;
 	data->vm.nb_carriages++;
-	return (SUCCESS);
 }
 
-int8_t				core_init_carriages(t_data *data)
+void				core_init_carriages(t_data *data)
 {
 	uint8_t			i;
 
@@ -42,11 +41,7 @@ int8_t				core_init_carriages(t_data *data)
 	while (i < MAX_PLAYERS)
 	{
 		if (data->champs[i] != NULL)
-		{
-			if (core_init_champs_carriages(data, i) == FAILURE)
-				return (FAILURE);
-		}
+			core_init_champs_carriages(data, i);
 		i++;
 	}
-	return (SUCCESS);
 }

@@ -77,6 +77,7 @@ static void			corewar_dump(t_data *data)
 		i++;
 	}
 	data->dump = DONE;
+	core_free_all(data, NO_ERROR);
 }
 
 void			core_cycle(t_data *data)

@@ -12,37 +12,21 @@
 
 #include "core.h"
 
-static int8_t	main_part2(t_data *data)
-{
-	if (core_init_carriages(data) == FAILURE)
-		return (FAILURE);
-	if (core_present_champs(data) == FAILURE)
-		return (FAILURE);
-	core_cycle(data);
-	if (data->dump != DONE && core_present_winner(data) == FAILURE)
-		return (FAILURE);
-	return (SUCCESS);
-}
-
 int				main(int32_t ac, char **av)
 {
 	t_data		data;
 
 	if (ac < 2)
 	{
-		ft_putstr_fd(ERROR_MSG0, STDERR_FILENO);
+		ft_putstr_fd(ERROR_MSG13, STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	if (core_init_data(ac, av, &data) == FAILURE)
-	{
-		core_free_all(&data);
-		return (EXIT_FAILURE);
-	}
-	if (core_read(&data) == FAILURE || main_part2(&data) == FAILURE)
-	{
-		core_free_all(&data);
-		return (EXIT_FAILURE);
-	}
-	core_free_all(&data);
+	core_init_data(ac, av, &data);
+	core_read(&data);
+	core_init_carriages(&data);
+	core_present_champs(&data);
+	core_cycle(&data);
+	core_present_winner(&data);
+	core_free_all(&data, NO_ERROR);
 	return (EXIT_SUCCESS);
 }

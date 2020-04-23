@@ -23,11 +23,11 @@ static int		ft_isanint(char *str)
 static int32_t	get_arg_number(char *number_str)
 {
 	if (number_str == NULL || ft_isanint(number_str) == FALSE)
-		return (core_error(ER_DUMP));
+		core_error(get_env_data(DATA), ER_DUMP);
 	return (ft_atoi(number_str));
 }
 
-int8_t			get_player_number(char **av, int32_t *i)
+uint8_t			get_player_number(char **av, int32_t *i)
 {
 	int32_t		nb_player;
 
@@ -42,10 +42,10 @@ int8_t			get_player_number(char **av, int32_t *i)
 		else
 			nb_player = get_arg_number(av[*i] + 2);
 		if (nb_player <= 0 || nb_player > MAX_PLAYERS)
-			return (core_error(ER_N_USAGE));
+			core_error(get_env_data(DATA), ER_N_USAGE);
 		(*i)++;
 	}
-	return ((int8_t)nb_player);
+	return ((uint8_t)nb_player);
 }
 
 int32_t			core_init_flag(int32_t ac, char **av,
@@ -63,7 +63,7 @@ int32_t			core_init_flag(int32_t ac, char **av,
 			i++;
 			data->dump = get_arg_number(av[i]);
 			if (data->dump < 0)
-				return (FAILURE);
+				core_error(data, ER_DUMP);
 		}
 		else if (ft_strequ(av[i], "-a") == TRUE)
 			data->aff = ON;

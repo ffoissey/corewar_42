@@ -12,32 +12,27 @@
 
 #include "core.h"
 
-static int8_t	core_print_champ_pres(t_data *data, const uint8_t i)
+static void	core_print_champ_pres(t_data *data, const uint8_t i)
 {
 	if (ft_printf("* Player %hhu, weighing %zu bytes, \"%s\" (\"%s\") !\n",
 		data->champs[i]->nb_player,
 		data->champs[i]->exec_code_size,
 		(char *)data->champs[i]->name,
 		(char *)data->champs[i]->comment) == FAILURE)
-		return (core_error(ER_STDCLOSED));
-	return (SUCCESS);
+		core_error(data, ER_STDCLOSED);
 }
 
-int8_t			core_present_champs(t_data *data)
+void		core_present_champs(t_data *data)
 {
 	uint8_t i;
 
 	i = 0;
 	if (ft_putendl("Introducing contestants...") == FAILURE)
-		return (core_error(ER_STDCLOSED));
+		core_error(data, ER_STDCLOSED);
 	while (i < MAX_PLAYERS)
 	{
 		if (data->champs[i] != NULL)
-		{
-			if (core_print_champ_pres(data, i) == FAILURE)
-				return (FAILURE);
-		}
+			core_print_champ_pres(data, i);
 		i++;
 	}
-	return (SUCCESS);
 }

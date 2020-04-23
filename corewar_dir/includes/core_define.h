@@ -17,16 +17,17 @@
 **		------------------------------ Autres
 */
 
-# define NATURAL_ORDER 0
+# define NATURAL_ORDER	0
+# define DATA		NULL
 
 /*
 **		------------------------------ Gestion d'erreurs
 */
 
-# define ERROR_NB 13
+# define ERROR_NB 15
 
-# define ER_FILE 0
-# define ERROR_MSG0 "Usage : joindre un fichier .cor a l'executable\n"
+# define NO_ERROR 0
+# define ERROR_MSG0 "Pas d'erreur\n"
 
 # define ER_MALLOC 1
 # define ERROR_MSG1 "Erreur de Malloc\n"
@@ -55,7 +56,7 @@
 # define ER_DUMP 9
 # define ERROR_MSG9 "Usage : ./corewar [-dump] [0 - INT_MAX] .cor\n"
 
-# define ER_READ 10
+# define ER_READ_MSG 10
 # define ERROR_MSG10 "Erreur lors de l'utilisation de la fonction READ\n"
 
 # define ER_DIFF 11
@@ -63,6 +64,19 @@
 
 # define ER_SIZE_COMM 12
 # define ERROR_MSG12 "La taille du commentaire n'est pas valide\n"
+
+# define ER_FILE 13
+# define ERROR_MSG13 "Usage : joindre entre un et MAX_PLAYERS fichier .cor à l'executable\n"
+
+# define ER_INIT 14
+# define ERROR_MSG14 "Erreur lors de l'initialisation des champions\n"
+
+/*
+**		------------------------------ Gestion d'erreurs sans messages
+*/
+
+# define ER_OPEN 100
+# define ER_READ 101
 
 /*
 **		------------------------------ OCP
