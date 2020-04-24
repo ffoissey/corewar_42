@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 15:40:23 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/24 22:08:37 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct		s_carriages
 	int32_t					id;
 	int32_t					last_live_cycle;
 	int16_t					cycle_needed;
-	uint16_t					position;
+	uint16_t				position;
 	int32_t					to_jump;
 	uint8_t					carry;
 	char					pad[7];
@@ -75,9 +75,29 @@ typedef struct		s_data
 	t_vm			vm;
 	int32_t			dump;
 	int8_t			aff;
+	int8_t			debug;
 	uint8_t			initialised_players;
-	char			pad[2];
+	char			pad[1];
 }					t_data;
+
+enum	e_cmd
+{
+	NO_CMD,
+	GOTO,
+	PRINT,
+	INFO,
+	HELP,
+	EXIT
+};
+
+
+typedef struct		s_debug
+{
+	uint8_t		waiting_cmd;
+	int32_t		next_cycle;
+	enum e_cmd	cmd;
+	char		arg[16];
+}					t_debug;
 
 enum	e_type
 {

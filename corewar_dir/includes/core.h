@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/24 17:10:32 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/24 21:29:01 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,10 @@ int32_t		get_ind_value(t_data *data, uint16_t position, int16_t arg,
 					uint16_t flag);
 int32_t		set_reg_value(t_carriages *current, uint8_t reg, int32_t value,
 				uint8_t *flag);
+
+
+
+void		debug_process(t_data *data);
+void		corewar_dump(t_data *data);
 
 #endif

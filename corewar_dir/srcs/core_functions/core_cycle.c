@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/24 18:20:13 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/24 21:31:38 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 	}
 }
 
-static void			corewar_dump(t_data *data)
+void				corewar_dump(t_data *data)
 {
 	int	i;
 
@@ -83,7 +83,8 @@ static void			corewar_dump(t_data *data)
 		}
 		i++;
 	}
-	core_free_all(data, NO_ERROR);
+	if (data->debug == OFF)
+		core_free_all(data, NO_ERROR);
 }
 
 void			core_cycle(t_data *data)
@@ -92,13 +93,14 @@ void			core_cycle(t_data *data)
 
 	while (data->carriages != NULL)
 	{
+		debug_process(data); //
+		current = data->carriages;
 		if (data->vm.nb_cycles == data->dump)
 		{
 			corewar_dump(data);
 			break ;
 		}
 		data->vm.nb_cycles += 1;
-		current = data->carriages;
 		while (current != NULL)
 		{
 			exec_current_carriage(current, data);
