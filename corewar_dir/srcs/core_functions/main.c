@@ -18,7 +18,7 @@ int				main(int32_t ac, char **av)
 
 	if (ac < 2)
 	{
-		ft_putstr_fd(ERROR_MSG13, STDERR_FILENO);
+		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s", ER_FILE_MSG);
 		return (EXIT_FAILURE);
 	}
 	core_init_data(ac, av, &data);

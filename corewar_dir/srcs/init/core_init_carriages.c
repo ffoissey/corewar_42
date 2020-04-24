@@ -16,6 +16,7 @@ static void		core_init_champs_carriages(t_data *data, uint8_t champ_nb)
 {
 	t_carriages *carriage;
 
+	errno = 0;
 	carriage = (t_carriages *)ft_memalloc(sizeof(t_carriages));
 	if (carriage == NULL)
 		core_error(data, ER_MALLOC);

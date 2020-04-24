@@ -62,7 +62,7 @@ void		core_read(t_data *data);
 
 void		core_read_exec_code_size(t_champs *champs, int32_t fd);
 void		core_read_comment(t_champs *champs, int32_t fd);
-void		core_fd_empty(int32_t fd);
+void		core_fd_empty(t_champs *champs, int32_t fd);
 
 /*
 **		CORE_INIT_CARRIAGES

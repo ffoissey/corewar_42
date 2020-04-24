@@ -16,6 +16,7 @@ static t_champs	*init_champ(char *file_path, uint8_t nb_player)
 {
 	t_champs		*new_champ;
 
+	errno = 0;
 	new_champ = (t_champs *)ft_memalloc(sizeof(t_champs));
 	if (new_champ == NULL)
 		core_error(get_env_data(DATA), ER_MALLOC);

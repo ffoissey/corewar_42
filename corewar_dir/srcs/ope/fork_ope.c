@@ -18,19 +18,19 @@ static t_carriages	*get_new_carriage(t_carriages *current, uint16_t position,
 	t_carriages		*new;
 	uint8_t			nb_reg;
 
+	errno = 0;
 	new = (t_carriages *)ft_memalloc(sizeof(t_carriages));
-	if (new != NULL)
+	if (new == NULL)
+		core_error(get_env_data(get_env_data(DATA)), ER_MALLOC);
+	new->position = get_pos((int16_t)position);
+	new->id = id;
+	new->carry = current->carry;
+	new->last_live_cycle = current->last_live_cycle;
+	nb_reg = 0;
+	while (nb_reg < REG_NUMBER)
 	{
-		new->position = get_pos((int16_t)position);
-		new->id = id;
-		new->carry = current->carry;
-		new->last_live_cycle = current->last_live_cycle;
-		nb_reg = 0;
-		while (nb_reg < REG_NUMBER)
-		{
-			new->registres[nb_reg] = current->registres[nb_reg];
-			nb_reg++;
-		}
+		new->registres[nb_reg] = current->registres[nb_reg];
+		nb_reg++;
 	}
 	return (new);
 }
