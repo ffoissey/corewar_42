@@ -24,9 +24,9 @@
 **		CORE_INIT
 */
 
-int8_t		core_init_data(int ac, char **av, t_data *data);
+void		core_init_data(int ac, char **av, t_data *data);
 int32_t		core_init_flag(int32_t ac, char **av, t_data *data);
-int8_t		get_player_number(char **av, int32_t *i);
+uint8_t		get_player_number(char **av, int32_t *i);
 
 /*
 **		CORE_CYCLE
@@ -39,42 +39,48 @@ void		core_check(t_data *data);
 **		CORE_PRESENT
 */
 
-int8_t		core_present_champs(t_data *data);
-int8_t		core_present_winner(t_data *data);
+void		core_present_champs(t_data *data);
+void		core_present_winner(t_data *data);
 
 /*
 **		CORE_INIT_VM
 */
 
-int8_t		core_init_data_vm(t_data *data);
-int8_t		core_install_champ(t_champs *champs,
+void		core_init_data_vm(t_data *data);
+void		core_install_champ(t_champs *champs,
 		int32_t fd, t_data *data, int8_t champ_nb);
 
 /*
 **		CORE_READ
 */
 
-int8_t		core_read(t_data *data);
+void		core_read(t_data *data);
 
 /*
 **		CORE_READ_FUNCTIONS
 */
 
-int8_t		core_read_exec_code_size(t_champs *champs, int32_t fd);
-int8_t		core_read_comment(t_champs *champs, int32_t fd);
-int8_t		core_fd_empty(int32_t fd);
+void		core_read_exec_code_size(t_champs *champs, int32_t fd);
+void		core_read_comment(t_champs *champs, int32_t fd);
+void		core_fd_empty(t_champs *champs, int32_t fd);
 
 /*
 **		CORE_INIT_CARRIAGES
 */
 
-int8_t		core_init_carriages(t_data *data);
+void		core_init_carriages(t_data *data);
 
 /*
 **		CORE_ERROR
 */
 
-int8_t		core_error(int8_t error_nbr);
+void		core_error(t_data *data, uint8_t error_nbr);
+
+/*
+**		GET_ENV_DATA
+*/
+
+t_data		*get_env_data(t_data *init);
 
 /*
 **		CORE_PRINT
@@ -87,7 +93,7 @@ void		print_carriages(t_data *data);
 **		CORE_FREE
 */
 
-void		core_free_all(t_data *data);
+void		core_free_all(t_data *data, uint8_t error_nbr);
 
 /*
 **		CORE_OPE
@@ -115,13 +121,13 @@ int8_t		ope_lfork(t_carriages *current, t_data *data);
 int8_t		ope_aff(t_carriages *current, t_data *data);
 
 /*
-**		get_args
+**		GET_ARGS
 */
 
 int32_t		get_arg(t_carriages *current, t_data *data, uint16_t flag,
 				enum e_type *type);
 /*
-**** get_args_tools.c
+**		GET_ARGS_TOOLS
 */
 
 int32_t		core_get_dir(t_data *data, int16_t position, uint16_t flag);
@@ -131,7 +137,7 @@ int8_t		core_get_reg(t_data *data, int16_t position, t_carriages *current);
 uint8_t		core_get_ocp(t_data *data, int16_t position);
 
 /*
-**** tools.c
+**		TOOLS
 */
 
 uint16_t	get_pos(int16_t position);

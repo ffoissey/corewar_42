@@ -34,10 +34,10 @@ static void		free_carriage(t_carriages *carriage)
 	}
 }
 
-void			core_free_all(t_data *data)
+void			core_free_all(t_data *data, uint8_t error_nbr)
 {
 	core_free_champ(data);
 	free_carriage(data->carriages);
 	data->carriages = NULL;
-	exit(0);
+	exit(error_nbr);
 }

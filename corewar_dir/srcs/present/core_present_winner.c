@@ -12,11 +12,10 @@
 
 #include "core.h"
 
-int8_t	core_present_winner(t_data *data)
+void	core_present_winner(t_data *data)
 {
 	if (ft_printf("Contestant %hhu, \"%s\", has won !\n",
 		data->champs[data->vm.last_alive_champ - 1]->nb_player,
 		data->champs[data->vm.last_alive_champ - 1]->name) == FAILURE)
-		return (core_error(ER_STDCLOSED));
-	return (SUCCESS);
+		core_error(data, ER_STDCLOSED);
 }

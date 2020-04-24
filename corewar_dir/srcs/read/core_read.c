@@ -13,7 +13,7 @@
 #include "core.h"
 #include <stdio.h>
 
-static int8_t			read_header(t_champs *champs, int32_t fd)
+static void			read_header(t_champs *champs, int32_t fd)
 {
 	unsigned char	magic[4];
 	ssize_t			ret;
@@ -21,51 +21,63 @@ static int8_t			read_header(t_champs *champs, int32_t fd)
 
 	ret = read(fd, magic, 4);
 	if (ret == FAILURE)
-		return (core_error(ER_READ));
+	{
+		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
+			champs->file_path);
+		core_error(get_env_data(DATA), ER_READ);
+	}
 	if (ret == 4)
 	{
 		header = ((long)(magic[0]) << 24 | magic[1] << 16 | magic[2] << 8
 			| magic[3]);
 		if (header == COREWAR_EXEC_MAGIC)
-			return (SUCCESS);
+			return ;
 	}
-	if (ft_putstr_fd(champs->file_path, STDERR_FILENO) == FAILURE)
-		return (core_error(ER_STDCLOSED));
-	return (core_error(ER_MAGIC));
+	ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
+		champs->file_path);
+	core_error(get_env_data(DATA), ER_MAGIC);
 }
 
-static int8_t			read_name(t_champs *champs, int32_t fd)
+static void			read_name(t_champs *champs, int32_t fd)
 {
 	ssize_t			ret;
 
 	ret = read(fd, champs->name, PROG_NAME_LENGTH);
 	if (ret == FAILURE)
-		return (core_error(ER_READ));
+	{
+		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
+			champs->file_path);
+		core_error(get_env_data(DATA), ER_READ);
+	}
 	if (ret != PROG_NAME_LENGTH)
 	{
-		if (ft_putstr_fd(champs->name, STDERR_FILENO) == FAILURE)
-			return (core_error(ER_STDCLOSED));
-		return (core_error(ER_NAME));
+		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
+			champs->file_path);
+		core_error(get_env_data(DATA), ER_NAME);
 	}
-	return (SUCCESS);
 }
 
-static	int8_t			skip_null(t_champs *champs, int32_t fd)
+static	void			skip_null(t_champs *champs, int32_t fd)
 {
 	ssize_t			ret;
 	unsigned char	buff[4];
 
 	ret = read(fd, buff, 4);
+	errno = 0;
 	if (ret == FAILURE)
-		return (core_error(ER_READ));
+	{
+		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
+			champs->file_path);
+		core_error(get_env_data(DATA),ER_READ);
+	}
 	if (buff[0] == 0 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
-		return (SUCCESS);
-	if (ft_putstr_fd(champs->name, STDERR_FILENO) == FALSE)
-		return (core_error(ER_STDCLOSED));
-	return (core_error(ER_NULL));
+		return ;
+	ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
+		champs->name);
+	core_error(get_env_data(DATA),ER_NULL);
 }
 
-static int8_t			core_open_management(t_champs *champs,
+static void			core_open_management(t_champs *champs,
 						t_data *data, int8_t champ_nb)
 {
 	int32_t		fd;
@@ -74,26 +86,27 @@ static int8_t			core_open_management(t_champs *champs,
 	fd = open(champs->file_path, O_RDONLY);
 	if (fd < 0)
 	{
-		if (ft_putstr_fd(champs->file_path, STDERR_FILENO) == FAILURE
-		|| ft_putstr_fd(" : ", STDERR_FILENO) == FAILURE)
-			return (core_error(ER_STDCLOSED));
-		perror(NULL);
-		return (FAILURE);
+		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
+			champs->file_path);
+		core_error(data, ER_OPEN);
 	}
-	if ((read_header(champs, fd) == FAILURE)
-		|| (read_name(champs, fd) == FAILURE)
-		|| (skip_null(champs, fd) == FAILURE)
-		|| (core_read_exec_code_size(champs, fd) == FAILURE)
-		|| (core_read_comment(champs, fd) == FAILURE)
-		|| (skip_null(champs, fd) == FAILURE)
-		|| (core_install_champ(champs, fd, data, champ_nb) == FAILURE)
-		|| (core_fd_empty(fd) == FAILURE))
-		return (FAILURE);
-	close(fd);
-	return (SUCCESS);
+	read_header(champs, fd);
+	read_name(champs, fd);
+	skip_null(champs, fd);
+	core_read_exec_code_size(champs, fd);
+	core_read_comment(champs, fd);
+	skip_null(champs, fd);
+	core_install_champ(champs, fd, data, champ_nb);
+	core_fd_empty(champs, fd);
+	if (close(fd) == FAILURE)
+	{
+		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
+			champs->file_path);
+		core_error(data, ER_CLOSE);
+	}
 }
 
-int8_t					core_read(t_data *data)
+void				core_read(t_data *data)
 {
 	int8_t		count;
 	int8_t		champ_nb;
@@ -104,16 +117,9 @@ int8_t					core_read(t_data *data)
 	{
 		if (data->champs[count])
 		{
-			if (core_open_management(data->champs[count],
-					data, champ_nb) == FAILURE)
-			{
-				core_free_all(data);
-				return (FAILURE);
-			}
+			core_open_management(data->champs[count], data, champ_nb);
 			champ_nb++;
 		}
 	}
-	if (core_init_data_vm(data) == FAILURE)
-		return (FAILURE);
-	return (SUCCESS);
+	core_init_data_vm(data);
 }

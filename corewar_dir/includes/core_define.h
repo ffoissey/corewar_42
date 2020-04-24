@@ -17,52 +17,64 @@
 **		------------------------------ Autres
 */
 
-# define NATURAL_ORDER 0
+# define NATURAL_ORDER	0
+# define DATA		NULL
+# define ONE_LINE	64
 
 /*
 **		------------------------------ Gestion d'erreurs
 */
 
 # define ERROR_NB 13
+#define PRINT_ERROR 5
 
-# define ER_FILE 0
-# define ERROR_MSG0 "Usage : joindre un fichier .cor a l'executable\n"
+# define NO_ERROR_MSG NULL
 
-# define ER_MALLOC 1
-# define ERROR_MSG1 "Erreur de Malloc\n"
+# define ER_FILE		1
+# define ER_FILE_MSG		"joindre entre un et MAX_PLAYERS fichier {champion}.cor à l'executable\n"
 
-# define ER_N_USAGE 2
-# define ERROR_MSG2 "Usage : ./corewar [-n] [0 - MAX_PLAYERS] .cor\n"
+# define ER_DUMP 		2
+# define ER_DUMP_MSG		"./corewar [-dump] [0 - INT_MAX] .cor\n"
 
-# define ER_MAGIC 3
-# define ERROR_MSG3 " : mauvais magic number\n"
+# define ER_N_USAGE		3
+# define ER_N_USAGE_MSG		"./corewar [-n] [0 - MAX_PLAYERS] .cor\n"
 
-# define ER_NAME 4
-# define ERROR_MSG4 " : name non-valide\n"
+# define ER_STDCLOSED		4
+# define ER_STDCLOSED_MSG	"sortie standard fermée\n"
 
-# define ER_NULL 5
-# define ERROR_MSG5 " : 4 octets nulls requis\n"
+# define ER_NAME		5
+# define ER_NAME_MSG		"name non-valide\n"
 
-# define ER_SMALL 6
-# define ERROR_MSG6	" : fichier .cor trop court\n"
+# define ER_NULL 		6
+# define ER_NULL_MSG		"4 octets nulls requis\n"
 
-# define ER_BIG 7
-# define ERROR_MSG7	" : la taille du code executable n'est pas valable\n"
+# define ER_SMALL		7
+# define ER_SMALL_MSG		"fichier .cor trop court\n"
 
-# define ER_STDCLOSED 8
-# define ERROR_MSG8 "Erreur : sortie standard fermée\n"
+# define ER_BIG 		8
+# define ER_BIG_MSG		"la taille du code executable n'est pas valable\n"
 
-# define ER_DUMP 9
-# define ERROR_MSG9 "Usage : ./corewar [-dump] [0 - INT_MAX] .cor\n"
+# define ER_MAGIC 		9
+# define ER_MAGIC_MSG		"mauvais magic number\n"
 
-# define ER_READ 10
-# define ERROR_MSG10 "Erreur lors de l'utilisation de la fonction READ\n"
+# define ER_DIFF		10
+# define ER_DIFF_MSG		"la taille du code executable est différente de la taille donnée par EXEC_CODE_SIZE\n"
 
-# define ER_DIFF 11
-# define ERROR_MSG11 "La taille du code executable est différente de la taille donnée par EXEC_CCODE_SIZE\n"
+# define ER_SIZE_COMM		11
+# define ER_SIZE_COMM_MSG	"la taille du commentaire n'est pas valide\n"
 
-# define ER_SIZE_COMM 12
-# define ERROR_MSG12 "La taille du commentaire n'est pas valide\n"
+# define ER_INIT		12
+# define ER_INIT_MSG		"pas de champion\n"
+
+/*
+**		------------------------------ Gestion d'erreurs sans messages
+*/
+
+# define NO_ERROR	0
+# define ER_OPEN	100
+# define ER_READ	101
+# define ER_MALLOC	102
+# define ER_CLOSE	103
 
 /*
 **		------------------------------ OCP

@@ -12,14 +12,25 @@
 
 #include "core.h"
 
-int8_t		core_error(int8_t error_nbr)
+void	core_error(t_data *data, uint8_t error_nbr)
 {
-	static char		*messages[ERROR_NB] = {ERROR_MSG0, ERROR_MSG1,
-					ERROR_MSG2, ERROR_MSG3, ERROR_MSG4,
-					ERROR_MSG5, ERROR_MSG6, ERROR_MSG7,
-					ERROR_MSG8, ERROR_MSG9, ERROR_MSG10,
-					ERROR_MSG11, ERROR_MSG12};
+	static char		*messages[ERROR_NB] = {NO_ERROR_MSG, ER_FILE_MSG,
+				ER_DUMP_MSG, ER_N_USAGE_MSG, ER_STDCLOSED_MSG,
+				ER_NAME_MSG, ER_NULL_MSG, ER_SMALL_MSG,
+				ER_BIG_MSG, ER_MAGIC_MSG,
+				ER_DIFF_MSG, ER_SIZE_COMM_MSG,
+				ER_INIT_MSG};
 
-	ft_putstr_fd(messages[error_nbr], STDERR_FILENO);
-	return (FAILURE);
+	if (error_nbr < PRINT_ERROR)
+		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR: \033[0m");
+	if (error_nbr > NO_ERROR && error_nbr < ERROR_NB)
+		ft_putstr_fd(messages[error_nbr], STDERR_FILENO);
+	else if (error_nbr > ERROR_NB)
+	{
+		if (error_nbr == ER_MALLOC)
+			ft_dprintf(STDERR_FILENO, "\033[1;31mERROR: \033[0m");
+		ft_putstr_fd(strerror(errno), STDERR_FILENO);
+		ft_putchar_fd('\n', STDERR_FILENO);
+	}
+	core_free_all(data, error_nbr);
 }
