@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 13:37:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/24 16:26:06 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/24 18:21:52 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 {
 	int32_t		arg[2];
-	int32_t		reg_val;
 	uint8_t		flag_reg;
 	uint8_t		ocp;
 
@@ -34,7 +33,7 @@ int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 	if (type == NO_OP)
 		return (FAILURE);
 	flag_reg = SET | GET;
-	reg_val = set_reg_value(current, (int8_t)arg[1], arg[0], &flag_reg);
+	set_reg_value(current, (int8_t)arg[1], arg[0], &flag_reg);
 	if (flag_reg == BAD_REG)
 		return (FAILURE);
 	current->carry = (arg[0] == 0) ? CARRY_ON : CARRY_OFF;
