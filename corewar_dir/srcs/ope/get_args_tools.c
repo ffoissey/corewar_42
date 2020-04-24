@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 14:39:54 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/22 15:34:24 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/24 18:20:10 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ int32_t		core_get_ind(t_data *data, int16_t position, int16_t to_jump,
 	uint16_t	jump_pos;
 
 	jump_pos = get_pos(position + to_jump);
-	ind = (int16_t)(((data->vm.arena[jump_pos] << 8)
-			| data->vm.arena[jump_pos + 1]));
+	ind = (data->vm.arena[get_pos(jump_pos + 1)] & 0xff);
+	ind += (int16_t)((data->vm.arena[get_pos(jump_pos)] & 0xff) << 8);
 	if (flag & IND_NUM)
 		return (ind);
-	return (get_ind_value(data, (uint16_t)(position + to_jump), ind, flag));
+	return (get_ind_value(data, get_pos(position), ind, flag));
 }
 
-int16_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
+int8_t		core_get_reg(t_data *data, int16_t position, t_carriages *current)
 {
-	int16_t		reg;
+	uint8_t		reg;
 
 	(void)current;
-	reg = (int16_t)(data->vm.arena[get_pos(position)]);
+	reg = (uint8_t)data->vm.arena[get_pos(position)];
 	if (reg > 0 && reg <= REG_NUMBER)
 		return (reg);
 	return (FAILURE);
