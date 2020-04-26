@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:15:37 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 18:19:52 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 18:49:25 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	debug_info_carriages(t_carriages *car)
 void		debug_info(t_data *data)
 {
 	ft_dprintf(STDERR_FILENO,
-			"\n\n#################### INFORMATION ####################\n\n");
+			"\n#################### INFORMATION ####################\n\n");
 	ft_dprintf(STDERR_FILENO,
 			"- number of players\t=> %d\n", data->initialised_players);
 	ft_dprintf(STDERR_FILENO,
@@ -91,7 +91,7 @@ void		debug_info(t_data *data)
 void		debug_opinfo(void)
 {
 	uint8_t		i;
-	const char	*op_str[] = {"\n\nCODE NAME   OCP       ARG1         ",
+	const char	*op_str[] = {"\nCODE NAME   OCP       ARG1         ",
 							"ARG2          ARG3        DIR   CAR\n",
 	"-----------------------------------------------------------------------\n",
 	"0x01 live        [    DIR    ]                             |  4  |  N |\n",
@@ -114,17 +114,18 @@ void		debug_opinfo(void)
 	i = 0;
 	while (i < 18)
 		ft_dprintf(STDERR_FILENO, "%s", op_str[i++]);
-	ft_putendl_fd("\n", STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
 }
 
 void		debug_help(void)
 {
-	ft_dprintf(STDERR_FILENO, "CMD LIST:\n");
-	ft_dprintf(STDERR_FILENO, "- exit:\t\t\t ==> exit debug mode\n");
-	ft_dprintf(STDERR_FILENO, "- goto [nb_cycle]:\t ==> go to a cycle\n");
-	ft_dprintf(STDERR_FILENO, "- help:\t\t\t ==> print cmd list\n");
-	ft_dprintf(STDERR_FILENO, "- info:\t\t\t ==> print current info\n");
-	ft_dprintf(STDERR_FILENO, "- next:\t\t\t ==> go to next cycle\n");
-	ft_dprintf(STDERR_FILENO, "- opinfo:\t\t ==> print info about op\n");
-	ft_dprintf(STDERR_FILENO, "- print:\t\t ==> print current dump\n");
+	ft_dprintf(STDERR_FILENO,
+			"\n################### CMD LIST ###################\n\n");
+	ft_dprintf(STDERR_FILENO, "- exit\t\t\t ==> exit debug mode\n");
+	ft_dprintf(STDERR_FILENO, "- goto/gt [nb_cycle]\t ==> go to a cycle\n");
+	ft_dprintf(STDERR_FILENO, "- help/h\t\t ==> print cmd list\n");
+	ft_dprintf(STDERR_FILENO, "- info\t\t\t ==> print current info\n");
+	ft_dprintf(STDERR_FILENO, "- next/n\t\t ==> go to next cycle\n");
+	ft_dprintf(STDERR_FILENO, "- opinfo\t\t ==> print info about op\n");
+	ft_dprintf(STDERR_FILENO, "- print/p\t\t ==> print current dump\n\n");
 }
