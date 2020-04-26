@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 20:51:26 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 14:29:29 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:32:44 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		debug_goto(t_debug *debug)
 	else if (debug->cur_cycle > debug->next_cycle)
 	{
 		ft_dprintf(STDERR_FILENO,
-			"\033[31mCycle %d already past.\033[0m\nCur cycle: %d\033[0m\n"
+			"\033[31mCycle %d has already passed\033[0m\nCur cycle: %d\033[0m\n"
 			, debug->next_cycle, debug->cur_cycle);
 		debug->cmd = NO_CMD;
 	}
