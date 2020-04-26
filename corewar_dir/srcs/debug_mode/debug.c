@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 20:51:26 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 19:23:26 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 19:30:53 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_debug	*init_debug(void)
 	ft_bzero(&debug, sizeof(t_debug));
 	i = 0;
 	while (i < 17)
-		ft_dprintf(STDERR_FILENO, "\033[35m%s\033[0m", debug_str[i++]);
+		ft_dprintf(STDERR_FILENO, "\033[1;35m%s\033[0m", debug_str[i++]);
 	return (&debug);
 }
 
