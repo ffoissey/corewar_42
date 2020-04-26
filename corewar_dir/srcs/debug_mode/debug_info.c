@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:15:37 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 14:35:26 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 18:19:52 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	debug_info_champs(t_champs **champs)
 	{
 		if (champs[i] != NULL)
 		{
-			if (first == TRUE)
+			if (first == FALSE)
 				ft_dprintf(STDERR_FILENO,
 					"------------------------------------------------------\n");
 			ft_dprintf(STDERR_FILENO, "nb player\t\t=> %d\nname\t\t\t=> %s\n",
