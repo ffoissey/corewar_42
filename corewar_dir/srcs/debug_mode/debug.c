@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 20:51:26 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 19:04:40 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 19:23:26 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static void		process_cmd(t_data *data, t_debug *debug)
 		debug_info(data);
 	else if (debug->cmd == HELP)
 		debug_help();
+	else if (debug->cmd == CLEAR)
+		ft_dprintf(STDERR_FILENO, "\033[2J\033[H");
 	debug->cmd = NO_CMD;
 }
 

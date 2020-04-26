@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 14:50:35 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 19:21:27 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ enum	e_cmd
 	HELP,
 	EXIT,
 	NEXT,
-	OPINFO
+	OPINFO,
+	CLEAR
 };
 
 typedef struct		s_debug

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 14:15:21 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 19:06:15 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 19:29:22 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,29 +66,33 @@ static int		get_cmd_extend(int i, t_debug *debug, int nb_debug,
 	return (ret);
 }
 
-int				short_cmd(t_vector *split, t_debug *debug, int i)
+void			short_cmd(t_vector *split, t_debug *debug, int *i)
 {
 	if (ft_strequ(vct_getstr(split), "n") == TRUE)
 	{
 		debug->cmd = NEXT;
-		return (5);
+		*i = 5;
 	}
 	else if (ft_strequ(vct_getstr(split), "gt") == TRUE)
 	{
 		debug->cmd = GOTO;
-		return (0);
+		*i = 0;
 	}
 	else if (ft_strequ(vct_getstr(split), "p") == TRUE)
 	{
 		debug->cmd = PRINT;
-		return (1);
+		*i = 1;
 	}
 	else if (ft_strequ(vct_getstr(split), "h") == TRUE)
 	{
 		debug->cmd = HELP;
-		return (3);
+		*i = 3;
 	}
-	return (i);
+	else if (ft_strequ(vct_getstr(split), "cl") == TRUE)
+	{
+		debug->cmd = CLEAR;
+		*i = 7;
+	}
 }
 
 int				get_cmd(t_vector *line, t_debug *debug)
@@ -96,7 +100,7 @@ int				get_cmd(t_vector *line, t_debug *debug)
 	t_vector	*split;
 	int			nb_debug;
 	const char	*str_debug[] = {"goto", "print", "info", "help", "exit", "next",
-								"opinfo"};
+								"opinfo", "clear"};
 	int			i;
 
 	vct_split(NULL, NULL, INIT);
@@ -113,7 +117,7 @@ int				get_cmd(t_vector *line, t_debug *debug)
 		}
 		i++;
 	}
-	i = short_cmd(split, debug, i);
+	short_cmd(split, debug, &i);
 	vct_del(&split);
 	return (get_cmd_extend(i + 1, debug, nb_debug, line));
 }

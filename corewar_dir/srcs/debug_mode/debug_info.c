@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:15:37 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 18:49:25 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 19:24:32 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void		debug_help(void)
 {
 	ft_dprintf(STDERR_FILENO,
 			"\n################### CMD LIST ###################\n\n");
+	ft_dprintf(STDERR_FILENO, "- clear/cl\t\t ==> clear screen\n");
 	ft_dprintf(STDERR_FILENO, "- exit\t\t\t ==> exit debug mode\n");
 	ft_dprintf(STDERR_FILENO, "- goto/gt [nb_cycle]\t ==> go to a cycle\n");
 	ft_dprintf(STDERR_FILENO, "- help/h\t\t ==> print cmd list\n");
