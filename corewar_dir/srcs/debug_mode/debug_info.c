@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:15:37 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 12:37:39 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:29:11 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,16 @@ void		debug_opinfo(void)
 	while (i < 18)
 		ft_dprintf(STDERR_FILENO, "%s", op_str[i++]);
 	ft_putendl_fd("\n", STDERR_FILENO);
+}
+
+void		debug_help(void)
+{
+	ft_dprintf(STDERR_FILENO, "CMD LIST:\n");
+	ft_dprintf(STDERR_FILENO, "- exit:\t\t\t ==> exit debug mode\n");
+	ft_dprintf(STDERR_FILENO, "- goto [nb_cycle]:\t ==> go to a cycle\n");
+	ft_dprintf(STDERR_FILENO, "- help:\t\t\t ==> print cmd list\n");
+	ft_dprintf(STDERR_FILENO, "- info:\t\t\t ==> print current info\n");
+	ft_dprintf(STDERR_FILENO, "- next:\t\t\t ==> go to next cycle\n");
+	ft_dprintf(STDERR_FILENO, "- opinfo:\t\t ==> print info about op\n");
+	ft_dprintf(STDERR_FILENO, "- print:\t\t ==> print current dump\n");
 }
