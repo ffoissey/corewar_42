@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 20:51:26 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 11:18:54 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 12:14:47 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,34 +120,31 @@ void	process_cmd(t_data *data, t_debug *debug)
 				, debug->next_cycle, debug->cur_cycle);
 			debug->cmd = NO_CMD;
 		}
+		return ;
 	}
 	else if (debug->cmd == OPINFO)
-	{
-		ft_dprintf(STDERR_FILENO, "OP INFO\n");
-		debug->cmd = NO_CMD;
-	}	
+		debug_opinfo();
 	else if (debug->cmd == PRINT)
-	{
 		corewar_dump(data);
-		debug->cmd = NO_CMD;
-	}
 	else if (debug->cmd == EXIT)
-		data->debug = OFF;
-	else if (debug->cmd == INFO)
 	{
-		debug_info(data);
-		debug->cmd = NO_CMD;
+		data->debug = OFF;
+		return ;
 	}
+	else if (debug->cmd == INFO)
+		debug_info(data);
 	else if (debug->cmd == HELP)
 	{
-		debug->cmd = NO_CMD;
 		ft_dprintf(STDERR_FILENO, "CMD LIST:\n");
 		ft_dprintf(STDERR_FILENO, "- help:\t\t\t ==> print cmd list\n");
 		ft_dprintf(STDERR_FILENO, "- info:\t\t\t ==> print current info\n");
 		ft_dprintf(STDERR_FILENO, "- goto [nb_cycle]:\t ==> go to a cycle\n");
 		ft_dprintf(STDERR_FILENO, "- print:\t\t ==> print current dump\n");
 		ft_dprintf(STDERR_FILENO, "- exit:\t\t\t ==> exit debug mode\n");
+		ft_dprintf(STDERR_FILENO, "- next:\t\t\t ==> go to next cycle\n");
+		ft_dprintf(STDERR_FILENO, "- opinfo:\t\t ==> print info about op\n");
 	}
+	debug->cmd = NO_CMD;
 }
 
 void	debug_process(t_data *data)

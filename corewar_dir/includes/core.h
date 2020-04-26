@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 10:16:18 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 11:29:00 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,6 @@ void		debug_process(t_data *data);
 void		corewar_dump(t_data *data);
 
 void		debug_info(t_data *data);
+void		debug_opinfo(void);
 
 #endif

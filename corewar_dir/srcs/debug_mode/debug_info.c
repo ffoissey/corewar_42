@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:15:37 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 11:17:43 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 12:37:39 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	debug_info_carriages(t_carriages *car)
 		{
 			ft_dprintf(STDERR_FILENO, "%sreg %2d  => %-11d\n",
 									i == 0 ? "\t" : "\t\t",
-									i + 1, car->registres[i]);	
+									i + 1, car->registres[i]);
 			i++;
 		}
 		if (car->next != NULL)
@@ -74,11 +74,11 @@ void		debug_info(t_data *data)
 	ft_dprintf(STDERR_FILENO,
 			"\n\n#################### INFORMATION ####################\n\n");
 	ft_dprintf(STDERR_FILENO,
-			"- number of players: %d\n", data->initialised_players);
+			"- number of players\t=> %d\n", data->initialised_players);
 	ft_dprintf(STDERR_FILENO,
-			"- current cycle: %d\n", data->vm.nb_cycles);
+			"- current cycle\t\t=> %d\n", data->vm.nb_cycles);
 	ft_dprintf(STDERR_FILENO,
-			"- cycle to die: %d\n", data->vm.cycles_to_die);
+			"- cycle to die\t\t=> %d\n", data->vm.cycles_to_die);
 	ft_dprintf(STDERR_FILENO,
 			"\n- - - - - - - - - - -  CHAMPS - - - - - - - - - - - - -\n\n");
 	debug_info_champs(data->champs);
@@ -86,4 +86,33 @@ void		debug_info(t_data *data)
 			"\n- - - - - - - - - - - CARRIAGES - - - - - - - - - - - -\n\n");
 	debug_info_carriages(data->carriages);
 	ft_putchar_fd('\n', STDERR_FILENO);
+}
+
+void		debug_opinfo(void)
+{
+	uint8_t		i;
+	const char	*op_str[] = {"\n\nCODE NAME   OCP       ARG1         ",
+							"ARG2          ARG3        DIR   CAR\n",
+	"-----------------------------------------------------------------------\n",
+	"0x01 live        [    DIR    ]                             |  4  |  N |\n",
+	"0x02 ld    [OCP] [  DIR/IND  ] [    REG    ]               |  4  |  Y |\n",
+	"0x03 st    [OCP] [    REG    ] [  REG/DIR  ]               |  4  |  N |\n",
+	"0x04 add   [OCP] [    REG    ] [    REG    ] [    REG    ] |  4  |  Y |\n",
+	"0x05 sub   [OCP] [    REG    ] [    REG    ] [    REG    ] |  4  |  Y |\n",
+	"0x06 and   [OCP] [REG/DIR/IND] [REG/DIR/IND] [    REG    ] |  4  |  Y |\n",
+	"0x07 or    [OCP] [REG/DIR/IND] [REG/DIR/IND] [    REG    ] |  4  |  Y |\n",
+	"0x08 xor   [OCP] [REG/DIR/IND] [REG/DIR/IND] [    REG    ] |  4  |  Y |\n",
+	"0x09 zjmp        [    DIR    ]                             |  2  |  N |\n",
+	"0x0a ldi   [OCP] [REG/DIR/IND] [  REG/DIR  ] [    REG    ] |  2  |  Y |\n",
+	"0x0b sti   [OCP] [    REG    ] [REG/DIR/IND] [  REG/DIR  ] |  2  |  N |\n",
+	"0x0c fork        [    DIR    ]                             |  2  |  N |\n",
+	"0x0d lld   [OCP] [  DIR/IND  ] [    REG    ]               |  4  |  N |\n",
+	"0x0e lldi  [OCP] [REG/DIR/IND] [  REG/DIR  ]  [   REG    ] |  2  |  Y |\n",
+	"0x0f lfork       [    DIR    ]                             |  2  |  N |\n",
+	"0x10 aff   [OCP] [    REG    ]                             |  4  |  N |"};
+
+	i = 0;
+	while (i < 18)
+		ft_dprintf(STDERR_FILENO, "%s", op_str[i++]);
+	ft_putendl_fd("\n", STDERR_FILENO);
 }
