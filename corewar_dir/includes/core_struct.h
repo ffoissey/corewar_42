@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 14:34:07 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:50:35 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct		s_carriages
 	int32_t					id;
 	int32_t					last_live_cycle;
 	int16_t					cycle_needed;
-	uint16_t				position; // int16_t ?
+	uint16_t				position;
 	int32_t					to_jump;
 	uint8_t					carry;
 	char					pad[7];
@@ -91,7 +91,6 @@ enum	e_cmd
 	NEXT,
 	OPINFO
 };
-
 
 typedef struct		s_debug
 {

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 19:22:25 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/24 16:49:05 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:40:14 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int32_t			find_arg(t_carriages *current, t_data *data,
 
 	if (mask == T_REG)
 	{
-		arg = core_get_reg(data, (int16_t)(current->position + current->to_jump), current);
+		arg = core_get_reg(data, current->position + current->to_jump, current);
 		if (arg == FAILURE)
 			*flag |= BAD_REG_NB;
 		else if ((*flag & REG_NUM) == FALSE)
@@ -31,12 +31,12 @@ static int32_t			find_arg(t_carriages *current, t_data *data,
 	}
 	else if (mask == T_DIR)
 	{
-		arg = core_get_dir(data, (int16_t)(current->position + current->to_jump), *flag);
+		arg = core_get_dir(data, current->position + current->to_jump, *flag);
 		current->to_jump += (*flag & SMALL_DIR) ? MEM_SMALL_DIR : MEM_DIR;
 	}
 	else
 	{
-		arg = core_get_ind(data, (int16_t)current->position, (int16_t)current->to_jump, *flag);
+		arg = core_get_ind(data, current->position, current->to_jump, *flag);
 		current->to_jump += MEM_IND;
 	}
 	return (arg);

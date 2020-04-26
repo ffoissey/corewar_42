@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:10:11 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/24 15:43:47 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:40:52 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **** LIVE 0x01
 */
 
-static int8_t		print_live(t_data *data, int32_t arg)
+static int8_t	print_live(t_data *data, int32_t arg)
 {
 	if (ft_printf("Un processus dit que le joueur %d (%s) est en vie.\n",
 			arg, data->champs[arg - 1]->name) == FAILURE)
@@ -72,7 +72,8 @@ int8_t			ope_aff(t_carriages *current, t_data *data)
 	enum e_type	type;
 
 	type = OP_AFF;
-	arg_1 = (int8_t)get_arg(current, data, REG_NUM | START_ARG | REG_FLAG, &type);
+	arg_1 = (int8_t)get_arg(current, data,
+					REG_NUM | START_ARG | REG_FLAG, &type);
 	if (type == NO_OP)
 		return (FAILURE);
 	if (data->aff == ON)

@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 13:37:27 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/24 18:21:52 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:48:24 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int8_t	load_value(t_carriages *current, t_data *data, enum e_type type)
 	{
 		if (type == OP_LD)
 			arg[0] %= IDX_MOD;
-		arg[0] = get_ind_value(data, current->position, (int16_t)get_pos((int16_t)arg[0]), IND);
+		arg[0] = get_ind_value(data, current->position, get_pos(arg[0]), IND);
 	}
 	arg[1] = get_arg(current, data, END_ARG | REG_NUM, &type);
 	if (type == NO_OP)
@@ -53,7 +53,7 @@ int8_t	load_indvalue(t_carriages *current, t_data *data, enum e_type type)
 	if (type == OP_LDI)
 		arg[0] %= IDX_MOD;
 	arg[0] = get_ind_value(data, current->position, get_pos(arg[0]),
-			type == OP_LDI ? IND : IND_LLD); 
+			type == OP_LDI ? IND : IND_LLD);
 	arg[1] = get_arg(current, data, SMALL_DIR, &type);
 	arg[2] = get_arg(current, data, END_ARG | REG_NUM, &type);
 	if (type == NO_OP)
@@ -61,7 +61,7 @@ int8_t	load_indvalue(t_carriages *current, t_data *data, enum e_type type)
 	pos = (int16_t)(arg[0] + arg[1]);
 	if (type == OP_LDI)
 		pos %= IDX_MOD;
-	to_load = get_ind_value(data, current->position, (int16_t)get_pos(pos), IND);
+	to_load = get_ind_value(data, current->position, get_pos(pos), IND);
 	flag_reg = SET;
 	set_reg_value(current, (int8_t)arg[2], to_load, &flag_reg);
 	if (type == OP_LLDI)

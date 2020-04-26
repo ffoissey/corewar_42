@@ -6,13 +6,13 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/24 21:31:38 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:43:19 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static int8_t		exec_op_code(uint32_t op_code, t_carriages *current,
+static int8_t	exec_op_code(uint32_t op_code, t_carriages *current,
 					t_data *data)
 {
 	static t_ope	ptr_operation[16] = {ope_live, ope_ld, ope_st, ope_add,
@@ -46,12 +46,13 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 		if (current->cycle_needed == 0)
 		{
 			op_code = data->vm.arena[get_pos(current->position)];
-			if (op_code > 16 || op_code <= 0)	
+			if (op_code > 16 || op_code <= 0)
 				current->position = get_pos(current->position + 1);
 			else if (exec_op_code(op_code, current, data) == FAILURE)
 				current->position = get_pos(current->position + 1);
 			else
-				current->position = get_pos(current->position + current->to_jump);
+				current->position = get_pos(current->position
+										+ current->to_jump);
 			current->to_jump = 0;
 		}
 	}
@@ -62,7 +63,7 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 	}
 }
 
-void				corewar_dump(t_data *data)
+void			corewar_dump(t_data *data)
 {
 	int	i;
 
@@ -93,7 +94,7 @@ void			core_cycle(t_data *data)
 
 	while (data->carriages != NULL)
 	{
-		debug_process(data); //
+		debug_process(data);
 		current = data->carriages;
 		if (data->vm.nb_cycles == data->dump)
 		{

@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:25:50 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 16:30:05 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:41:20 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_champs	*init_champ(char *file_path, uint8_t nb_player)
 	return (new_champ);
 }
 
-static void	is_valid_player_name(char *name)
+static void		is_valid_player_name(char *name)
 {
 	size_t	len;
 
@@ -34,7 +34,7 @@ static void	is_valid_player_name(char *name)
 		core_error(get_env_data(DATA), ER_FILE);
 }
 
-static void	get_next_player(t_data *data, char *file_path,
+static void		get_next_player(t_data *data, char *file_path,
 							int8_t nb_player)
 {
 	is_valid_player_name(file_path);

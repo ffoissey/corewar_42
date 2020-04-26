@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/24 18:20:06 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:48:57 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int8_t				ope_st(t_carriages *current, t_data *data)
 			return (FAILURE);
 	}
 	else if (ocp == REG_IND_)
-		store_value(data, (int16_t)get_pos((int16_t)current->position), arg[1], arg[0]);
+		store_value(data, (int16_t)get_pos(current->position), arg[1], arg[0]);
 	else
 		return (FAILURE);
 	return (SUCCESS);
@@ -79,6 +79,6 @@ int8_t				ope_sti(t_carriages *current, t_data *data)
 		return (FAILURE);
 	arg[1] = get_arg(current, data, IND | SMALL_DIR, &type);
 	arg[2] = get_arg(current, data, END_ARG | SMALL_DIR, &type);
-	store_value(data, (int16_t)get_pos((int16_t)current->position), arg[1] + arg[2], arg[0]);
+	store_value(data, get_pos(current->position), arg[1] + arg[2], arg[0]);
 	return (SUCCESS);
 }
