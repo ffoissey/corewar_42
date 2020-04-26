@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 14:41:52 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/24 17:10:23 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 10:30:26 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int32_t		get_ind_value(t_data *data, uint16_t position, int16_t arg,
 		i++;
 	}
 	if ((flag & IND) == FALSE)
-		value = value;
+		value = (int16_t)value;
 	return (value);
 }
 

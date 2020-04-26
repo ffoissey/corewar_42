@@ -6,27 +6,35 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 16:32:37 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 10:10:48 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CORE_DEFINE_H
 # define CORE_DEFINE_H
 
+
+
+/*
+**		------------------------------ Debug
+*/
+
+# define NB_DEBUG		5 
+
 /*
 **		------------------------------ Autres
 */
 
 # define NATURAL_ORDER	0
-# define DATA		NULL
-# define ONE_LINE	64
+# define DATA			NULL
+# define ONE_LINE		64
 
 /*
 **		------------------------------ Gestion d'erreurs
 */
 
 # define ERROR_NB 13
-#define PRINT_ERROR 5
+# define PRINT_ERROR 5
 
 # define NO_ERROR_MSG NULL
 

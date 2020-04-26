@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/24 22:08:37 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 11:09:28 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,19 @@ enum	e_cmd
 	PRINT,
 	INFO,
 	HELP,
-	EXIT
+	EXIT,
+	NEXT,
+	OPINFO
 };
 
 
 typedef struct		s_debug
 {
-	uint8_t		waiting_cmd;
-	int32_t		next_cycle;
 	enum e_cmd	cmd;
-	char		arg[16];
+	int32_t		next_cycle;
+	int32_t		cur_cycle;
+	uint8_t		waiting_cmd;
+	char		pad[3];
 }					t_debug;
 
 enum	e_type
