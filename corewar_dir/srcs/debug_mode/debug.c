@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 20:51:26 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/27 11:44:46 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 13:29:36 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void			dump_diff(t_data *data, uint32_t *save_memory, uint8_t is_free)
 	uint16_t	i;
 
 	i = 0;
-	
 	if (is_free == TRUE)
 	{
 		ft_dprintf(STDERR_FILENO,
@@ -73,7 +72,7 @@ void			debug_process(t_data *data)
 {
 	static t_debug		*debug;
 
-	if (data->debug == OFF || isatty(STDIN_FILENO) == FALSE) //isatty interdit
+	if (data->debug == OFF || isatty(STDIN_FILENO) == FALSE)
 		return ;
 	if (debug == NULL)
 		debug = init_debug();
