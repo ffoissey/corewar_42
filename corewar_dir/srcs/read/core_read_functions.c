@@ -28,11 +28,13 @@ void		core_read_exec_code_size(t_champs *champs, int32_t fd)
 		else
 			ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 						champs->name);
+		close(fd);
 		core_error(get_env_data(DATA), ret == FAILURE ? ER_READ : ER_SMALL);
 	}
 	size = (buff[0] << 24 | buff[1] << 16 | buff[2] << 8 | buff[3]);
 	if (size < 0 || size > CHAMP_MAX_SIZE)
 	{
+		close(fd);
 		ft_dprintf(STDERR_FILENO,
 			"\033[1;31mERROR:\033[0m %s : ", champs->name);
 		core_error(get_env_data(DATA), ER_BIG);
@@ -48,6 +50,7 @@ void		core_fd_empty(t_champs *champs, int32_t fd)
 	ret = read(fd, read_test, 2);
 	if (ret == 0)
 		return ;
+	close(fd);
 	ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 		champs->name);
 	core_error(get_env_data(DATA), ER_DIFF);
@@ -61,12 +64,14 @@ void		core_read_comment(t_champs *champs, int32_t fd)
 	ret = read(fd, champs->comment, COMMENT_LENGTH);
 	if (ret == FAILURE)
 	{
+		close(fd);
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->file_path);
 		core_error(get_env_data(DATA), ER_READ);
 	}
 	if (ret != COMMENT_LENGTH)
 	{
+		close(fd);
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->name);
 		core_error(get_env_data(DATA), ER_SIZE_COMM);

@@ -25,12 +25,14 @@ void			core_install_champ(t_champs *champs,
 	ret = read(fd, tmp_code, (size_t)champs->exec_code_size);
 	if (ret == FAILURE)
 	{
+		close(fd);
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->name);
 		core_error(get_env_data(DATA), ER_READ);
 	}
 	if (ret != champs->exec_code_size)
 	{
+		close(fd);
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->name);
 		core_error(data, ER_DIFF);

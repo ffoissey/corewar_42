@@ -24,6 +24,7 @@ static void			read_header(t_champs *champs, int32_t fd)
 	{
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->file_path);
+		close(fd);
 		core_error(get_env_data(DATA), ER_READ);
 	}
 	if (ret == 4)
@@ -35,6 +36,7 @@ static void			read_header(t_champs *champs, int32_t fd)
 	}
 	ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 		champs->file_path);
+	close(fd);
 	core_error(get_env_data(DATA), ER_MAGIC);
 }
 
@@ -45,12 +47,14 @@ static void			read_name(t_champs *champs, int32_t fd)
 	ret = read(fd, champs->name, PROG_NAME_LENGTH);
 	if (ret == FAILURE)
 	{
+		close(fd);
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->file_path);
 		core_error(get_env_data(DATA), ER_READ);
 	}
 	if (ret != PROG_NAME_LENGTH)
 	{
+		close(fd);
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->file_path);
 		core_error(get_env_data(DATA), ER_NAME);
@@ -66,12 +70,14 @@ static	void		skip_null(t_champs *champs, int32_t fd)
 	errno = 0;
 	if (ret == FAILURE)
 	{
+		close(fd);
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->file_path);
 		core_error(get_env_data(DATA), ER_READ);
 	}
 	if (buff[0] == 0 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 		return ;
+	close(fd);
 	ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 		champs->name);
 	core_error(get_env_data(DATA), ER_NULL);

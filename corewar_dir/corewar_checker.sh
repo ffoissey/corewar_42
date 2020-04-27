@@ -6,7 +6,7 @@ then
 	exit 1;
 fi
 
-COR=../DOC/corewar_linux
+COR=../DOC/corewar
 
 keyword=$1
 nb_dump=$2
