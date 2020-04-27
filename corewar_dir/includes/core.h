@@ -24,9 +24,9 @@
 **		CORE_INIT
 */
 
-void		core_init_data(int ac, char **av, t_data *data);
-int32_t		core_init_flag(int32_t ac, char **av, t_data *data);
-uint8_t		get_player_number(char **av, int32_t *i);
+void		core_init_data(const int32_t ac, const char **av, t_data *data);
+uint32_t	core_init_flag(const int32_t ac, const char **av, t_data *data);
+uint8_t		get_player_number(const char **av, uint32_t *i);
 
 /*
 **		CORE_CYCLE
@@ -48,7 +48,7 @@ void		core_present_winner(t_data *data);
 
 void		core_init_data_vm(t_data *data);
 void		core_install_champ(t_champs *champs,
-		int32_t fd, t_data *data, int8_t champ_nb);
+		const int32_t fd, t_data *data, const int8_t champ_nb);
 
 /*
 **		CORE_READ
@@ -74,7 +74,7 @@ void		core_init_carriages(t_data *data);
 **		CORE_ERROR
 */
 
-void		core_error(t_data *data, uint8_t error_nbr);
+void		core_error(t_data *data, const uint8_t error_nbr);
 
 /*
 **		GET_ENV_DATA
@@ -93,7 +93,7 @@ void		print_carriages(t_data *data);
 **		CORE_FREE
 */
 
-void		core_free_all(t_data *data, uint8_t error_nbr);
+void		core_free_all(t_data *data, const uint8_t error_nbr);
 
 /*
 **		CORE_OPE

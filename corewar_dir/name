@@ -1,0 +1,27 @@
+srcs/init/core_init_vm.c:	ret = read(fd, tmp_code, (size_t)champs->exec_code_size);
+srcs/init/core_init_vm.c:			champs->name);
+srcs/init/core_init_vm.c:	if (ret != champs->exec_code_size)
+srcs/init/core_init_vm.c:			champs->name);
+srcs/init/core_init_vm.c:	champs->copy_start = (MEM_SIZE / data->initialised_players) * (champ_nb);
+srcs/init/core_init_vm.c:	while (count_cpy < champs->exec_code_size)
+srcs/init/core_init_vm.c:		data->vm.arena[champs->copy_start++] = (uint8_t)tmp_code[count_cpy++];
+srcs/init/core_init_vm.c:	champs->copy_start = champs->copy_start - champs->exec_code_size;
+srcs/read/core_read.c:			champs->file_path);
+srcs/read/core_read.c:		champs->file_path);
+srcs/read/core_read.c:	ret = read(fd, champs->name, PROG_NAME_LENGTH);
+srcs/read/core_read.c:			champs->file_path);
+srcs/read/core_read.c:			champs->file_path);
+srcs/read/core_read.c:			champs->file_path);
+srcs/read/core_read.c:		champs->name);
+srcs/read/core_read.c:	fd = open(champs->file_path, O_RDONLY);
+srcs/read/core_read.c:			champs->file_path);
+srcs/read/core_read.c:			champs->file_path);
+srcs/read/core_read_functions.c:			champs->file_path);
+srcs/read/core_read_functions.c:			champs->name);
+srcs/read/core_read_functions.c:			champs->name);
+srcs/read/core_read_functions.c:	champs->exec_code_size = size;
+srcs/read/core_read_functions.c:		champs->name);
+srcs/read/core_read_functions.c:	ret = read(fd, champs->comment, COMMENT_LENGTH);
+srcs/read/core_read_functions.c:			champs->file_path);
+srcs/read/core_read_functions.c:			champs->name);
+srcs/read/core_read_functions.c:	champs->comment[ret] = '\0';

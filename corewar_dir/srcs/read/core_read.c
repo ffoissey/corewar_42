@@ -80,7 +80,7 @@ static	void			skip_null(t_champs *champs, int32_t fd)
 static void			core_open_management(t_champs *champs,
 						t_data *data, int8_t champ_nb)
 {
-	int32_t		fd;
+	int32_t	fd;
 
 	errno = 0;
 	fd = open(champs->file_path, O_RDONLY);

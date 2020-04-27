@@ -64,7 +64,7 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 
 static void			corewar_dump(t_data *data)
 {
-	int	i;
+	uint16_t	i;
 
 	i = 0;
 	while (i < MEM_SIZE)

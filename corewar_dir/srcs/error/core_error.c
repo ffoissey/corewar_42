@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-void	core_error(t_data *data, uint8_t error_nbr)
+void	core_error(t_data *data, const uint8_t error_nbr)
 {
 	static char		*messages[ERROR_NB] = {NO_ERROR_MSG, ER_FILE_MSG,
 				ER_DUMP_MSG, ER_N_USAGE_MSG, ER_STDCLOSED_MSG,

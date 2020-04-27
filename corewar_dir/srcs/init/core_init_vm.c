@@ -13,7 +13,7 @@
 #include "core.h"
 
 void			core_install_champ(t_champs *champs,
-				int32_t fd, t_data *data, int8_t champ_nb)
+				const int32_t fd, t_data *data, const int8_t champ_nb)
 {
 	ssize_t			ret;
 	unsigned char		tmp_code[CHAMP_MAX_SIZE];

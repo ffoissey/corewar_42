@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static void		core_init_champs_carriages(t_data *data, uint8_t champ_nb)
+static void		core_init_champs_carriages(t_data *data, const uint8_t champ_nb)
 {
 	t_carriages *carriage;
 

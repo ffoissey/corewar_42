@@ -19,7 +19,7 @@
 
 typedef struct		s_champs
 {
-	char			*file_path;
+	const char		*file_path;
 	char			name[PROG_NAME_LENGTH + 1];
 	unsigned char	comment[COMMENT_LENGTH + 1];
 	uint8_t			nb_player;

@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static t_champs	*init_champ(char *file_path, uint8_t nb_player)
+static t_champs	*init_champ(const char *file_path, const uint8_t nb_player)
 {
 	t_champs		*new_champ;
 
@@ -20,12 +20,12 @@ static t_champs	*init_champ(char *file_path, uint8_t nb_player)
 	new_champ = (t_champs *)ft_memalloc(sizeof(t_champs));
 	if (new_champ == NULL)
 		core_error(get_env_data(DATA), ER_MALLOC);
-	new_champ->nb_player = (uint8_t)nb_player;
+	new_champ->nb_player = nb_player;
 	new_champ->file_path = file_path;
 	return (new_champ);
 }
 
-static void	is_valid_player_name(char *name)
+static void	is_valid_player_name(const char *name)
 {
 	size_t	len;
 
@@ -34,8 +34,8 @@ static void	is_valid_player_name(char *name)
 		core_error(get_env_data(DATA), ER_FILE);
 }
 
-static void	get_next_player(t_data *data, char *file_path,
-							int8_t nb_player)
+static void	get_next_player(t_data *data, const char *file_path,
+							uint8_t nb_player)
 {
 	is_valid_player_name(file_path);
 	if (data->initialised_players >= MAX_PLAYERS)
@@ -60,18 +60,18 @@ t_data			*get_env_data(t_data *init)
 	return (data);
 }
 
-void			core_init_data(int32_t ac, char **av, t_data *data)
+void			core_init_data(const int32_t ac, const char **av, t_data *data)
 {
-	int32_t		i;
+	uint32_t	i;
 	uint8_t		nb_player;
 
 	ft_bzero(data, sizeof(t_data));
 	get_env_data(data);
 	i = core_init_flag(ac + 1, av, data);
-	while (i < ac)
+	while (i < (uint32_t)ac)
 	{
 		nb_player = get_player_number(av, &i);
-		get_next_player(data, av[i], (int8_t)nb_player);
+		get_next_player(data, av[i], nb_player);
 		i++;
 	}
 }

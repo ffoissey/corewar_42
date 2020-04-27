@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-static int		ft_isanint(char *str)
+static int		ft_isanint(const char *str)
 {
 	long		nb;
 
@@ -20,14 +20,14 @@ static int		ft_isanint(char *str)
 	return (nb <= INT_MAX && nb >= INT_MIN);
 }
 
-static int32_t	get_arg_number(char *number_str)
+static int32_t	get_arg_number(const char *number_str)
 {
 	if (number_str == NULL || ft_isanint(number_str) == FALSE)
 		core_error(get_env_data(DATA), ER_DUMP);
 	return (ft_atoi(number_str));
 }
 
-uint8_t			get_player_number(char **av, int32_t *i)
+uint8_t			get_player_number(const char **av, uint32_t *i)
 {
 	int32_t		nb_player;
 
@@ -48,15 +48,15 @@ uint8_t			get_player_number(char **av, int32_t *i)
 	return ((uint8_t)nb_player);
 }
 
-int32_t			core_init_flag(int32_t ac, char **av,
+uint32_t		core_init_flag(const int32_t ac, const char **av,
 					t_data *data)
 {
-	int32_t	i;
+	uint32_t	i;
 
 	i = 1;
 	data->dump = OFF;
 	data->aff = OFF;
-	while (i < ac)
+	while (i < (uint32_t)ac)
 	{
 		if (ft_strequ(av[i], "-dump") == TRUE)
 		{

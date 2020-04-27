@@ -12,7 +12,7 @@
 
 #include "core.h"
 
-int				main(int32_t ac, char **av)
+int				main(const int32_t ac, const char **av)
 {
 	t_data		data;
 
