@@ -31,7 +31,7 @@
 # define NO_ERROR_MSG		NULL
 
 # define ER_FILE			1
-# define ER_FILE_MSG		"joindre entre un et MAX_PLAYERS fichier .cor\n"
+# define ER_FILE_MSG		"Between One or MAX_PLAYERS files .cor needed\n"
 
 # define ER_DUMP 			2
 # define ER_DUMP_MSG		"./corewar [-dump] [0 - INT_MAX] .cor\n"
@@ -40,31 +40,31 @@
 # define ER_N_USAGE_MSG		"./corewar [-n] [0 - MAX_PLAYERS] .cor\n"
 
 # define ER_STDCLOSED		4
-# define ER_STDCLOSED_MSG	"sortie standard fermée\n"
+# define ER_STDCLOSED_MSG	"Standard output closed\n"
 
 # define ER_NAME			5
-# define ER_NAME_MSG		"name non-valide\n"
+# define ER_NAME_MSG		"Invalid name\n"
 
 # define ER_NULL 			6
-# define ER_NULL_MSG		"4 octets nulls requis\n"
+# define ER_NULL_MSG		"4 nulls bytes required\n"
 
 # define ER_SMALL			7
-# define ER_SMALL_MSG		"fichier .cor trop court\n"
+# define ER_SMALL_MSG		"File .cor too short\n"
 
 # define ER_BIG 			8
-# define ER_BIG_MSG			"la taille du code executable n'est pas valable\n"
+# define ER_BIG_MSG		"The size of the executable code is not valid\n"
 
 # define ER_MAGIC 			9
-# define ER_MAGIC_MSG		"mauvais magic number\n"
+# define ER_MAGIC_MSG		"Wrong magic number\n"
 
 # define ER_DIFF			10
-# define ER_DIFF_MSG		"la taille du code ne correspond pas\n"
+# define ER_DIFF_MSG		"The size of the executable code didn't match\n"
 
 # define ER_SIZE_COMM		11
-# define ER_SIZE_COMM_MSG	"la taille du commentaire n'est pas valide\n"
+# define ER_SIZE_COMM_MSG	"The size of the comment isn't valid\n"
 
 # define ER_INIT			12
-# define ER_INIT_MSG		"pas de champion\n"
+# define ER_INIT_MSG		"No champion\n"
 
 /*
 **		------------------------------ Gestion d'erreurs sans messages
