@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 12:26:15 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/27 12:30:40 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 12:59:24 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ static void			core_put_reg_ind(t_data *data, int16_t position,
 	data->vm.arena[get_pos(position + 3)] = (uint32_t)reg_value;
 }
 
-static void			store_value(t_data *data, int16_t position, int16_t arg_1,
+static void			store_value(t_data *data, int16_t position, int32_t arg_1,
 						int32_t reg_value)
 {
-	int16_t	pos;
+	int32_t	pos;
 
-	pos = arg_1 % IDX_MOD;
-	pos = position + pos % IDX_MOD;
+	pos = arg_1 % IDX_MOD + position;
 	core_put_reg_ind(data, get_pos(pos), reg_value);
 }
 
