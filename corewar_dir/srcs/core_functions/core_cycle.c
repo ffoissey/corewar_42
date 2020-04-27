@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 14:43:19 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 12:34:39 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ static void		exec_current_carriage(t_carriages *current, t_data *data)
 			op_code = data->vm.arena[get_pos(current->position)];
 			if (op_code > 16 || op_code <= 0)
 				current->position = get_pos(current->position + 1);
-			else if (exec_op_code(op_code, current, data) == FAILURE)
-				current->position = get_pos(current->position + 1);
 			else
+			{
+				exec_op_code(op_code, current, data);
 				current->position = get_pos(current->position
 										+ current->to_jump);
+			}
 			current->to_jump = 0;
 		}
 	}
