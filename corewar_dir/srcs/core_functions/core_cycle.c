@@ -6,13 +6,13 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:49:28 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 15:40:56 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:43:19 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static int8_t		exec_op_code(uint32_t op_code, t_carriages *current,
+static int8_t	exec_op_code(uint32_t op_code, t_carriages *current,
 					t_data *data)
 {
 	static t_ope	ptr_operation[16] = {ope_live, ope_ld, ope_st, ope_add,
@@ -23,46 +23,47 @@ static int8_t		exec_op_code(uint32_t op_code, t_carriages *current,
 	return (ptr_operation[op_code - 1](current, data));
 }
 
-static void		get_new_op_code(t_carriages *current, t_data *data)
+static int		get_new_op_code(t_carriages *current, t_data *data)
 {
-	uint32_t			op_code;
+	uint8_t			op_code;
 	const int16_t	cycle_needed[16] = {10, 5, 5, 10, 10, 6, 6, 6, 20, 25, 25,
 							800, 10, 50, 1000, 2};
 
-	op_code = data->vm.arena[current->position];
-	if (op_code <= 16 && op_code > 0)
-		current->cycle_needed = cycle_needed[op_code - 1] - 1;
-	else
-		current->position = (current->position + 1) % MEM_SIZE;
+	op_code = (uint8_t)data->vm.arena[get_pos(current->position)];
+	if (op_code > 16 || op_code <= 0)
+		return (FAILURE);
+	current->cycle_needed = cycle_needed[op_code - 1] - 1;
+	return (SUCCESS);
 }
 
 static void		exec_current_carriage(t_carriages *current, t_data *data)
 {
-	uint32_t		op_code;
+	uint8_t		op_code;
 
-	op_code = data->vm.arena[current->position];
-	if (current->cycle_needed > 1)
-		current->cycle_needed--;
-	else if (op_code < 1 || op_code > 16)
-		current->position = (current->position + 1) % MEM_SIZE;
-	else if (current->cycle_needed == 1)
+	if (current->cycle_needed > 0)
 	{
-		if (exec_op_code(op_code, current, data) == FAILURE)
-			current->position = (current->position + 1) % MEM_SIZE;
-		else
-		{
-			current->position = (current->position
-				+ current->to_jump)
-				% MEM_SIZE;
-		}
-		current->to_jump = 0;
 		current->cycle_needed--;
+		if (current->cycle_needed == 0)
+		{
+			op_code = data->vm.arena[get_pos(current->position)];
+			if (op_code > 16 || op_code <= 0)
+				current->position = get_pos(current->position + 1);
+			else if (exec_op_code(op_code, current, data) == FAILURE)
+				current->position = get_pos(current->position + 1);
+			else
+				current->position = get_pos(current->position
+										+ current->to_jump);
+			current->to_jump = 0;
+		}
 	}
 	else
-		get_new_op_code(current, data);
+	{
+		if (get_new_op_code(current, data) == FAILURE)
+			current->position = get_pos(current->position + 1);
+	}
 }
 
-static void			corewar_dump(t_data *data)
+void			corewar_dump(t_data *data)
 {
 	uint16_t	i;
 
@@ -83,7 +84,8 @@ static void			corewar_dump(t_data *data)
 		}
 		i++;
 	}
-	core_free_all(data, NO_ERROR);
+	if (data->debug == OFF)
+		core_free_all(data, NO_ERROR);
 }
 
 void			core_cycle(t_data *data)
@@ -92,18 +94,18 @@ void			core_cycle(t_data *data)
 
 	while (data->carriages != NULL)
 	{
+		debug_process(data);
+		current = data->carriages;
 		if (data->vm.nb_cycles == data->dump)
 		{
 			corewar_dump(data);
 			break ;
 		}
 		data->vm.nb_cycles += 1;
-		current = data->carriages;
-		exec_current_carriage(current, data);
-		while (current->next)
+		while (current != NULL)
 		{
-			current = current->next;
 			exec_current_carriage(current, data);
+			current = current->next;
 		}
 		if (data->vm.cycle_last_check ==
 			data->vm.cycles_to_die

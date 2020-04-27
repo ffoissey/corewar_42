@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:00:13 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 16:30:40 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:42:56 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void			core_install_champ(t_champs *champs,
 				const int32_t fd, t_data *data, const int8_t champ_nb)
 {
 	ssize_t			ret;
-	unsigned char		tmp_code[CHAMP_MAX_SIZE];
+	unsigned char	tmp_code[CHAMP_MAX_SIZE];
 	int32_t			count_cpy;
 
 	count_cpy = 0;

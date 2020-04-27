@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:31:09 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 16:49:03 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 14:46:29 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void			read_name(t_champs *champs, int32_t fd)
 	}
 }
 
-static	void			skip_null(t_champs *champs, int32_t fd)
+static	void		skip_null(t_champs *champs, int32_t fd)
 {
 	ssize_t			ret;
 	unsigned char	buff[4];
@@ -68,13 +68,13 @@ static	void			skip_null(t_champs *champs, int32_t fd)
 	{
 		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 			champs->file_path);
-		core_error(get_env_data(DATA),ER_READ);
+		core_error(get_env_data(DATA), ER_READ);
 	}
 	if (buff[0] == 0 && buff[1] == 0 && buff[2] == 0 && buff[3] == 0)
 		return ;
 	ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
 		champs->name);
-	core_error(get_env_data(DATA),ER_NULL);
+	core_error(get_env_data(DATA), ER_NULL);
 }
 
 static void			core_open_management(t_champs *champs,

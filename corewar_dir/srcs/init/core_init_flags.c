@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:15:37 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/22 15:36:55 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/24 20:46:07 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,12 @@ uint32_t		core_init_flag(const int32_t ac, const char **av,
 	i = 1;
 	data->dump = OFF;
 	data->aff = OFF;
+	data->debug = OFF;
 	while (i < (uint32_t)ac)
 	{
-		if (ft_strequ(av[i], "-dump") == TRUE)
+		if (ft_strequ(av[i], "-debug") == TRUE)
+			data->debug = ON;
+		else if (ft_strequ(av[i], "-dump") == TRUE)
 		{
 			i++;
 			data->dump = get_arg_number(av[i]);

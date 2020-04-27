@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 14:41:52 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/22 15:34:11 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/26 10:30:26 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ int32_t		get_ind_value(t_data *data, uint16_t position, int16_t arg,
 	int64_t		add;
 
 	i = 0;
-	(void)position;
 	max = (flag & IND) ? 4 : 2;
 	value = 0;
 	while (i < max)
 	{
-		add = ((uint8_t)data->vm.arena[get_pos(arg + i + position)]);
+		add = (data->vm.arena[get_pos(arg + i + position)] & 0xff);
 		add <<= (8 * (max - 1 - i));
-		value |= (int32_t)add;
+		value |= (add & 0xffffffff);
 		i++;
 	}
 	if ((flag & IND) == FALSE)
@@ -43,7 +42,7 @@ int32_t		get_ind_value(t_data *data, uint16_t position, int16_t arg,
 	return (value);
 }
 
-int32_t		set_reg_value(t_carriages *current, int8_t reg, int32_t value,
+int32_t		set_reg_value(t_carriages *current, uint8_t reg, int32_t value,
 				uint8_t *flag)
 {
 	if (reg > 0 && reg <= REG_NUMBER)

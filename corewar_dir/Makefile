@@ -6,7 +6,7 @@
 #    By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/10 10:48:43 by cde-moul          #+#    #+#              #
-#    Updated: 2020/04/22 14:44:03 by ffoissey         ###   ########.fr        #
+#    Updated: 2020/04/26 14:18:39 by ffoissey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS		+=		$(PUT)
 SRCS		+=		$(ERROR)
 SRCS		+=		$(FREE)
 SRCS		+=		$(PRINT)
+SRCS		+=		$(DEBUG)
 
 OBJS		=		$(patsubst %.c, $(OPATH)%.o, $(SRCS))
 
@@ -54,7 +55,7 @@ P_CORE		+=		./init/
 P_CORE		+=		./ope/
 P_CORE		+=		./error/
 P_CORE		+=		./free/
-P_CORE		+=		./print_debug/
+P_CORE		+=		./debug_mode/
 
 _SPATH		+=		$(P_CORE)
 
@@ -183,6 +184,12 @@ ERROR			+=		core_error.c
 #								 			  --- Free de Data ---
 
 FREE			+=		core_free.c
+
+#								 			  --- Debug Mode ---
+
+DEBUG			+=		debug.c
+DEBUG			+=		debug_info.c
+DEBUG			+=		debug_get_cmd.c
 
 
 #------------------------------------------------------------------------------#
