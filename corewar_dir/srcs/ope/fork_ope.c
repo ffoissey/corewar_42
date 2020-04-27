@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 11:11:59 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/24 16:42:57 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 14:17:26 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static t_carriages	*get_new_carriage(t_carriages *current, uint16_t position,
 	t_carriages		*new;
 	uint8_t			nb_reg;
 
-	errno = 0;
 	new = (t_carriages *)ft_memalloc(sizeof(t_carriages));
 	if (new == NULL)
 		core_error(get_env_data(get_env_data(DATA)), ER_MALLOC);

@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:03:58 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 19:37:45 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 14:17:17 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void		core_read_exec_code_size(t_champs *champs, int32_t fd)
 	int32_t			size;
 	unsigned char	buff[4];
 
-	errno = 0;
 	ret = read(fd, buff, 4);
 	if (ret != 4)
 	{
@@ -60,7 +59,6 @@ void		core_read_comment(t_champs *champs, int32_t fd)
 {
 	ssize_t		ret;
 
-	errno = 0;
 	ret = read(fd, champs->comment, COMMENT_LENGTH);
 	if (ret == FAILURE)
 	{

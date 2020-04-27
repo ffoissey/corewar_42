@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:25:50 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/27 13:28:46 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 14:16:55 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static t_champs	*init_champ(const char *file_path, const uint8_t nb_player)
 {
 	t_champs		*new_champ;
 
-	errno = 0;
 	new_champ = (t_champs *)ft_memalloc(sizeof(t_champs));
 	if (new_champ == NULL)
 		core_error(get_env_data(DATA), ER_MALLOC);

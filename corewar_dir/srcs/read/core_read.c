@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:31:09 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 14:46:29 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 14:16:11 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static void			read_header(t_champs *champs, int32_t fd)
 	ret = read(fd, magic, 4);
 	if (ret == FAILURE)
 	{
-		ft_dprintf(STDERR_FILENO, "\033[1;31mERROR:\033[0m %s : ",
-			champs->file_path);
+		ft_dprintf(2, "\033[1;31mERROR:\033[0m %s : ", champs->file_path);
 		close(fd);
 		core_error(get_env_data(DATA), ER_READ);
 	}
@@ -67,7 +66,6 @@ static	void		skip_null(t_champs *champs, int32_t fd)
 	unsigned char	buff[4];
 
 	ret = read(fd, buff, 4);
-	errno = 0;
 	if (ret == FAILURE)
 	{
 		close(fd);
@@ -88,7 +86,6 @@ static void			core_open_management(t_champs *champs,
 {
 	int32_t	fd;
 
-	errno = 0;
 	fd = open(champs->file_path, O_RDONLY);
 	if (fd < 0)
 	{

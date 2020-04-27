@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:00:13 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 14:42:56 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 14:16:47 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void			core_install_champ(t_champs *champs,
 	int32_t			count_cpy;
 
 	count_cpy = 0;
-	errno = 0;
 	ft_bzero((void *)tmp_code, CHAMP_MAX_SIZE);
 	ret = read(fd, tmp_code, (size_t)champs->exec_code_size);
 	if (ret == FAILURE)
