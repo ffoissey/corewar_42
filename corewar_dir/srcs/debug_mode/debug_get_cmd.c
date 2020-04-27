@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 14:15:21 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/27 11:18:30 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 14:45:13 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static int		get_goto_arg(t_debug *debug, t_vector *line)
 	split = vct_split(line, "\t ", NO_SEP);
 	if (vct_apply(split, IS_DIGIT) == TRUE)
 	{
-		nb = ft_atol(vct_getstr(split));
-		if (nb > INT_MAX)
+		if (vct_len(split) > 10 || (nb = ft_atol(vct_getstr(split))) > INT_MAX)
 		{
 			ft_dprintf(STDERR_FILENO,
 					"goto: Nb_cycle must be between 0 and INT_MAX\n");
