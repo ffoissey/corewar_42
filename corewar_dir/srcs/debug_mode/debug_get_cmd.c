@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 14:15:21 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 19:29:22 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 11:18:30 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int				get_cmd(t_vector *line, t_debug *debug)
 	t_vector	*split;
 	int			nb_debug;
 	const char	*str_debug[] = {"goto", "print", "info", "help", "exit", "next",
-								"opinfo", "clear"};
+								"opinfo", "clear", "save", "diff", "flush"};
 	int			i;
 
 	vct_split(NULL, NULL, INIT);

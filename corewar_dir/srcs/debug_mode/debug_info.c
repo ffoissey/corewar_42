@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/26 10:15:37 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 19:24:32 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 11:26:54 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,15 @@ void		debug_help(void)
 	ft_dprintf(STDERR_FILENO,
 			"\n################### CMD LIST ###################\n\n");
 	ft_dprintf(STDERR_FILENO, "- clear/cl\t\t ==> clear screen\n");
+	ft_dprintf(STDERR_FILENO, "- diff\t\t\t ==> compare saved and cur dump");
+	ft_dprintf(STDERR_FILENO, " (Warning: print saved dump, not cur)\n");
 	ft_dprintf(STDERR_FILENO, "- exit\t\t\t ==> exit debug mode\n");
+	ft_dprintf(STDERR_FILENO, "- flush\t\t\t ==> flush saved dump\n");
 	ft_dprintf(STDERR_FILENO, "- goto/gt [nb_cycle]\t ==> go to a cycle\n");
 	ft_dprintf(STDERR_FILENO, "- help/h\t\t ==> print cmd list\n");
 	ft_dprintf(STDERR_FILENO, "- info\t\t\t ==> print current info\n");
 	ft_dprintf(STDERR_FILENO, "- next/n\t\t ==> go to next cycle\n");
 	ft_dprintf(STDERR_FILENO, "- opinfo\t\t ==> print info about op\n");
-	ft_dprintf(STDERR_FILENO, "- print/p\t\t ==> print current dump\n\n");
+	ft_dprintf(STDERR_FILENO, "- print/p\t\t ==> print current dump\n");
+	ft_dprintf(STDERR_FILENO, "- save\t\t\t ==> save current dump\n\n");
 }

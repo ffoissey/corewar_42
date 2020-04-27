@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:16:31 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 14:54:51 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 11:40:51 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,12 @@
 # define OFF			-1
 # define ON				0
 # define DONE			-2
+
+/*
+** 			----------------------- DEBUG
+*/
+
+# define FREE_CMD		0
+# define SAVE_CMD		1
 
 #endif

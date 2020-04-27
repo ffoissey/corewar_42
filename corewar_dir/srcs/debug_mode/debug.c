@@ -6,7 +6,7 @@
 /*   By: ffoissey <ffoissey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 20:51:26 by ffoissey          #+#    #+#             */
-/*   Updated: 2020/04/26 19:30:53 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 11:44:46 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,32 @@ static t_debug	*init_debug(void)
 	return (&debug);
 }
 
-static void		debug_goto(t_debug *debug)
+void			dump_diff(t_data *data, uint32_t *save_memory, uint8_t is_free)
 {
-	if (debug->cur_cycle == debug->next_cycle)
-	{
-		ft_dprintf(STDERR_FILENO, "You are at cycle %d\n",
-			debug->next_cycle);
-		debug->cmd = NO_CMD;
-	}
-	else if (debug->cur_cycle > debug->next_cycle)
+	uint16_t	i;
+
+	i = 0;
+	
+	if (is_free == TRUE)
 	{
 		ft_dprintf(STDERR_FILENO,
-			"\033[31mCycle %d has already passed\033[0m\nCur cycle: %d\033[0m\n"
-			, debug->next_cycle, debug->cur_cycle);
-		debug->cmd = NO_CMD;
-	}
-}
-
-static void		process_cmd(t_data *data, t_debug *debug)
-{
-	if (debug->cmd == GOTO)
-	{
-		debug_goto(debug);
+			"\033[31mNo dump saved\n\033[0muse `save' to save a dump\n");
 		return ;
 	}
-	else if (debug->cmd == OPINFO)
-		debug_opinfo();
-	else if (debug->cmd == PRINT)
+	while (i < MEM_SIZE)
 	{
-		ft_putchar_fd('\n', STDERR_FILENO);
-		corewar_dump(data);
-		ft_putchar_fd('\n', STDERR_FILENO);
+		if (i % ONE_LINE == SUCCESS)
+			ft_dprintf(STDERR_FILENO, "0x%04x : ", i);
+		if (data->vm.arena[i] != save_memory[i])
+			ft_dprintf(STDERR_FILENO, "\033[1;32m%02x \033[0m",
+				(uint8_t)save_memory[i]);
+		else
+			ft_dprintf(STDERR_FILENO, "%02x ", (uint8_t)save_memory[i]);
+		if (i > 0 && ((i + 1) % ONE_LINE == SUCCESS))
+			ft_putchar_fd('\n', STDERR_FILENO);
+		i++;
 	}
-	else if (debug->cmd == EXIT)
-	{
-		data->debug = OFF;
-		return ;
-	}
-	else if (debug->cmd == INFO)
-		debug_info(data);
-	else if (debug->cmd == HELP)
-		debug_help();
-	else if (debug->cmd == CLEAR)
-		ft_dprintf(STDERR_FILENO, "\033[2J\033[H");
-	debug->cmd = NO_CMD;
+	ft_putchar_fd('\n', STDERR_FILENO);
 }
 
 void			debug_process(t_data *data)

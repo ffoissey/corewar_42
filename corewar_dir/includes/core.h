@@ -6,7 +6,7 @@
 /*   By: cde-moul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:57:01 by cde-moul          #+#    #+#             */
-/*   Updated: 2020/04/26 18:28:31 by ffoissey         ###   ########.fr       */
+/*   Updated: 2020/04/27 11:45:03 by ffoissey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,7 @@ int			get_cmd(t_vector *line, t_debug *debug);
 void		debug_info(t_data *data);
 void		debug_opinfo(void);
 void		debug_help(void);
+void		dump_diff(t_data *data, uint32_t *save_memory, uint8_t free);
+void		process_cmd(t_data *data, t_debug *debug);
 
 #endif
