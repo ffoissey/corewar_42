@@ -6,7 +6,7 @@ MY_ASM=../asm
 if [ -z $1 ]
 then
 	echo "Miss an argument: give a champion"
-	echo "Usage: ./asm_checker.sh [champ.cor]"
+	echo "Usage: ./asm_checker.sh [champ.s]"
 	exit 0
 fi
 make -j8 d=1
